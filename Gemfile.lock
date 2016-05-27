@@ -149,7 +149,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.6)
   byebug
   jquery-rails
   listen (~> 3.0.5)
