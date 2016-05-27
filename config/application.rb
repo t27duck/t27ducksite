@@ -21,5 +21,13 @@ module T27duck
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+
+    config.generators do |g|
+      g.assets = false
+      g.helper = false
+    end
+
+    config.action_controller.include_all_helpers = false
+    config.active_record.schema_format           = :sql
   end
 end
