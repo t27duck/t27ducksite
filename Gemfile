@@ -15,6 +15,7 @@ end
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
+  gem 'rubocop', '~> 0.40.0', require: false
 end
 
 gem 'simplecov', require: false, group: :test

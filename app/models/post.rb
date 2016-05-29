@@ -10,7 +10,7 @@ class Post < ApplicationRecord
 
   def publish=(value)
     if ActiveRecord::Type::Boolean.new.cast(value)
-      self.published_at ||= Time.now
+      self.published_at ||= Time.now.utc
     else
       self.published_at = nil
     end

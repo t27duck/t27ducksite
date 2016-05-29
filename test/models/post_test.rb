@@ -9,7 +9,7 @@ class PostTest < ActiveSupport::TestCase
     @post.published_at = nil
     refute @post.publish
 
-    @post.published_at = Time.now
+    @post.published_at = Time.now.utc
     assert @post.publish
   end
 
