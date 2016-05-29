@@ -2,7 +2,8 @@ class Admin::PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @published_posts = Post.published.order(created_at: :desc)
+    @unpublished_posts = Post.unpublished.order(published_at: :desc)
   end
 
   def new

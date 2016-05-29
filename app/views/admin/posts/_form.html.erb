@@ -1,8 +1,7 @@
-<%= form_for(post) do |f| %>
+<%= form_for [:admin, post] do |f| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <p><strong><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</strong></p>
       <ul>
       <% post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,22 +10,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :published_at %>
-    <%= f.text_field :published_at %>
+  <div class="checkbox">
+    <%= f.label :publish do  %>
+      <%= f.check_box :publish %>
+      Publish
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+    <%= link_to "Cancel", admin_posts_path, class: 'btn btn-warning' %>
   </div>
 <% end %>

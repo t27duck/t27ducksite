@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   validates :title, :content, presence: true
 
+  scope :published, -> { where.not(published_at: nil) }
+  scope :unpublished, -> { where(published_at: nil) }
+
   def publish
     published_at.present?
   end
