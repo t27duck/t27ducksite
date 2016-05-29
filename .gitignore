@@ -19,3 +19,4 @@
 .DS_STORE
 .ruby-version
 config/database.yml
+coverage

@@ -23,6 +23,13 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_posts_path
   end
 
+  test "should not create post if not valid" do
+    assert_no_difference('Post.count') do
+      post admin_posts_url, params: { post: { content: @post.content, published_at: @post.published_at, title: '' } }
+    end
+    assert_response :success
+  end
+
   test "should get edit" do
     get edit_admin_post_url(@post)
     assert_response :success
@@ -31,6 +38,11 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
   test "should update post" do
     patch admin_post_url(@post), params: { post: { content: @post.content, published_at: @post.published_at, title: @post.title } }
     assert_redirected_to admin_posts_path
+  end
+
+  test "should not update post if not valid" do
+    patch admin_post_url(@post), params: { post: { content: @post.content, published_at: @post.published_at, title: '' } }
+    assert_response :success
   end
 
   test "should destroy post" do
