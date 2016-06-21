@@ -1,4 +1,5 @@
 class Admin::PagesController < ApplicationController
+  before_action :require_login
   before_action :set_page, only: [:edit, :update]
 
   def index

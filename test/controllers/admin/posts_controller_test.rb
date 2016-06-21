@@ -3,6 +3,7 @@ require 'test_helper'
 class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
+    login_user
   end
 
   test 'should get index' do

@@ -12,10 +12,10 @@ namespace :auth do
     password_confirmation = STDIN.noecho(&:gets).strip
     if password == password_confirmation
       hash = {
-        'authentication_key' => SecureRandom.hex,
-        'encrypted_password' => BCrypt::Password.create(password)
+        'session_token' => SecureRandom.hex,
+        'password_digest' => BCrypt::Password.create(password).to_s
       }
-      puts 'CONTENT FOR .authentication:'
+      puts 'CONTENT FOR .authentication.yml:'
       puts hash.to_yaml
     else
       puts 'ERROR: Passwords do not match'

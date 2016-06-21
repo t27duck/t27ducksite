@@ -1,4 +1,5 @@
 class Admin::PostsController < ApplicationController
+  before_action :require_login
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index

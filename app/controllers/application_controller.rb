@@ -8,4 +8,14 @@ class ApplicationController < ActionController::Base
   def logged_in?
     StupidlySimpleAuthentication.authenticated?(cookies.signed[:token])
   end
+
+  private ######################################################################
+
+  def require_login
+    redirect_to new_session_path unless logged_in?
+  end
+
+  def require_no_login
+    redirect_to root_path if logged_in?
+  end
 end

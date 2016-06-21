@@ -26,6 +26,11 @@
           <ul class="nav navbar-nav">
             <li><%= link_to 'Posts', '#' %></li>
           </ul>
+          <% if logged_in? %>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %> </li>
+            </ul>
+          <% end %>
         </div>
       </div>
     </nav>

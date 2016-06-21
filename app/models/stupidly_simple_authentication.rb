@@ -21,6 +21,6 @@ class StupidlySimpleAuthentication
   end
 
   def self.configure!(path="#{Rails.root}/.authentication.yml")
-    @config = YAML::load_file(path)[Rails.env]
+    @config = YAML::load_file(path)
   end
 end

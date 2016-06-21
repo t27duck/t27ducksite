@@ -20,4 +20,4 @@
 .ruby-version
 config/database.yml
 coverage
-.authentication
+.authentication.yml

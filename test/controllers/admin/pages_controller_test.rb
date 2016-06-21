@@ -3,6 +3,7 @@ require 'test_helper'
 class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @page = pages(:about)
+    login_user
   end
 
   test 'should get index' do
