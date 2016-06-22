@@ -14,14 +14,9 @@ class StupidlySimpleAuthentication
   end
 
   def self.config
-    @config ||= configure!
+    @config ||= YAML::load_file("#{Rails.root}/.authentication.yml")
   end
   private_class_method :config
-
-  def self.configure!
-    @config = YAML::load_file("#{Rails.root}/.authentication.yml")
-  end
-  private_class_method :configure!
 
   def self.password_digest
     config['password_digest'] || raise('Digest not set')
