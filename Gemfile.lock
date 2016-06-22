@@ -48,6 +48,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (9.0.5)
+    coderay (1.1.1)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
     docile (1.1.5)
@@ -119,6 +120,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redcarpet (3.3.4)
     ref (2.0.0)
     rubocop (0.40.0)
       parser (>= 2.3.1.0, < 3.0)
@@ -172,11 +174,13 @@ DEPENDENCIES
   bcrypt
   bootstrap-sass (~> 3.3.6)
   byebug
+  coderay
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
   rails (>= 5.0.0.rc1, < 5.1)
+  redcarpet
   rubocop (~> 0.40.0)
   sass-rails (~> 5.0)
   simplecov
