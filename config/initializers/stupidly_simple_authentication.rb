@@ -1,1 +1,0 @@
-StupidlySimpleAuthentication.configure!
