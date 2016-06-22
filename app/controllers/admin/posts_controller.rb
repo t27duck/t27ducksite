@@ -37,6 +37,11 @@ class Admin::PostsController < ApplicationController
     redirect_to admin_posts_path, notice: 'Post was successfully destroyed.'
   end
 
+  def preview
+    @content = params[:content]
+    render layout: false
+  end
+
   private ######################################################################
 
   def set_post

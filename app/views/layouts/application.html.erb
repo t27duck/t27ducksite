@@ -39,5 +39,7 @@
       <% if flash[:error] %><div class="alert alert-danger" role="alert"><%= flash[:error] %></div><% end %>
       <%= yield %>
     </div>
+
+<%= yield :bottom %>
   </body>
 </html>

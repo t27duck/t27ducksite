@@ -17,7 +17,7 @@
 
   <div class="form-group">
     <%= f.label :content %>
-    <%= f.text_area :content, class: 'form-control' %>
+    <%= f.text_area :content, rows: 12, class: 'form-control' %>
   </div>
 
   <div class="checkbox">
@@ -30,5 +30,26 @@
   <div class="form-group">
     <%= f.submit class: 'btn btn-primary' %>
     <%= link_to "Cancel", admin_posts_path, class: 'btn btn-warning' %>
+    <a href="#" id="preview-link" class="btn btn-info">Preview</a>
   </div>
+<% end %>
+
+<div id="preview-content"></div>
+
+<% content_for :bottom do %>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#preview-link").on("click", function(event) {
+      var $preview  = $("#preview-content");
+      var content   = $("#post_content").val();
+      $.post(
+        "<%= preview_admin_posts_path %>",
+        { content: content }
+      ).done(function(html) {
+        $preview.html(html);
+      });
+      event.preventDefault();
+    });
+  });
+</script>
 <% end %>
