@@ -1,2 +1,22 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#social-icons {
+  margin-top: 12px;
+  #twitter-icon {
+    background-color: #55ACEE;
+  }
+  #github-icon {
+    background-color: #000000;
+  }
+  #linkedin-icon {
+    background-color: #0077B5;
+  }
+}
+
+#sidebar-images {
+  img {
+    display: block;
+    margin: auto;
+  }
+}

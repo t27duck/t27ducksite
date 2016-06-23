@@ -1,6 +1,7 @@
 class Admin::PostsController < ApplicationController
   before_action :require_login
   before_action :set_post, only: [:edit, :update, :destroy]
+  before_action :no_sidebar
 
   def index
     @published_posts = Post.published.order(created_at: :desc)

@@ -28,7 +28,7 @@
           </ul>
           <% if logged_in? %>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %> </li>
+              <li><%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %></li>
             </ul>
           <% end %>
         </div>
@@ -37,7 +37,33 @@
     <div class="container">
       <% if flash[:notice] %><div class="alert alert-info" role="alert"><%= flash[:notice] %></div><% end %>
       <% if flash[:error] %><div class="alert alert-danger" role="alert"><%= flash[:error] %></div><% end %>
-      <%= yield %>
+
+      <div class="row">
+        <% if @no_sidebar %>
+          <div class="col-sm-12">
+            <%= yield %>
+          </div>
+        <% else %>
+          <div class="col-sm-9">
+            <%= yield %>
+          </div>
+          <div class="col-sm-3">
+            <div id="sidebar-images">
+              <%= image_tag 'me.jpg', class: 'img-circle img-responsive', alt: 't27duck' %>
+              <div id="social-icons" class="row">
+                <div class="col-xs-4">
+                  <%= link_to image_tag('social/github-128.png', id: 'github-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'GitHub'), 'https://github.com/t27duck' %>
+                </div>
+                <div class="col-xs-4">
+                  <%= link_to image_tag('social/linkedin-128.png', id: 'linkedin-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'LinkedIN'), 'https://linkedin.com/in/t27duck' %>
+                </div>
+                <div class="col-xs-4">
+                  <%= link_to image_tag('social/twitter-128.png', id: 'twitter-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'Twitter'), 'https://twitter.com/t27duck' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
     </div>
 
 <%= yield :bottom %>
