@@ -17,6 +17,8 @@ group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'rubocop', '~> 0.40.0', require: false
+  gem 'capistrano', '3.5.0'
+  gem 'capistrano-rails', '~> 1.1'
 end
 
 gem 'simplecov', require: false, group: :test

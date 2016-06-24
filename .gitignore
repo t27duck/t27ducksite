@@ -21,3 +21,5 @@
 config/database.yml
 coverage
 .authentication.yml
+.session
+config/deploy/production.rb
