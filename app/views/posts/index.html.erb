@@ -1,1 +1,10 @@
 <%= render partial: 'post', collection: @posts %>
+
+
+<div class="pull-right">
+  <%= link_to_next_page @posts, 'Next Page' %>
+</div>
+<div class="pull-left">
+  <%= link_to_previous_page @posts, 'Previous Page' %>
+</div>
+<div class="clearfix"></div>

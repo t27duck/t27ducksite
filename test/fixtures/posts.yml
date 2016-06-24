@@ -3,9 +3,9 @@
 one:
   title: MyString
   content: MyText
-  published_at: MyString
+  published_at: 2016-06-01
 
 two:
   title: MyString
   content: MyText
-  published_at: MyString
+  published_at: 2016-06-01
