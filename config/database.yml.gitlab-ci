@@ -1,7 +1,7 @@
 test:
   adapter: postgresql
   encoding: unicode
-  host: postgresql
+  host: postgres
   user: runner
   password:
   database: t27duck_test
