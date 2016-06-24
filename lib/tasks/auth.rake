@@ -1,5 +1,5 @@
 namespace :auth do
-  desc 'Generates YAML to put in .authentication'
+  desc 'Generates YAML to put in .authentication.yml'
   task :generate do
     require 'bcrypt'
     require 'io/console'
