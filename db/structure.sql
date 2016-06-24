@@ -85,9 +85,9 @@ CREATE TABLE posts (
     id integer NOT NULL,
     title character varying NOT NULL,
     content text NOT NULL,
-    published_at character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    published_at timestamp without time zone
 );
 
 
@@ -178,6 +178,6 @@ CREATE UNIQUE INDEX index_pages_on_slug ON pages USING btree (slug);
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160527001859'), ('20160530011121');
+INSERT INTO schema_migrations (version) VALUES ('20160527001859'), ('20160530011121'), ('20160624151525');
 
 
