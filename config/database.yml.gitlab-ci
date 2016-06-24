@@ -1,0 +1,9 @@
+default:
+  adapter: postgresql
+  encoding: unicode
+  host: postgresql
+  user: runner
+  password:
+  database: t27duck_test
+  pool: 5
+  timeout: 5000
