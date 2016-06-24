@@ -20,11 +20,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to 't27duck', '#', class: 'navbar-brand' %>
+          <%= link_to 't27duck', root_path, class: 'navbar-brand' %>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to 'Posts', '#' %></li>
+            <li><%= link_to 'Posts', posts_path %></li>
           </ul>
           <% if logged_in? %>
             <ul class="nav navbar-nav navbar-right">

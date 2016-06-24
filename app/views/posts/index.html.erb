@@ -1,5 +1,8 @@
-<%= render partial: 'post', collection: @posts %>
-
+<% if @posts.present? %>
+  <%= render partial: 'post', collection: @posts %>
+<% else %>
+  <p>Nothing written yet :/</p>
+<% end %>
 
 <div class="pull-right">
   <%= link_to_next_page @posts, 'Next Page' %>
