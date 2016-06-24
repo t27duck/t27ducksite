@@ -14,7 +14,7 @@ class StupidlySimpleAuthentication
   end
 
   def self.config
-    @config ||= YAML::load_file("#{Rails.root}/.authentication.yml")
+    @config ||= YAML.load_file("#{Rails.root}/.authentication.yml")
   end
   private_class_method :config
 

@@ -1,9 +1,6 @@
 module ApplicationHelper
   def markdown(template)
-    renderer = CodeRayify.new(
-      filter_html:  true,
-      hard_wrap:    true
-    )
+    renderer = CodeRayify.new(filter_html: true, hard_wrap: true)
 
     options = {
       fenced_code_blocks: true,
@@ -12,7 +9,6 @@ module ApplicationHelper
       lax_html_blocks:    true
     }
 
-    markdown_to_html = Redcarpet::Markdown.new(renderer, options)
-    markdown_to_html.render(template).html_safe
+    Redcarpet::Markdown.new(renderer, options).render(template).html_safe
   end
 end
