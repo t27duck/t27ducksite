@@ -1,6 +1,7 @@
 class AddTitleToPages < ActiveRecord::Migration[5.0]
   def up
     add_column :pages, :title, :string
+    Page.reset_column_information
     Page.all.each do |page|
       page.title = page.slug.titlecase
       page.save!
