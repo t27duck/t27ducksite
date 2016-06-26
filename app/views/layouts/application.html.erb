@@ -14,6 +14,12 @@
     <meta name="msapplication-config" content="none"/>
     <meta name="copyright" content="Copyright <%= Time.now.strftime('%Y') %>" />
 
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
+    <meta name="twitter:title" content="<%= @page_title ? @page_title : 't27duck.com' %>" />
+    <meta name="twitter:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
+    <meta name="twitter:site" content="@t27duck" />
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
