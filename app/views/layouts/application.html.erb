@@ -25,6 +25,7 @@
     <meta property="og:title" content="<%= @page_title ? @page_title : 't27duck.com' %>" />
     <meta property="og:type" content="<%= @page_type || "website" %>" />
     <meta property="og:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
+    <meta property="og:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
