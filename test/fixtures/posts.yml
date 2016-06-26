@@ -2,10 +2,12 @@
 
 one:
   title: MyString
+  summary: MyString
   content: MyText
   published_at: 2016-06-01
 
 two:
   title: MyString
+  summary: MyString
   content: MyText
   published_at: 2016-06-01

@@ -19,7 +19,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should create post' do
     assert_difference('Post.count') do
       post admin_posts_url, params: {
-        post: { content: @post.content, published_at: @post.published_at, title: @post.title }
+        post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: @post.title }
       }
     end
 
@@ -29,7 +29,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
   test 'should not create post if not valid' do
     assert_no_difference('Post.count') do
       post admin_posts_url, params: {
-        post: { content: @post.content, published_at: @post.published_at, title: '' }
+        post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: '' }
       }
     end
     assert_response :success

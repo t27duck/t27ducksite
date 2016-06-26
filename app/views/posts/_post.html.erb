@@ -1,6 +1,13 @@
-<h2><%= link_to post.title, post %></h2>
-<h5>Published: <%= post.publish ?  post.published_at.strftime('%B %d, %Y') : 'n/a' %></h5>
-<div>
-  <%= markdown(post.content) %>
+<div class="post">
+  <h2 class="title"><%= link_to post.title, post %></h2>
+  <h5 class="meta">Published: <%= post.publish ?  post.published_at.strftime('%B %d, %Y') : 'n/a' %></h5>
+
+  <% if post.summary.present? %>
+    <div class="summary"><%= post.summary %></div>
+  <% end %>
+
+  <div class="content">
+    <%= markdown(post.content) %>
+  </div>
 </div>
 <hr />
