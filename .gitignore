@@ -23,3 +23,4 @@ coverage
 .authentication.yml
 .session
 config/deploy/production.rb
+config/misc.yml
