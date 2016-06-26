@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
-  resources :pages, only: :show
   resources :posts, only: [:index, :show]
 
   namespace :admin do
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/about', to: 'pages#show', id: 'about', as: :about
 
   root 'home#index'
 end

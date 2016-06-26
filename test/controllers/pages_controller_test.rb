@@ -1,12 +1,8 @@
 require 'test_helper'
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @page = pages(:about)
-  end
-
-  test 'should show post' do
-    get page_url(@page)
+  test 'should show about page' do
+    get '/about'
     assert_response :success
   end
 end
