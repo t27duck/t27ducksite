@@ -1,1 +1,25 @@
 <%= render partial: 'post', object: @post %>
+
+<div id="disqus_thread"></div>
+
+<% if Rails.env.production? %>
+  <script type="text/javascript">
+    /*
+      LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
+      https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    var disqus_config = function () {
+      this.page.url = "<%= post_url(id: @post.id) %>";  // Canonical URL variable
+      this.page.identifier = "<%= "#{Rails.env}-post-#{@post.id}" %>"; // Page's unique identifier variable
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+
+      s.src = '//t27duck.disqus.com/embed.js';
+
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+<% end %>
