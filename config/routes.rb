@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
 
   namespace :admin do
-    resources :pages, only: [:index, :edit, :update]
+    resources :pages, only: [:index, :edit, :update] do
+      collection do
+        post :preview
+      end
+    end
     resources :posts, except: [:show] do
       collection do
         post :preview

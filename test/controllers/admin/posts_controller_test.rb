@@ -61,4 +61,9 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to admin_posts_path
   end
+
+  test 'should display preview' do
+    post preview_admin_posts_path, params: { content: @post.content }
+    assert_response :success
+  end
 end
