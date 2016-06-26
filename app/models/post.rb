@@ -15,4 +15,8 @@ class Post < ApplicationRecord
       self.published_at = nil
     end
   end
+
+  def to_param
+    "#{id}-#{title}".parameterize
+  end
 end
