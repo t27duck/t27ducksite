@@ -26,10 +26,10 @@ class Admin::PagesController < ApplicationController
   private ######################################################################
 
   def set_page
-    @page = Page.find_by!(slug: params[:id])
+    @page = Page.find(params[:id])
   end
 
   def page_params
-    params.require(:page).permit(:content)
+    params.require(:page).permit(:title, :content)
   end
 end

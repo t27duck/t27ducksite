@@ -12,13 +12,13 @@ class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get edit' do
-    get edit_admin_page_url(@page.slug)
+    get edit_admin_page_url(@page)
     assert_response :success
   end
 
   test 'should update page' do
     patch admin_page_url(@page), params: {
-      page: { content: @page.content }
+      page: { title: @page.title, content: @page.content }
     }
     assert_redirected_to admin_pages_path
   end
