@@ -3,9 +3,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.published.order(published_at: :desc).page(params[:page]).per(5)
+    @page_title = 'Blog Entries'
   end
 
   def show
+    @page_title = @post.title
   end
 
   private ######################################################################
