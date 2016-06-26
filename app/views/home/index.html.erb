@@ -3,7 +3,7 @@
 <% if @posts.present? %>
   <% @posts.each do |post| %>
     <h4>
-      <%= post.title %>
+      <%= link_to post.title, post %>
       <span style="font-size: 12px; font-style: italic; color: gray;"><%= post.published_at.strftime("%B %d, %Y") %></span>
     </h4>
   <% end %>
