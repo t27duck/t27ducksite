@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   def show
     @page_title       = @post.title
     @page_description = @post.summary
+    @page_type        = 'article'
   end
 
   private ######################################################################

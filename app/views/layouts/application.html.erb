@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" xml:lang="en-US">
+<html lang="en-US" xml:lang="en-US" xmlns:og="http://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,12 @@
     <meta name="twitter:title" content="<%= @page_title ? @page_title : 't27duck.com' %>" />
     <meta name="twitter:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
     <meta name="twitter:site" content="@t27duck" />
+
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="t27duck" />
+    <meta property="og:title" content="<%= @page_title ? @page_title : 't27duck.com' %>" />
+    <meta property="og:type" content="<%= @page_type || "website" %>" />
+    <meta property="og:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
