@@ -3,8 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>T27duck</title>
     <%= csrf_meta_tags %>
+
+    <meta name="robots" content="NOODP">
+    <meta name="description" content="The personal site and blog of Tony Drake" />
+    <meta name="keywords" content="t27duck,blog,ruby,tony,programming,server administration,linux,postgresql,video games" />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="msapplication-config" content="none"/>
+    <meta name="copyright" content="Copyright <%= Time.now.strftime('%Y') %>" />
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
