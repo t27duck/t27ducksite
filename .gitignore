@@ -24,3 +24,4 @@ coverage
 .session
 config/deploy/production.rb
 config/misc.yml
+config/honeybadger.yml
