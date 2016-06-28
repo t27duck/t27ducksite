@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th>Title</th>
+        <th>Tags</th>
         <th>Created at</th>
         <th></th>
       </tr>
@@ -19,6 +20,7 @@
       <% @unpublished_posts.each do |post| %>
         <tr>
           <td><%= post.title %></td>
+          <td><%= post.tags.map(&:name).join(', ') %></td>
           <td><%= post.created_at %></td>
           <td class="text-right" nowrap>
             <%= link_to edit_admin_post_path(post), class: "btn btn-primary btn-xs" do %>
@@ -40,6 +42,7 @@
     <thead>
       <tr>
         <th>Title</th>
+        <th>Tags</th>
         <th>Published at</th>
         <th></th>
       </tr>
@@ -48,6 +51,7 @@
       <% @published_posts.each do |post| %>
         <tr>
           <td><%= post.title %></td>
+          <td><%= post.tags.map(&:name).join(', ') %></td>
           <td><%= post.published_at %></td>
           <td class="text-right" nowrap>
             <%= link_to edit_admin_post_path(post), class: "btn btn-primary btn-xs" do %>

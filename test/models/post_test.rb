@@ -28,4 +28,15 @@ class PostTest < ActiveSupport::TestCase
       assert_equal @post.published_at.present?, expected
     end
   end
+
+  test 'tags_input= sets or creates tags for the post' do
+    post = Post.new
+    assert_difference 'Tag.count', 2 do
+      post.tags_input = 'tag1, tag 2,,one, ,two'
+    end
+
+    tag_names = post.tags.map(&:name)
+    assert tag_names.include?('tag1'), 'Post missing tag1 tag'
+    assert tag_names.include?('tag-2'), 'Post missing tag-2 tag'
+  end
 end

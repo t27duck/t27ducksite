@@ -4,8 +4,8 @@ class Admin::PostsController < ApplicationController
   before_action :no_sidebar
 
   def index
-    @published_posts = Post.published.order(created_at: :desc)
-    @unpublished_posts = Post.unpublished.order(published_at: :desc)
+    @published_posts = Post.published.includes(:tags).order(created_at: :desc)
+    @unpublished_posts = Post.unpublished.includes(:tags).order(published_at: :desc)
   end
 
   def new
@@ -50,6 +50,6 @@ class Admin::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :summary, :publish)
+    params.require(:post).permit(:title, :content, :summary, :publish, :tags_input)
   end
 end
