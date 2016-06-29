@@ -14,4 +14,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get post_url(@post)
     assert_response :success
   end
+
+  test 'should show tag' do
+    tag = Tag.take
+    get tag_posts_path(tag.name)
+    assert_response :success
+  end
 end

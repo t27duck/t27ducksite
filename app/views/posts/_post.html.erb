@@ -10,8 +10,8 @@
     <%= markdown(post.content) %>
   </div>
 
-  <% if @post.tags.present? %>
-    <div class="tags">Tags: <%= post.tags.map(&:name).join(', ') %></div>
+  <% if post.tags.present? %>
+    <div class="tags">Tags: <%= tag_links(post.tags) %></div>
   <% end %>
 </div>
 <hr />

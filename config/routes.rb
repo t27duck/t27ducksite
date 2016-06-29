@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :posts, only: [:index, :show]
+  get '/posts/tag/:tag', to: 'posts#tag', as: :tag_posts
 
   namespace :admin do
     resources :pages, only: [:index, :edit, :update] do
