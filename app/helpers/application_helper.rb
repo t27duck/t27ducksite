@@ -3,7 +3,9 @@ module ApplicationHelper
     fenced_code_blocks: true,
     no_intra_emphasis:  true,
     autolink:           true,
-    lax_html_blocks:    true
+    lax_html_blocks:    true,
+    tables:             true,
+    link_attributes:    { target: '_blank' }
   }.freeze
 
   def markdown(template)
