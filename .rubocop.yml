@@ -1,6 +1,7 @@
 AllCops:
   Exclude:
     - db/*
+    - config/deploy/*
 
 Rails:
   Enabled: true
