@@ -18,6 +18,7 @@ group :development do
   gem 'rubocop', '~> 0.40.0', require: false
   gem 'capistrano', '3.5.0'
   gem 'capistrano-rails', '~> 1.1'
+  gem 'bugsnag-capistrano'
 end
 
 gem 'simplecov', require: false, group: :test
