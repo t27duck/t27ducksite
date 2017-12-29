@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 gem 'rails', '5.1.4'
 gem 'pg'
 gem 'puma', '~> 3.0'
@@ -11,6 +16,9 @@ gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 2.13'
+  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -18,7 +26,7 @@ group :development do
   gem 'rubocop', '~> 0.40.0', require: false
   gem 'capistrano', '3.5.0'
   gem 'capistrano-rails', '~> 1.1'
-  gem 'bugsnag-capistrano'
+  gem 'bugsnag-capistrano', require: false
 end
 
 gem 'simplecov', require: false, group: :test
@@ -31,3 +39,4 @@ gem 'redcarpet'
 gem 'coderay'
 gem 'kaminari'
 gem 'bugsnag'
+gem 'webpacker'
