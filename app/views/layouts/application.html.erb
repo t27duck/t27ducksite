@@ -27,8 +27,8 @@
     <meta property="og:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
     <meta property="og:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'sidebar' unless @no_sidebar %>
   </head>
 
   <body>
@@ -70,27 +70,7 @@
           <div class="col-sm-9">
             <%= yield %>
           </div>
-          <div class="col-sm-3">
-            <div id="sidebar-images">
-              <%= image_tag 'me.jpg', class: 'img-circle img-responsive', alt: 't27duck' %>
-              <div id="social-icons" class="row">
-                <div class="col-xs-4">
-                  <%= link_to image_tag('social/github-128.png', id: 'github-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'GitHub'), 'https://github.com/t27duck' %>
-                </div>
-                <div class="col-xs-4">
-                  <%= link_to image_tag('social/linkedin-128.png', id: 'linkedin-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'LinkedIN'), 'https://linkedin.com/in/t27duck' %>
-                </div>
-                <div class="col-xs-4">
-                  <%= link_to image_tag('social/twitter-128.png', id: 'twitter-icon', class: 'img-circle img-responsive', size: '128x128', alt: 'Twitter'), 'https://twitter.com/t27duck' %>
-                </div>
-              </div>
-            </div>
-            <div class="panel">
-              <div class="panel-body">
-                I am Tony Drake - Professional web developer, geek, and Mario Kart connoisseur. This site is where I put my ramblings and talk about my interests.
-              </div>
-            </div>
-          </div>
+          <div id="sidebar" class="col-sm-3"></div>
         <% end %>
       </div>
     </div>
@@ -113,5 +93,7 @@
         ga('send', 'pageview');
       </script>
     <% end %>
+    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'sidebar' unless @no_sidebar %>
   </body>
 </html>

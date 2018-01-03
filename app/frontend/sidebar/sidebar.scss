@@ -1,0 +1,26 @@
+$twitter-color: #55acee;
+$github-color: #000;
+$linkedin-color: #0077b5;
+
+#social-icons {
+  margin-top: 12px;
+
+  #twitter-icon {
+    background-color: $twitter-color;
+  }
+
+  #github-icon {
+    background-color: $github-color;
+  }
+
+  #linkedin-icon {
+    background-color: $linkedin-color;
+  }
+}
+
+#sidebar-images {
+  img {
+    display: block;
+    margin: auto;
+  }
+}
