@@ -28,6 +28,9 @@ rubocop:
 
 rails:
   script:
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - yarn install
   - RAILS_ENV=test rake db:setup
   - RAILS_ENV=test rake webpacker:compile
   - rails test
