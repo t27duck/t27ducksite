@@ -16,7 +16,7 @@ variables:
 
 # This is a basic example for a gem or script which doesn't use
 # services such as redis or postgres
-before_script:
+before_script:i
   - cp config/database.yml.gitlab-ci config/database.yml
   - gem install bundler         # Bundler is not installed with the image
   - bundle install -j $(nproc)  # Install dependencies
@@ -28,6 +28,7 @@ rubocop:
 rails:
   script:
   - RAILS_ENV=test rake db:setup
+  - RAILS_ENV=test rake webpacker:compile
   - rails test
 
 cache:
