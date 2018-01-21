@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: %i[new create destroy]
 
-  resources :posts, only: [:index, :show]
+  resources :posts, only: %i[index show]
   get '/posts/tag/:tag', to: 'posts#tag', as: :tag_posts
+  resources :talks, only: [:index]
 
   namespace :admin do
-    resources :pages, only: [:index, :edit, :update] do
+    resources :pages, only: %i[index edit update] do
       collection do
         post :preview
       end

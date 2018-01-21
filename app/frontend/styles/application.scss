@@ -1,6 +1,20 @@
+$gray: #808080;
+
 .post {
   .summary {
     font-style: italic;
     margin: 12px 0;
   }
+}
+
+#home {
+  .date {
+    color: $gray;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+
+#copyright {
+  margin-right: 8px;
 }

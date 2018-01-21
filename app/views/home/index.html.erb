@@ -1,14 +1,32 @@
-<h2>Recent Posts</h2>
-<hr />
-<% if @posts.present? %>
-  <% @posts.each do |post| %>
-    <h4>
-      <%= link_to post.title, post %>
-      <span style="font-size: 12px; font-style: italic; color: gray;"><%= post.published_at.strftime("%B %d, %Y") %></span>
-    </h4>
+<div id="home">
+  <h2>Recent Posts</h2>
+  <hr />
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <h4>
+        <%= link_to post.title, post %>
+        <span class="date"><%= post.published_at.strftime("%B %d, %Y") %></span>
+      </h4>
+    <% end %>
+  <% else %>
+    <p>Nothing written yet :/</p>
   <% end %>
-<% else %>
-  <p>Nothing written yet :/</p>
-<% end %>
+  <p><%= link_to "View all posts...", posts_path %></p>
 
-<p><%= link_to "View all posts...", posts_path %></p>
+  <br />
+  <br />
+
+  <h2>Recent Talks</h2>
+  <hr />
+  <% if @talks.present? %>
+    <% @talks.each do |talk| %>
+    <h4>
+      <%= link_to talk.title.html_safe, talk.url, target: "_blank" %>
+      <span class="date"><%= talk.presented_on.strftime("%B %d, %Y") %></span>
+    </h4>
+    <% end %>
+  <% else %>
+    <p>No talks posted</p>
+  <% end %>
+  <p><%= link_to "View all talks...", talks_path %></p>
+</div>

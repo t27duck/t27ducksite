@@ -29,4 +29,5 @@ config/honeybadger.yml
 /public/packs-test
 /node_modules
 
+yarn-error.log
 package-lock.json

@@ -10,6 +10,9 @@ Rails:
 Metrics/LineLength:
   Max: 120
 
+Metrics/MethodLength:
+  Max: 35
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
