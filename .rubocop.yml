@@ -1,6 +1,6 @@
 AllCops:
   Exclude:
-    - db/*
+    - db/**/*
     - config/deploy/*
     - node_modules/**/*
 
