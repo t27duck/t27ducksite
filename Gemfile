@@ -5,14 +5,15 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '5.1.4'
+gem 'rails', '5.2.0.rc2'
 gem 'pg'
-gem 'puma', '~> 3.0'
+gem 'puma'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 # gem 'jquery-rails'
 gem 'bcrypt'
+gem 'bootsnap'
 
 group :development, :test do
   gem 'byebug', platform: :mri
