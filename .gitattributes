@@ -1,0 +1,11 @@
+* text=auto
+
+*.rb text eol=lf
+*.sh text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
