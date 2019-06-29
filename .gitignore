@@ -23,10 +23,16 @@ coverage
 .session
 config/deploy/production.rb
 config/misc.yml
-config/honeybadger.yml
 /public/packs
 /public/packs-test
 /node_modules
 
 yarn-error.log
 package-lock.json
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
