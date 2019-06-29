@@ -22,17 +22,9 @@ before_script:
   - gem install bundler         # Bundler is not installed with the image
   - bundle install -j $(nproc)  # Install dependencies
 
-rubocop:
-  script:
-  - rubocop
-
 rails:
   script:
-  - export PATH=$HOME/.yarn/bin:$PATH
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - yarn install
   - RAILS_ENV=test rake db:setup
-  - RAILS_ENV=test rake webpacker:compile
   - rails test
 
 cache:

@@ -27,35 +27,29 @@
     <meta property="og:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
     <meta property="og:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
 
-    <%= stylesheet_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'sidebar' unless @no_sidebar %>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 't27duck', root_path, class: 'navbar-brand' %>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><%= link_to 'Posts', posts_path %></li>
-            <li><%= link_to 'Talks', talks_path %></li>
-            <li><%= link_to 'About Me', about_path %></li>
-            <li><%= link_to 'Resume', '/resume.pdf' %></li>
-          </ul>
-          <% if logged_in? %>
-            <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %></li>
-            </ul>
-          <% end %>
-        </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <%= link_to 't27duck', root_path, class: 'navbar-brand' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbart" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" />
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to 'Posts', posts_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'Talks', talks_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'About Me', about_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'Resume', '/resume.pdf', class: "nav-link" %></li>
+        </ul>
+        <% if logged_in? %>
+          <span class="navbar-text">
+            <%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %>
+          </span>
+        <% end %>
       </div>
     </nav>
     <div class="container">
@@ -71,13 +65,43 @@
           <div class="col-sm-9">
             <%= yield %>
           </div>
-          <div id="sidebar" class="col-sm-3"></div>
+          <div id="sidebar" class="col-sm-3">
+            <div id="sidebar-images">
+              <%= image_tag "me.jpg", class: "rounded-circle img-fluid", alt: "t27duck" %>
+              <div id="social-icons" class="row">
+                <div class="col-sm">
+                  <%=
+                    link_to image_tag("social/github-128.png", size: "128x128", id: "github-icon", class: "rounded-circle img-fluid", alt: "Github"),
+                        "https://github.com/t27duck"
+                  %>
+                </div>
+                <div class="col-sm">
+                  <%=
+                    link_to image_tag("social/linkedin-128.png", size: "128x128", id: "linkedin-icon", class: "rounded-circle img-fluid", alt: "LinkedIn"),
+                        "https://linkedin.com/in/t27duck"
+                  %>
+                </div>
+                <div class="col-sm">
+                  <%=
+                    link_to image_tag("social/twitter-128.png", size: "128x128", id: "twitter-icon", class: "rounded-circle img-fluid", alt: "Twitter"),
+                        "https://linkedin.com/in/t27duck"
+                  %>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                I am Tony Drake - Professional web developer, geek, and Mario Kart connoisseur.
+                This site is where I put my ramblings and talk about my interests.
+              </div>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
 
     <hr />
-    <p id="copyright" class="pull-right">
+    <p id="copyright" class="float-right">
       &copy; <%= Time.now.strftime("%Y") %> t27duck
     </p>
     <% if CONFIG['ga_code'] %>
@@ -91,8 +115,6 @@
         ga('send', 'pageview');
       </script>
     <% end %>
-    <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'sidebar' unless @no_sidebar %>
     <%= yield :bottom %>
   </body>
 </html>

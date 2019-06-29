@@ -1,3 +1,30 @@
+@import "bootstrap";
+
+body {
+  padding-top: 5rem;
+}
+
+$gray: #808080;
+
+.post {
+  .summary {
+    font-style: italic;
+    margin: 12px 0;
+  }
+}
+
+#home {
+  .date {
+    color: $gray;
+    font-size: 12px;
+    font-style: italic;
+  }
+}
+
+#copyright {
+  margin-right: 8px;
+}
+
 $twitter-color: #55acee;
 $github-color: #000;
 $linkedin-color: #0077b5;
@@ -22,5 +49,11 @@ $linkedin-color: #0077b5;
   img {
     display: block;
     margin: auto;
+  }
+}
+
+#sidebar {
+  .card {
+    margin-top: 2em;
   }
 }

@@ -3,6 +3,7 @@ AllCops:
     - db/**/*
     - config/deploy/*
     - node_modules/**/*
+    - app/views/**/*
 
 Rails:
   Enabled: true
