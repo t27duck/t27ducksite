@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2.3'
+gem 'rails', '6.0.0'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails', '> 5.0'
@@ -15,13 +15,14 @@ gem 'jquery-rails'
 # gem 'therubyracer', platforms: :ruby
 # gem 'jquery-rails'
 gem 'bcrypt'
-gem 'bootsnap'
+gem 'bootsnap', '>= 1.4.2'
 
 group :development, :test do
   gem 'byebug', platform: :mri
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 group :development do
