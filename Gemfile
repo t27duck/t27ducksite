@@ -27,7 +27,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.0.5'
-  gem 'rubocop', '~> 0.40.0', require: false
+  gem 'rubocop', '~> 0.49', require: false
 end
 
 gem 'simplecov', require: false, group: :test
