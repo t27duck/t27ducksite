@@ -3,6 +3,14 @@ class PostsController < ApplicationController
 
   def index
     @page_title = 'Blog Entries'
+    respond_to do |format|
+      format.html do
+        @posts = @posts.page(params[:page]).per(5)
+      end
+      format.xml do
+        render layout: false
+      end
+    end
   end
 
   def show
@@ -14,7 +22,7 @@ class PostsController < ApplicationController
 
   def tag
     @tag        = Tag.find_by!(name: params[:tag].downcase.strip)
-    @posts      = @posts.joins(:tags).where(tags: { name: @tag.name })
+    @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(5)
     @page_title = "Blog Entries for tag: '#{@tag.name}'"
     render :index
   end
@@ -22,6 +30,6 @@ class PostsController < ApplicationController
   private ######################################################################
 
   def fetch_posts
-    @posts = Post.includes(:tags).published.order(published_at: :desc).page(params[:page]).per(5)
+    @posts = Post.includes(:tags).published.order(published_at: :desc)
   end
 end
