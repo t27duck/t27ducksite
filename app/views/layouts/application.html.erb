@@ -27,6 +27,8 @@
     <meta property="og:url" content="<%= request.original_url.force_encoding('UTF-8') %>" />
     <meta property="og:description" content="<%= @page_description ? @page_description : 'My personal blog where I talk about my interests' %>" />
 
+    <%= auto_discovery_link_tag(:rss, posts_url(format: :xml), { title: "t27duck.com blog posts feed" }) %>
+
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
   </head>
