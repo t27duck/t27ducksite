@@ -5,17 +5,17 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 6.0.3'
-gem 'pg'
-gem 'puma'
-gem 'sass-rails', '> 5.0'
+gem 'rails', '~> 6.1.0'
+gem 'pg', '~> 1.1'
+gem 'puma', '~> 5.0'
+gem 'sass-rails', '>= 6'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 # gem 'therubyracer', platforms: :ruby
 # gem 'jquery-rails'
 gem 'bcrypt'
-gem 'bootsnap', '>= 1.4.2'
+gem 'bootsnap', '>= 1.4.4'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -26,7 +26,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.3'
   gem 'rubocop', '~> 0.49', require: false
 end
 
@@ -40,5 +40,3 @@ gem 'redcarpet'
 gem 'coderay'
 gem 'kaminari'
 gem 'bugsnag'
-
-gem 'json', '>= 2.3.0'
