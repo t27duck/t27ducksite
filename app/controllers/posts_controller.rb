@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     @tag        = Tag.find_by!(name: params[:tag].downcase.strip)
     @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(5)
     @page_title = "Blog Entries for tag: '#{@tag.name}'"
+    @no_content = true
     render :index
   end
 
