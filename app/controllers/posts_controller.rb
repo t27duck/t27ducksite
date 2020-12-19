@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @page_title = 'Blog Entries'
     respond_to do |format|
       format.html do
+        @no_content = true
         @posts = @posts.page(params[:page]).per(5)
       end
       format.xml do

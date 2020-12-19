@@ -6,9 +6,11 @@
     <div class="summary"><%= post.summary %></div>
   <% end %>
 
-  <div class="content">
-    <%= markdown(post.content) %>
-  </div>
+  <% unless @no_content %>
+    <div class="content">
+      <%= markdown(post.content) %>
+    </div>
+  <% end %>
 
   <% if post.tags.present? %>
     <div class="tags">Tags: <%= tag_links(post.tags) %></div>
