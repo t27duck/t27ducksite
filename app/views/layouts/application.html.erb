@@ -8,7 +8,7 @@
     <%= csrf_meta_tags %>
 
     <meta name="robots" content="NOODP">
-    <meta name="description" content="The personal site and blog of Tony Drake" />
+    <meta name="description" content="<%= @page_description ? @page_description : 'The personal site and blog of Tony Drake' %>" />
     <meta name="keywords" content="t27duck,blog,ruby,tony,programming,server administration,linux,postgresql,video games" />
     <meta http-equiv="imagetoolbar" content="no" />
     <meta name="msapplication-config" content="none"/>
