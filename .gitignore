@@ -13,22 +13,27 @@
 !/log/.keep
 !/tmp/.keep
 
-# Ignore Byebug command history file.
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+/public/assets
 .byebug_history
 
+#Additional ignores
 .DS_STORE
 .ruby-version
 coverage
 .authentication.yml
-.session
-config/deploy/production.rb
 config/misc.yml
-/public/packs
-/public/packs-test
-/node_modules
 
-yarn-error.log
-package-lock.json
+# Ignore master key for decrypting credentials and more.
+/config/master.key
 
 /public/packs
 /public/packs-test

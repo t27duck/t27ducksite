@@ -15,10 +15,8 @@
           <td><%= page.title %></td>
           <td><%= page.slug %></td>
           <td><%= page.updated_at %></td>
-          <td class="text-right" nowrap>
-            <%= link_to edit_admin_page_path(page), class: "btn btn-primary btn-xs" do %>
-              <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil") %>
-            <% end %>
+          <td class="text-endt" nowrap>
+            <%= link_to 'Edit', edit_admin_page_path(page), class: "btn btn-primary btn-xs" %>
           </td>
         </tr>
       <% end %>

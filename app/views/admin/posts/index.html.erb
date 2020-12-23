@@ -1,8 +1,8 @@
-<div class="clearfix">
-<%= link_to new_admin_post_path, class: "pull-right btn btn-primary" do %>
-  <%= content_tag(:span, nil, class: "glyphicon glyphicon-plus") %>
-  Add
-<% end %>
+<div class="clearfix mb-3">
+  <%= link_to new_admin_post_path, class: "float-end btn btn-primary" do %>
+    <%= content_tag(:span, nil, class: "glyphicon glyphicon-plus") %>
+    Add
+  <% end %>
 </div>
 
 <h1>Unpublished Posts</h1>
@@ -22,13 +22,9 @@
           <td><%= post.title %></td>
           <td><%= post.tags.map(&:name).join(', ') %></td>
           <td><%= post.created_at %></td>
-          <td class="text-right" nowrap>
-            <%= link_to edit_admin_post_path(post), class: "btn btn-primary btn-xs" do %>
-              <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil") %>
-            <% end %>
-            <%= link_to admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } do %>
-              <%= content_tag(:span, nil, class: "glyphicon glyphicon-trash") %>
-            <% end %>
+          <td class="text-end" nowrap>
+            <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
+            <%= link_to "Delete", admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
       <% end %>
@@ -53,13 +49,9 @@
           <td><%= post.title %></td>
           <td><%= post.tags.map(&:name).join(', ') %></td>
           <td><%= post.published_at %></td>
-          <td class="text-right" nowrap>
-            <%= link_to edit_admin_post_path(post), class: "btn btn-primary btn-xs" do %>
-              <%= content_tag(:span, nil, class: "glyphicon glyphicon-pencil") %>
-            <% end %>
-            <%= link_to admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } do %>
-              <%= content_tag(:span, nil, class: "glyphicon glyphicon-trash") %>
-            <% end %>
+          <td class="text-end" nowrap>
+            <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
+            <%= link_to "Delete", admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
       <% end %>

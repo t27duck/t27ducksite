@@ -10,22 +10,22 @@
     </div>
   <% end %>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control', maxlength: 255, required: true %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :summary %>
     <%= f.text_field :summary, class: 'form-control', maxlength: 255 %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :tags_input, 'Tags (Separated by comma)' %>
     <%= f.text_field :tags_input, class: 'form-control', maxlength: 255 %>
   </div>
 
-  <div class="form-group">
+  <div class="mb-3">
     <%= f.label :content %>
     <%= f.text_area :content, rows: 15, class: 'form-control', required: true %>
   </div>
@@ -37,11 +37,9 @@
     <% end %>
   </div>
 
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-primary' %>
-    <%= link_to "Cancel", admin_posts_path, class: 'btn btn-warning' %>
-    <a href="#" id="preview-link" class="btn btn-info">Preview</a>
-  </div>
+  <%= f.submit class: 'btn btn-primary' %>
+  <%= link_to "Cancel", admin_posts_path, class: 'btn btn-warning' %>
+  <a href="#" id="preview-link" class="btn btn-info">Preview</a>
 <% end %>
 
 <div id="preview-content"></div>
@@ -52,10 +50,12 @@
     $("#preview-link").on("click", function(event) {
       var $preview  = $("#preview-content");
       var content   = $("#post_content").val();
-      $.post(
-        "<%= preview_admin_posts_path %>",
-        { content: content }
-      ).done(function(html) {
+       $.ajax({
+        type: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: "<%= preview_admin_posts_path %>",
+        data: { content: content }
+      }).done(function(html) {
         $preview.html(html);
       });
       event.preventDefault();

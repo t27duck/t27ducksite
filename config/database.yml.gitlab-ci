@@ -1,9 +1,0 @@
-test:
-  adapter: postgresql
-  encoding: unicode
-  host: postgres
-  user: runner
-  password:
-  database: t27duck_test
-  pool: 5
-  timeout: 5000

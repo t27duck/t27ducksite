@@ -1,7 +1,7 @@
-@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
 
 body {
-  padding-top: 5rem;
+  padding-top: 4.5rem;
 }
 
 $gray: #808080;
@@ -21,8 +21,26 @@ $gray: #808080;
   }
 }
 
-#copyright {
-  margin-right: 8px;
+/*
+  Based on https://avexdesigns.com/blog/responsive-youtube-embed
+*/
+@include media-breakpoint-down(lg) {
+  .talk {
+    .description {
+      position: relative;
+      padding-bottom: 56.25%;
+      padding-top: 30px;
+      height: 0;
+      overflow: hidden;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 }
 
 $twitter-color: #55acee;
@@ -49,11 +67,5 @@ $linkedin-color: #0077b5;
   img {
     display: block;
     margin: auto;
-  }
-}
-
-#sidebar {
-  .card {
-    margin-top: 2em;
   }
 }

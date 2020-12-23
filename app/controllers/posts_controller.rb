@@ -8,9 +8,7 @@ class PostsController < ApplicationController
         @no_content = true
         @posts = @posts.page(params[:page]).per(5)
       end
-      format.xml do
-        render layout: false
-      end
+      format.xml { render layout: false }
     end
   end
 
@@ -19,6 +17,7 @@ class PostsController < ApplicationController
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = 'article'
+    @no_sidebar       = true
   end
 
   def tag

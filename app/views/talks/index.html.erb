@@ -19,10 +19,11 @@
   <p>No talks posted</p>
 <% end %>
 
-<div class="pull-right">
-  <%= link_to_next_page @talks, 'Next Page' %>
+<div class="clearfix mb-3">
+  <div class="float-end">
+    <%= link_to_next_page @talks, 'Next Page' %>
+  </div>
+  <div class="float-start">
+    <%= link_to_previous_page @talks, 'Previous Page' %>
+  </div>
 </div>
-<div class="pull-left">
-  <%= link_to_previous_page @talks, 'Previous Page' %>
-</div>
-<div class="clearfix"></div>

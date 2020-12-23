@@ -1,9 +1,6 @@
-require 'simplecov'
-SimpleCov.start 'rails'
-
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
+require_relative "../config/environment"
+require "rails/test_help"
 
 TEST_ENV_PASSWORD = 'testing'.freeze
 StupidlySimpleAuthentication.instance_variable_set(
