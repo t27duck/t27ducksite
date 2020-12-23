@@ -82,5 +82,4 @@ test:
 production:
   <<: *default
   database: t27duck_production
-  username: t27duck
   password: <%= ENV['T27DUCK_DATABASE_PASSWORD'] %>
