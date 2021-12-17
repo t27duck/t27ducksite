@@ -2,15 +2,15 @@
   "name": "t27duck",
   "private": true,
   "dependencies": {
-    "@popperjs/core": "^2.6.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
-    "bootstrap": "^5.0.0-beta1",
-    "jquery": "^3.5.1",
-    "turbolinks": "^5.2.0"
+    "@hotwired/stimulus": "^3.0.1",
+    "@hotwired/turbo-rails": "^7.1.0",
+    "@popperjs/core": "^2.11.0",
+    "bootstrap": "^5.1.3",
+    "esbuild": "^0.14.5",
+    "sass": "^1.45.0"
   },
-  "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   }
 }
