@@ -50,7 +50,7 @@
             </ul>
             <% if logged_in? %>
               <span class="navbar-text">
-                <%= link_to 'Logout', session_path, method: :delete, data: {confirm: 'Sure?'} %>
+                <%= button_to 'Logout', session_path, method: :delete %>
               </span>
             <% end %>
           </div>
