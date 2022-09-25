@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :fetch_posts, only: [:index, :tag]
+  before_action :fetch_posts, only: %i[index tag]
 
   def index
     @page_title = 'Blog Entries'
@@ -21,7 +21,11 @@ class PostsController < ApplicationController
   end
 
   def tag
-    @tag        = Tag.find_by!(name: params[:tag].downcase.strip)
+    @tag = Tag.find_by(name: params[:tag].downcase.strip)
+    if @tag.blank?
+      redirect_to root_path
+      return
+    end
     @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(5)
     @page_title = "Blog Entries for tag: '#{@tag.name}'"
     @no_content = true
