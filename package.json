@@ -6,7 +6,7 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
-    "esbuild": "^0.17.13",
+    "esbuild": "^0.17.14",
     "sass": "^1.60.0"
   },
   "scripts": {
