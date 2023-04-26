@@ -146,7 +146,7 @@ GEM
     nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    pg (1.4.6)
+    pg (1.5.2)
     propshaft (0.7.0)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
@@ -237,7 +237,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
-  pg (~> 1.4)
+  pg (~> 1.5)
   propshaft
   puma (~> 6.2)
   rails (~> 7.0.4)
