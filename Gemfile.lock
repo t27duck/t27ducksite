@@ -82,8 +82,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
-    bugsnag (6.26.0)
-      concurrent-ruby (~> 1.0)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -109,6 +107,7 @@ GEM
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    honeybadger (5.2.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -143,7 +142,6 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.4)
     minitest (5.20.0)
     msgpack (1.6.0)
     mutex_m (0.1.2)
@@ -157,8 +155,7 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.4)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.4)
     propshaft (0.7.0)
@@ -249,16 +246,16 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   bcrypt (~> 3.1.19)
   bootsnap
-  bugsnag
   capybara
   coderay
   cssbundling-rails
   debug
+  honeybadger
   jbuilder
   jsbundling-rails
   kaminari

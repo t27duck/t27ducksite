@@ -74,4 +74,4 @@ end
 gem 'redcarpet'
 gem 'coderay'
 gem 'kaminari'
-gem 'bugsnag'
+gem "honeybadger"
