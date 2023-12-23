@@ -29,86 +29,28 @@
 
     <%= auto_discovery_link_tag(:rss, posts_url(format: :xml), { title: "t27duck.com blog posts feed" }) %>
 
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
   </head>
 
-  <body class="d-flex flex-column h-100">
+  <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <%= link_to 't27duck', root_path, class: 'navbar-brand' %>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item"><%= link_to 'Posts', posts_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to 'Talks', talks_path, class: "nav-link" %></li>
-              <!-- <li class="nav-item"><%= link_to 'About Me', about_path, class: "nav-link" %></li> -->
-              <li class="nav-item"><%= link_to 'Resume', '/resume.pdf', class: "nav-link" %></li>
-            </ul>
-            <% if logged_in? %>
-              <span class="navbar-text">
-                <%= button_to 'Logout', session_path, method: :delete %>
-              </span>
-            <% end %>
-          </div>
+      <nav>
+        <div>
+          <%= link_to "Posts", posts_path %>
+          <%= link_to "Talks", talks_path %>
+          <%= link_to "Resume", "/resume.pdf" %>
         </div>
+        <%= link_to "t27duck", root_path %>
       </nav>
     </header>
-
-    <main class="flex-shrink-0">
-      <div class="container">
-        <% if flash[:notice] %><div class="alert alert-info" role="alert"><%= flash[:notice] %></div><% end %>
-        <% if flash[:error] %><div class="alert alert-danger" role="alert"><%= flash[:error] %></div><% end %>
-
-        <div class="row">
-          <% if @no_sidebar %>
-            <div class="col-sm-12">
-              <%= yield %>
-            </div>
-          <% else %>
-            <div class="col-sm-9">
-              <%= yield %>
-            </div>
-            <div id="sidebar" class="col-sm-3">
-              <div id="sidebar-images">
-                <%= image_tag "me.jpg", class: "rounded-circle img-fluid d-none d-sm-inline", alt: "t27duck" %>
-                <div id="social-icons" class="row">
-                  <div class="col">
-                    <%=
-                      link_to image_tag("social/github-128.png", size: "128x128", id: "github-icon", class: "rounded-circle img-fluid", alt: "Github"),
-                          "https://github.com/t27duck"
-                    %>
-                  </div>
-                  <div class="col">
-                    <%=
-                      link_to image_tag("social/linkedin-128.png", size: "128x128", id: "linkedin-icon", class: "rounded-circle img-fluid", alt: "LinkedIn"),
-                          "https://linkedin.com/in/t27duck"
-                    %>
-                  </div>
-                  <div class="col">
-                    <%=
-                      link_to image_tag("social/twitter-128.png", size: "128x128", id: "twitter-icon", class: "rounded-circle img-fluid", alt: "Twitter"),
-                          "https://twitter.com/t27duck"
-                    %>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-4">
-                <div class="card-body">
-                  I am Tony Drake - Professional web developer, geek, and Mario Kart connoisseur.
-                  This site is where I put my ramblings and talk about my interests.
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
+    <main>
+      <%= yield %>
     </main>
 
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="mt-auto py-3">
       <div class="container">
         <div class="text-muted text-end">
           <span class="d-none d-sm-inline">

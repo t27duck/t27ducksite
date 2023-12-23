@@ -1,6 +1,6 @@
-<div class="post">
-  <h2 class="title"><%= link_to post.title, post %></h2>
-  <h5 class="meta">Published: <%= post.publish ?  post.published_at.strftime('%B %d, %Y') : 'n/a' %></h5>
+<article class="post">
+  <h2><%= link_to post.title, post %></h2>
+  <h5>Published: <%= post.publish ?  post.published_at.strftime('%B %d, %Y') : 'n/a' %></h5>
 
   <% if post.summary.present? %>
     <div class="summary"><%= post.summary %></div>
@@ -15,5 +15,5 @@
   <% if post.tags.present? %>
     <div class="tags">Tags: <%= tag_links(post.tags) %></div>
   <% end %>
-</div>
+</article>
 <hr />

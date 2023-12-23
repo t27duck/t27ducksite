@@ -1,14 +1,12 @@
+<h2>All Posts</h2>
+
 <% if @posts.present? %>
   <%= render partial: 'post', collection: @posts %>
 <% else %>
   <p>Nothing written yet :/</p>
 <% end %>
 
-<div class="clearfix mb-3">
-  <div class="float-end">
-    <%= link_to_next_page @posts, 'Next Page' %>
-  </div>
-  <div class="float-start">
-    <%= link_to_previous_page @posts, 'Previous Page' %>
-  </div>
+<div class="prev-next">
+  <div><%= link_to_previous_page @posts, 'Previous Page' %></div>
+  <div><%= link_to_next_page @posts, 'Next Page' %></div>
 </div>
