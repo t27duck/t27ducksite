@@ -1,25 +1,23 @@
-<h1>Pages</h1>
-<div class="table-responsive">
-  <table class="table table-striped table-hover">
-    <thead>
+<table>
+  <caption>Pages</caption>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Slug</th>
+      <th>Updated at</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pages.each do |page| %>
       <tr>
-        <th>Title</th>
-        <th>Slug</th>
-        <th>Updated at</th>
-        <th></th>
+        <td><%= page.title %></td>
+        <td><%= page.slug %></td>
+        <td><%= page.updated_at %></td>
+        <td nowrap>
+          <%= link_to 'Edit', edit_admin_page_path(page), class: "btn btn-primary btn-xs" %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @pages.each do |page| %>
-        <tr>
-          <td><%= page.title %></td>
-          <td><%= page.slug %></td>
-          <td><%= page.updated_at %></td>
-          <td class="text-endt" nowrap>
-            <%= link_to 'Edit', edit_admin_page_path(page), class: "btn btn-primary btn-xs" %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>
