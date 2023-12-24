@@ -1,9 +1,84 @@
 /* Application styles */
 
-.summary {
-  font-style: italic;
-  margin: 12px 0;
+:root {
+  --cerulean: #007BA7;
+  --alice-blue: #E9F1F7;
+  --bistre: #251605;
+  --rosewood: #6B0F1A;
+  --navy-blue: #000080;
+  --win2k: #3B6EA5;
+  --size-sm: 640px;
+  --content-width: 91.666667%;
+  --border-radius: 0.5rem;
 }
+
+body {
+  background-color: var(--win2k);
+  font-family: 'Inter var', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+header {
+  width: 100%;
+  color: var(--alice-blue);
+  background-color: var(--navy-blue);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+nav {
+  width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav a {
+  font-weight: 900;
+  color: var(--alice-blue);
+}
+
+nav a:hover {
+  color: white;
+}
+
+nav div {
+  display: flex;
+}
+
+nav div > * + *	{
+  margin-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  nav div > * + *	{
+    margin-left: 2rem;
+  }
+}
+
+main {
+  width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background-color: var(--alice-blue);
+  border-radius: var(--border-radius);
+}
+
+main a {
+  text-decoration: underline;
+  font-weight: 600;
+  color: var(--navy-blue);
+}
+
+main a:hover {
+  color: var(--win2k);
+}
+
 
 p {
   margin-top: 0px;
@@ -17,11 +92,10 @@ h6, h5, h4, h3, h2, h1 {
   line-height: 1.2;
 }
 
-.post .CodeRay {
-  border-width: 2px;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+hr {
+  border-color: var(--win2k);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 h1 {
@@ -43,6 +117,98 @@ h4 {
 h5 {
   font-size: 1.25rem;
 }
+
+h6 {
+  font-size: 1rem;
+}
+
+ol {
+  margin-bottom: 1rem;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+ul {
+  margin-bottom: 1rem;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+.two-cols {
+  width: 100%;
+}
+
+.two-cols > * + *	{
+  margin-left: 2rem;
+}
+
+@media (min-width: 640px) {
+  .two-cols {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .two-cols > * + *	{
+    margin-left: 0;
+  }
+}
+
+.two-cols article {
+  width: 100%;
+}
+
+.two-cols article > * + *	{
+  margin-top: 1rem;
+}
+
+.summary {
+  font-style: italic;
+  margin: 12px 0;
+}
+
+.post .CodeRay {
+  border-color: var(--cerulean);
+  border-width: 1px;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+}
+
+.date {
+  color: var(--bistre);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.prev-next {
+  display: flex;
+  justify-content: space-between;
+}
+
+#intro img {
+  width: 7rem;
+  height: 7rem;
+  margin-left: 0.5rem;
+  border-radius: var(--border-radius);
+  float: right;
+}
+
+#intro svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+#intro #social-icons {
+  display: flex;
+  justify-items: end;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#intro #social-icons > * + *	{
+  margin-left: 1rem;
+}
+
 
 /*
   Based on https://avexdesigns.com/blog/responsive-youtube-embed
