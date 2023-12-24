@@ -79,6 +79,24 @@ main a:hover {
   color: var(--win2k);
 }
 
+footer {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  width: var(--content-width);
+  color: var(--alice-blue);
+  font-size: 0.75rem;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: white;
+}
 
 p {
   margin-top: 0px;
@@ -238,18 +256,6 @@ input[type=checkbox] {
 
 .checkbox {
   margin-bottom: 1rem;
-}
-
-:root {
-  --cerulean: #007BA7;
-  --alice-blue: #E9F1F7;
-  --bistre: #251605;
-  --rosewood: #6B0F1A;
-  --navy-blue: #000080;
-  --win2k: #3B6EA5;
-  --size-sm: 640px;
-  --content-width: 91.666667%;
-  --border-radius: 0.5rem;
 }
 
 table {
