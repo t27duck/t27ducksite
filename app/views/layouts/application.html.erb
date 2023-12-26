@@ -29,6 +29,26 @@
 
     <%= auto_discovery_link_tag(:rss, posts_url(format: :xml), { title: "t27duck.com blog posts feed" }) %>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4Z3MTLHRYW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4Z3MTLHRYW');
+    </script>
+
+    <script type="module">
+      let isInitialLoad = true;
+      document.addEventListener('turbo:load', () => {
+        if (isInitialLoad){isInitialLoad = false; return;}
+        gtag('config', 'G-4Z3MTLHRYW', {
+          page_path: window.location.pathname,
+        });
+      });
+    </script>
+
     <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
@@ -53,28 +73,16 @@
       <div class="container">
         <div class="text-muted text-end">
           <span class="d-none d-sm-inline">
-            <%= link_to "Github", "https://github.com/t27duck" %>
+            <%= link_to "Github", "https://github.com/t27duck", target: "_blank", rel: "noopener" %>
             |
-            <%= link_to "LinkedIn", "https://linkedin.com/in/t27duck" %>
+            <%= link_to "LinkedIn", "https://linkedin.com/in/t27duck", target: "_blank", rel: "noopener" %>
             |
-            <%= link_to "Twitter", "https://linkedin.com/in/t27duck" %>
+            <%= link_to "Twitter", "https://linkedin.com/in/t27duck", target: "_blank", rel: "noopener" %>
             |
           </span>
           &copy; <%= Time.now.strftime("%Y") %> t27duck
         </div>
       </div>
     </footer>
-    <% if CONFIG['ga_code'] %>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%=CONFIG['ga_code'] %>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', '<%=CONFIG['ga_code'] %>');
-    </script>
-    <% end %>
-    <%= yield :bottom %>
   </body>
 </html>

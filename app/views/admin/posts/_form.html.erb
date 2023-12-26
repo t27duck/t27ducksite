@@ -1,56 +1,40 @@
-<%= form_for [:admin, post] do |f| %>
-  <% if post.errors.any? %>
-    <aside>
-      <p><strong><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</strong></p>
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div data-controller="preview" data-preview-url-value="<%= preview_admin_posts_path %>">
+  <%= form_for [:admin, post] do |f| %>
+    <% if post.errors.any? %>
+      <aside>
+        <p><strong><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</strong></p>
+        <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </aside>
+    <% end %>
+
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control', maxlength: 255, required: true %>
+
+    <%= f.label :summary, class: 'form-label' %>
+    <%= f.text_field :summary, class: 'form-control', maxlength: 255 %>
+
+    <%= f.label :tags_input, 'Tags (Separated by comma)', class: 'form-label' %>
+    <%= f.text_field :tags_input, class: 'form-control', maxlength: 255 %>
+
+    <%= f.label :content, class: 'form-label' %>
+    <%= f.text_area :content, rows: 15, class: 'form-control' required: true, data: { preview_target: "content" } %>
+
+    <div class="checkbox">
+      <%= f.label :publish, class: 'form-label' do  %>
+        <%= f.check_box :publish %>
+        Publish
       <% end %>
-      </ul>
-    </aside>
+    </div>
+
+    <%= f.submit class: 'button' %>
+    <%= link_to "Cancel", admin_posts_path %>
+    <a href="#" data-action="click->preview#show">Preview</a>
   <% end %>
 
-  <%= f.label :title, class: 'form-label' %>
-  <%= f.text_field :title, class: 'form-control', maxlength: 255, required: true %>
-
-  <%= f.label :summary, class: 'form-label' %>
-  <%= f.text_field :summary, class: 'form-control', maxlength: 255 %>
-
-  <%= f.label :tags_input, 'Tags (Separated by comma)', class: 'form-label' %>
-  <%= f.text_field :tags_input, class: 'form-control', maxlength: 255 %>
-
-  <%= f.label :content, class: 'form-label' %>
-  <%= f.text_area :content, rows: 15, class: 'form-control' %>
-
-  <div class="checkbox">
-    <%= f.label :publish, class: 'form-label' do  %>
-      <%= f.check_box :publish %>
-      Publish
-    <% end %>
-  </div>
-
-  <%= f.submit class: 'button' %>
-  <%= link_to "Cancel", admin_posts_path %>
-  <a href="#" id="preview-link">Preview</a>
-<% end %>
-
-<div id="preview-content"></div>
-
-<% content_for :bottom do %>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-  $("#preview-link").on("click", function(event) {
-    var $preview  = $("#preview-content");
-    var content   = $("#post_content").val();
-      $.ajax({
-      type: 'POST',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      url: "<%= preview_admin_posts_path %>",
-      data: { content: content }
-    }).done(function(html) {
-      $preview.html(html);
-    });
-    event.preventDefault();
-  });
-</script>
-<% end %>
+  <hr />
+  <div data-preview-target="output"></div>
+</div>
