@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_21_184031) do
-
+ActiveRecord::Schema[7.1].define(version: 2023_12_24_200211) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +57,13 @@ ActiveRecord::Schema.define(version: 2018_01_21_184031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["presented_on"], name: "index_talks_on_presented_on", order: :desc
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "password_digest", null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "taggings", "posts"
