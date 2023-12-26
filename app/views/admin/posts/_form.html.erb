@@ -21,7 +21,7 @@
     <%= f.text_field :tags_input, class: 'form-control', maxlength: 255 %>
 
     <%= f.label :content, class: 'form-label' %>
-    <%= f.text_area :content, rows: 15, class: 'form-control' required: true, data: { preview_target: "content" } %>
+    <%= f.text_area :content, rows: 15, class: 'form-control', required: true, data: { preview_target: "content" } %>
 
     <div class="checkbox">
       <%= f.label :publish, class: 'form-label' do  %>
