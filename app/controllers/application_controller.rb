@@ -2,24 +2,21 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :exception
 
-  helper_method :logged_in?
+  helper_method :user_signed_in?
 
-  def logged_in?
-    return true
-    StupidlySimpleAuthentication.authenticated?(cookies.signed[:token])
+  private
+
+  def sign_in(user)
+    cookies.signed.permanent[:signin] = { value: user.token, httponly: true, same_site: :lax }
   end
 
-  private ######################################################################
+  def user_signed_in?
+    return false unless cookies.signed[:signin].present?
 
-  def require_login
-    redirect_to new_session_path unless logged_in?
+    @user_signed_in ||= User.exists?(token: cookies.signed[:signin])
   end
 
-  def require_no_login
-    redirect_to root_path if logged_in?
-  end
-
-  def no_sidebar
-    @no_sidebar = true
+  def authenticate_user!
+    redirect_to new_session_path unless user_signed_in?
   end
 end

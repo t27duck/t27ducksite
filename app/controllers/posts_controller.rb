@@ -17,7 +17,6 @@ class PostsController < ApplicationController
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = 'article'
-    @no_sidebar       = true
   end
 
   def tag

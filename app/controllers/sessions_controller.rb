@@ -1,21 +1,21 @@
 class SessionsController < ApplicationController
-  before_action :require_no_login, only: [:new, :create]
-  before_action :require_login, only: :destroy
-
   def new
   end
 
   def create
-    if StupidlySimpleAuthentication.authenticate(params[:password])
-      cookies.signed[:token] = StupidlySimpleAuthentication.session_token
+    user = User.take
+
+    if user&.authenticate(params[:password])
+      sign_in(user)
       redirect_to root_path
     else
-      render action: :new
+      flash.now.alert = "Incorrect password."
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    cookies.delete(:token)
-    redirect_to root_path
+    cookies.delete(:signin)
+    redirect_to root_path, status: :see_other
   end
 end

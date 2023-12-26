@@ -3,11 +3,6 @@ require_relative "../config/environment"
 require "rails/test_help"
 
 TEST_ENV_PASSWORD = 'testing'.freeze
-StupidlySimpleAuthentication.instance_variable_set(
-  '@config',
-  'session_token' => '1234567890',
-  'password_digest' => BCrypt::Password.create(TEST_ENV_PASSWORD).to_s
-)
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
