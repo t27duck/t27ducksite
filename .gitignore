@@ -27,10 +27,7 @@
 
 #Additional ignores
 .DS_STORE
-.ruby-version
 coverage
-.authentication.yml
-config/misc.yml
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
