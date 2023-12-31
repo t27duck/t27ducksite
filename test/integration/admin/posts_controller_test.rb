@@ -32,7 +32,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: '' }
       }
     end
-    assert_response :success
+    assert_response :unprocessable_entity
   end
 
   test 'should get edit' do
@@ -51,7 +51,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     patch admin_post_url(@post), params: {
       post: { content: @post.content, published_at: @post.published_at, title: '' }
     }
-    assert_response :success
+    assert_response :unprocessable_entity
   end
 
   test 'should destroy post' do
