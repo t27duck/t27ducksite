@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/posts/tag/:tag', to: 'posts#tag', as: :tag_posts
   resources :talks, only: [:index]
 
+  get "/admin", to: "admin/pages#index"
   namespace :admin do
     resources :pages, only: %i[index edit update] do
       collection do
