@@ -1,12 +1,16 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class TagTest < ActiveSupport::TestCase
-  test 'name setter parameterizes attribute' do
+  test "name setter parameterizes attribute" do
     tag       = Tag.new
-    tag.name  = ' TAG tag  1 '
-    assert_equal 'tag-tag-1', tag.name
+    tag.name  = " TAG tag  1 "
 
-    tag = Tag.new(name: 'TAG')
-    assert_equal 'tag', tag.name
+    assert_equal "tag-tag-1", tag.name
+
+    tag = Tag.new(name: "TAG")
+
+    assert_equal "tag", tag.name
   end
 end

@@ -1,4 +1,6 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -38,7 +40,7 @@ gem "jbuilder"
 gem "bcrypt", "~> 3.1.20"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: [:windows, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -48,7 +50,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
@@ -60,6 +62,10 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "rubocop-minitest"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
 end
 
 group :test do
@@ -68,7 +74,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'redcarpet'
-gem 'coderay'
-gem 'kaminari'
+gem "coderay"
 gem "honeybadger"
+gem "kaminari"
+gem "redcarpet"

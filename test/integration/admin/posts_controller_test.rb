@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -6,18 +8,20 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     login_user
   end
 
-  test 'should get index' do
+  test "should get index" do
     get admin_posts_url
+
     assert_response :success
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_admin_post_url
+
     assert_response :success
   end
 
-  test 'should create post' do
-    assert_difference('Post.count') do
+  test "should create post" do
+    assert_difference("Post.count") do
       post admin_posts_url, params: {
         post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: @post.title }
       }
@@ -26,44 +30,48 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to admin_posts_path
   end
 
-  test 'should not create post if not valid' do
-    assert_no_difference('Post.count') do
+  test "should not create post if not valid" do
+    assert_no_difference("Post.count") do
       post admin_posts_url, params: {
-        post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: '' }
+        post: { content: @post.content, summary: @post.summary, published_at: @post.published_at, title: "" }
       }
     end
     assert_response :unprocessable_entity
   end
 
-  test 'should get edit' do
+  test "should get edit" do
     get edit_admin_post_url(@post)
+
     assert_response :success
   end
 
-  test 'should update post' do
+  test "should update post" do
     patch admin_post_url(@post), params: {
       post: { content: @post.content, published_at: @post.published_at, title: @post.title }
     }
+
     assert_redirected_to admin_posts_path
   end
 
-  test 'should not update post if not valid' do
+  test "should not update post if not valid" do
     patch admin_post_url(@post), params: {
-      post: { content: @post.content, published_at: @post.published_at, title: '' }
+      post: { content: @post.content, published_at: @post.published_at, title: "" }
     }
+
     assert_response :unprocessable_entity
   end
 
-  test 'should destroy post' do
-    assert_difference('Post.count', -1) do
+  test "should destroy post" do
+    assert_difference("Post.count", -1) do
       delete admin_post_url(@post)
     end
 
     assert_redirected_to admin_posts_path
   end
 
-  test 'should display preview' do
+  test "should display preview" do
     post preview_admin_posts_path, params: { content: @post.content }
+
     assert_response :success
   end
 end

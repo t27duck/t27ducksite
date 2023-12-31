@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
-  before_action :fetch_posts, only: %i[index tag]
+  before_action :fetch_posts, only: [:index, :tag]
 
   def index
-    @page_title = 'Blog Entries'
+    @page_title = "Blog Entries"
     respond_to do |format|
       format.html do
         @no_content = true
@@ -16,7 +18,7 @@ class PostsController < ApplicationController
     @post             = Post.find(params[:id])
     @page_title       = @post.title
     @page_description = @post.summary
-    @page_type        = 'article'
+    @page_type        = "article"
   end
 
   def tag

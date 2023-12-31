@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_page, only: [:edit, :update]
@@ -11,7 +13,7 @@ class Admin::PagesController < ApplicationController
 
   def update
     if @page.update(page_params)
-      redirect_to admin_pages_path, notice: 'Page was successfully updated.'
+      redirect_to admin_pages_path, notice: "Page was successfully updated."
     else
       render :edit
     end

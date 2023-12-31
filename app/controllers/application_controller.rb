@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   protect_from_forgery with: :exception
@@ -11,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def user_signed_in?
-    return false unless cookies.signed[:signin].present?
+    return false if cookies.signed[:signin].blank?
 
     @user_signed_in ||= User.exists?(token: cookies.signed[:signin])
   end

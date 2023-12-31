@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Admin::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:edit, :update, :destroy]
@@ -18,7 +20,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to admin_posts_path, notice: 'Post was successfully created.'
+      redirect_to admin_posts_path, notice: "Post was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +28,7 @@ class Admin::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_posts_path, notice: 'Post was successfully updated.'
+      redirect_to admin_posts_path, notice: "Post was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +36,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to admin_posts_path, notice: 'Post was successfully destroyed.'
+    redirect_to admin_posts_path, notice: "Post was successfully destroyed."
   end
 
   def preview

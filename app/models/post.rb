@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
@@ -20,13 +22,13 @@ class Post < ApplicationRecord
   end
 
   def tags_input=(tag_names)
-    self.tags = tag_names.split(',').map do |name|
+    self.tags = tag_names.split(",").filter_map do |name|
       Tag.where(name: name.parameterize).first_or_create! if name.present?
-    end.compact
+    end
   end
 
   def tags_input
-    tags.map(&:name).join(',')
+    tags.map(&:name).join(",")
   end
 
   def to_param
