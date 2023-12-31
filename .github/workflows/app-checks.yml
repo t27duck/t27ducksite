@@ -33,6 +33,9 @@ jobs:
         with:
           bundler-cache: true # Runs bundle and caches gems
 
+      - name: Run rubocop
+        run: bundle exec rubocop
+
       - name: Set up test database
         env:
           RAILS_ENV: test
