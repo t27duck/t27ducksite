@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/posts/tag/:tag", to: "posts#tag", as: :tag_posts
   resources :talks, only: [:index]
 
-  get "/admin", to: "admin/pages#index"
+  get "/admin", to: "admin/posts#index"
   namespace :admin do
     resources :pages, only: [:index, :edit, :update] do
       collection do
