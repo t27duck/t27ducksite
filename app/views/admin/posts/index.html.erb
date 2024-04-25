@@ -18,7 +18,7 @@
         <td><%= post.created_at %></td>
         <td nowrap>
           <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
@@ -43,7 +43,7 @@
         <td><%= post.published_at %></td>
         <td nowrap>
           <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), method: :delete, class: "btn btn-danger btn-xs", data: { confirm: 'Are you sure?' } %>
+          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
