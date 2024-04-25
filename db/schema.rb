@@ -10,11 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_24_200211) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "pages", id: :serial, force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2023_12_24_200211) do
+  create_table "pages", force: :cascade do |t|
     t.string "slug", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -23,7 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_24_200211) do
     t.index ["slug"], name: "index_pages_on_slug", unique: true
   end
 
-  create_table "posts", id: :serial, force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -32,7 +29,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_24_200211) do
     t.string "summary"
   end
 
-  create_table "taggings", id: :serial, force: :cascade do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
     t.datetime "created_at", null: false
@@ -41,7 +38,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_24_200211) do
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table "tags", id: :serial, force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
