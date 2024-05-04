@@ -67,6 +67,9 @@ group :development do
   gem "rubocop-minitest"
   gem "rubocop-performance"
   gem "rubocop-rails"
+
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
 end
 
 group :test do
