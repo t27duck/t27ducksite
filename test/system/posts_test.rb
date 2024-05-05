@@ -23,7 +23,7 @@ class PostsTest < ApplicationSystemTestCase
   test "should show tag" do
     tag = Tag.take
 
-    assert tag.posts.count > 0
+    assert_predicate tag.posts.count, :positive?
 
     visit tag_posts_path(tag.name)
 

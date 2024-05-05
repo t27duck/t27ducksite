@@ -8,7 +8,7 @@ class TalksTest < ApplicationSystemTestCase
 
     assert_text "All Talks"
 
-    Talk.all.each do |talk|
+    Talk.find_each do |talk|
       assert_text talk.title
     end
   end
