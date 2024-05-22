@@ -303,6 +303,23 @@ th:last-of-type, td:last-of-type {
   text-align: right;
 }
 
+strong, b {
+  font-weight: bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+code {
+  font-family: monospace;
+  font-size: inherit;
+  padding: 0.2rem;
+  margin: 0.1rem;
+  border-radius: .2rem;
+  background: #ffeff0;
+}
+
 @media (max-width: 640px) {
   table, tr, td {
     display: block;
