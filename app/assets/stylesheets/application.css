@@ -156,8 +156,13 @@ ul {
   width: 100%;
 }
 
-.two-cols > * + *	{
-  margin-left: 2rem;
+.two-cols article	{
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.two-cols article > * + *	{
+  margin-top: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -166,17 +171,9 @@ ul {
     gap: 2rem;
   }
 
-  .two-cols > * + *	{
-    margin-left: 0;
+  .two-cols article	{
+    margin-top: 0;
   }
-}
-
-.two-cols article {
-  width: 100%;
-}
-
-.two-cols article > * + *	{
-  margin-top: 1rem;
 }
 
 .summary {
