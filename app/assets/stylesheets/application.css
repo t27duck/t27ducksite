@@ -190,6 +190,10 @@ ul {
   padding: 0.5rem;
 }
 
+.CodeRay .code pre {
+  text-wrap: wrap;
+}
+
 .date {
   color: var(--bistre);
   font-size: 0.75rem;
