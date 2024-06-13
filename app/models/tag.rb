@@ -8,6 +8,6 @@ class Tag < ApplicationRecord
 
   def name=(value)
     value = value.parameterize if value.is_a?(String)
-    super(value)
+    super
   end
 end
