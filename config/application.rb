@@ -20,9 +20,6 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-# Hack as turbo-rails loads the constant from the eager load paths
-class Turbo::StreamsChannel; end unless defined?(ActionCable) # rubocop:disable Lint/EmptyClass
-
 module T27duck
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
