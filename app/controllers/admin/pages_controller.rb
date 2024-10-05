@@ -31,6 +31,6 @@ class Admin::PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit(:title, :content)
+    params.expect(page: [:title, :content])
   end
 end
