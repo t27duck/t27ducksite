@@ -1,0 +1,94 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "2166039e68979340c4f0c38c49cc23a176281f151e87c901eea3cedad03fd338",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/talks/_talk.html.erb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "Talk.new.description",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "TalksController",
+          "method": "index",
+          "line": 7,
+          "file": "app/controllers/talks_controller.rb",
+          "rendered": {
+            "name": "talks/index",
+            "file": "app/views/talks/index.html.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "talks/index",
+          "line": 4,
+          "file": "app/views/talks/index.html.erb",
+          "rendered": {
+            "name": "talks/_talk",
+            "file": "app/views/talks/_talk.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "talks/_talk"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "abe04fbf0a98bf11b19f2dc317c28fcf3dad0ca41dc85f1d8e2907854d298fdc",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/talks/_talk.html.erb",
+      "line": 2,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(Talk.new.title.html_safe, Talk.new.url, :target => \"_blank\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "TalksController",
+          "method": "index",
+          "line": 7,
+          "file": "app/controllers/talks_controller.rb",
+          "rendered": {
+            "name": "talks/index",
+            "file": "app/views/talks/index.html.erb"
+          }
+        },
+        {
+          "type": "template",
+          "name": "talks/index",
+          "line": 4,
+          "file": "app/views/talks/index.html.erb",
+          "rendered": {
+            "name": "talks/_talk",
+            "file": "app/views/talks/_talk.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "talks/_talk"
+      },
+      "user_input": "Talk.new.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2024-10-19 09:09:51 -0400",
+  "brakeman_version": "6.2.2"
+}
