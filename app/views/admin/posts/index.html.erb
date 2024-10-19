@@ -14,11 +14,11 @@
     <% @unpublished_posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%= post.tags.map(&:name).join(', ') %></td>
+        <td><%= post.tags.map(&:name).join(", ") %></td>
         <td><%= post.created_at %></td>
         <td nowrap>
           <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
+          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
         </td>
       </tr>
     <% end %>
@@ -39,11 +39,11 @@
     <% @published_posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%= post.tags.map(&:name).join(', ') %></td>
+        <td><%= post.tags.map(&:name).join(", ") %></td>
         <td><%= post.published_at %></td>
         <td nowrap>
           <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
+          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
         </td>
       </tr>
     <% end %>

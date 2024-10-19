@@ -1,4 +1,4 @@
-<%= render partial: 'post', object: @post %>
+<%= render partial: "post", object: @post %>
 
 <div id="disqus_thread"></div>
 
@@ -12,12 +12,12 @@
       this.page.url = "<%= post_url(id: @post.id) %>";  // Canonical URL variable
       this.page.identifier = "<%= "#{Rails.env}-post-#{@post.id}" %>"; // Page's unique identifier variable
     };
-    (function() {  // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
+    (function() {  // DON"T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement("script");
 
-      s.src = '//t27duck.disqus.com/embed.js';
+      s.src = "//t27duck.disqus.com/embed.js";
 
-      s.setAttribute('data-timestamp', +new Date());
+      s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
     })();
   </script>

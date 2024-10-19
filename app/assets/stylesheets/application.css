@@ -17,6 +17,14 @@ body {
   font-family: 'Inter var', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+header, footer, main, article, section, p, div {
+  display: block;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
 header {
   width: 100%;
   color: var(--alice-blue);
@@ -103,17 +111,19 @@ p {
   margin-bottom: 1rem;
 }
 
-h6, h5, h4, h3, h2, h1 {
+h1, h2, h3, h4, h5, h6 {
+  display: block;
   margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: 500;
   line-height: 1.2;
 }
 
 hr {
-  border-color: var(--win2k);
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  display: block;
+  border-top: 1px solid var(--win2k);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 h1 {
