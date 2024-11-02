@@ -1,4 +1,4 @@
-name: "mallard"
+name: "t27ducksite"
 
 services:
   rails-app:
