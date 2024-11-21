@@ -6,6 +6,8 @@
   <p>No talks posted</p>
 <% end %>
 
+<%= render partial: "shared/spacer" %>
+
 <div class="prev-next">
   <div><%= link_to_previous_page @talks, "Previous Page" %></div>
   <div><%= link_to_next_page @talks, "Next Page" %></div>
