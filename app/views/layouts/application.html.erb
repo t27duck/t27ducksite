@@ -35,25 +35,26 @@
 
     <%= auto_discovery_link_tag(:rss, posts_url(format: :xml), { title: "t27duck.com blog posts feed" }) %>
 
+    <% if ENV["GA_TAG_ID"] %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4Z3MTLHRYW"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV["GA_TAG_ID"] %>"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());
 
-      gtag("config", "G-4Z3MTLHRYW");
-    </script>
+      gtag("config", "<%= ENV["GA_TAG_ID"] %>");
 
-    <script>
       let isInitialLoad = true;
       document.addEventListener("turbo:load", () => {
         if (isInitialLoad){isInitialLoad = false; return;}
-        gtag("config", "G-4Z3MTLHRYW", {
+        gtag({
+          event: "pageview",
           page_path: window.location.pathname,
         });
       });
     </script>
+    <% end %>
 
     <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
