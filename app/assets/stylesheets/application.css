@@ -162,26 +162,49 @@ ul {
   list-style-position: inside;
 }
 
-.two-cols {
+.home-list {
   width: 100%;
 }
 
-.two-cols article	{
+.home-list article	{
   margin-top: 2rem;
   width: 100%;
 }
 
-.two-cols article > * + *	{
+.home-list article > * + *	{
   margin-top: 1rem;
 }
 
+.badge-and-title {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.post-badge {
+  background-color: var(--navy-blue);
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
+.talk-badge {
+  background-color: var(--win2k);
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 0.75rem;
+}
+
 @media (min-width: 640px) {
-  .two-cols {
+  .home-list {
     display: flex;
     gap: 2rem;
   }
 
-  .two-cols article	{
+  .home-list article	{
     margin-top: 0;
   }
 }
@@ -209,8 +232,9 @@ ul {
 
 .date {
   color: var(--bistre);
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   font-style: italic;
+  margin-top: 0.25rem;
 }
 
 .prev-next {
@@ -270,6 +294,10 @@ input[type=checkbox] {
 
 .checkbox {
   margin-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
 }
 
 table {
@@ -360,14 +388,14 @@ code {
   Based on https://avexdesigns.com/blog/responsive-youtube-embed
 */
 @media (max-width: 640px) {
-  .talk .description {
+  .video {
     position: relative;
     padding-bottom: 56.25%;
     padding-top: 30px;
     height: 0;
     overflow: hidden;
   }
-  .talk .description iframe {
+  .video iframe {
     position: absolute;
     top: 0;
     left: 0;

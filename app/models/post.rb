@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  KINDS = ["post", "talk"].freeze
+
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
   validates :title, :content, presence: true
+  validates :kind, presence: true, inclusion: { in: KINDS }
 
   scope :published, -> { where.not(published_at: nil) }
   scope :unpublished, -> { where(published_at: nil) }

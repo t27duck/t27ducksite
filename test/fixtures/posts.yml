@@ -5,9 +5,18 @@ one:
   summary: Summary 1
   content: Content 1
   published_at: 2016-06-01
+  kind: "post"
 
 two:
   title: Post 2
   summary: Summary 2
   content: Content 2
   published_at: 2016-06-01
+  kind: "post"
+
+two:
+  title: Talk 1
+  summary: Summary 3
+  content: Content 3
+  published_at: 2016-06-01
+  kind: "talk"

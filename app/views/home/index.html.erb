@@ -32,35 +32,28 @@
   </div>
 </article>
 
-<div class="two-cols">
+<hr />
+
+<div class="home-list">
   <article>
-    <h2>Recent Posts</h2>
-    <hr />
+    <h2>Recent Activity</h2>
     <% if @posts.present? %>
       <% @posts.each do |post| %>
         <section>
-          <%= link_to post.title, post, title: post.title %>
+          <div class="badge-and-title">
+            <span class="<%= post.kind %>-badge"><%= post.kind.titleize %></span>
+            <%= link_to post.title, post, title: post.title %>
+          </div>
           <div class="date"><%= post.published_at.strftime("%B %d, %Y") %></div>
         </section>
       <% end %>
     <% else %>
       <p>Nothing written yet :/</p>
     <% end %>
-    <p><%= link_to "View all posts...", posts_path %></p>
-  </article>
-  <article>
-    <h2>Recent Talks</h2>
-    <hr />
-    <% if @talks.present? %>
-      <% @talks.each do |talk| %>
-      <section>
-        <%= link_to talk.title.html_safe, talk.url, target: "_blank", rel: "noopener" %>
-        <div class="date"><%= talk.presented_on.strftime("%B %d, %Y") %></div>
-      </section>
-      <% end %>
-    <% else %>
-      <p>No talks posted.</p>
-    <% end %>
-    <p><%= link_to "View all talks...", talks_path %></p>
+    <p>
+      <%= link_to "View all posts", posts_path %>
+      |
+      <%= link_to "View all talks", talks_path %>
+    </p>
   </article>
 </div>

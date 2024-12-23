@@ -1,6 +1,6 @@
 <article class="post">
   <h2><%= link_to post.title, post %></h2>
-  <h5>Published: <%= post.publish ?  post.published_at.strftime("%B %d, %Y") : "n/a" %></h5>
+  <% unless post.kind == "talk" %><h5>Published: <%= post.publish ?  post.published_at.strftime("%B %d, %Y") : "n/a" %></h5><% end %>
 
   <% if post.summary.present? %>
     <div class="summary"><%= post.summary %></div>

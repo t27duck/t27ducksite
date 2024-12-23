@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_12_24_200211) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_182145) do
   create_table "pages", force: :cascade do |t|
     t.string "slug", null: false
     t.text "content", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.2].define(version: 2023_12_24_200211) do
     t.datetime "updated_at", null: false
     t.datetime "published_at"
     t.string "summary"
+    t.string "kind", null: false
   end
 
   create_table "taggings", force: :cascade do |t|

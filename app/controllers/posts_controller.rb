@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html do
         @no_content = true
-        @posts = @posts.page(params[:page]).per(5)
+        @posts = @posts.page(params[:page]).per(10)
       end
       format.xml { render layout: false }
     end
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
       redirect_to root_path
       return
     end
-    @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(5)
+    @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(10)
     @page_title = "Blog Entries for tag: '#{@tag.name}'"
     @no_content = true
     render :index
@@ -36,6 +36,6 @@ class PostsController < ApplicationController
   private ######################################################################
 
   def fetch_posts
-    @posts = Post.includes(:tags).published.order(published_at: :desc)
+    @posts = Post.where(kind: "post").includes(:tags).published.order(published_at: :desc)
   end
 end

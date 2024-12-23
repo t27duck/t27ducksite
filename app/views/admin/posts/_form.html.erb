@@ -11,6 +11,9 @@
       </aside>
     <% end %>
 
+    <%= f.label :kind, "Type", class: "form-label" %>
+    <%= f.select :kind, Post::KINDS.map { |k| [k.titleize, k] }, { include_blank: true }, class: "form-control", required: true %>
+
     <%= f.label :title, class: "form-label" %>
     <%= f.text_field :title, class: "form-control", maxlength: 255, required: true %>
 

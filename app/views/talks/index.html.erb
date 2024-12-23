@@ -1,7 +1,7 @@
-<h2>All Talks</h2>
+<h1>All Talks</h1>
 
 <% if @talks.present? %>
-  <%= render partial: "talk", collection: @talks, spacer_template: "shared/spacer" %>
+  <%= render partial: "posts/post", collection: @talks, spacer_template: "shared/spacer" %>
 <% else %>
   <p>No talks posted</p>
 <% end %>
