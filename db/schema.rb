@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_23_182145) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_23_195758) do
   create_table "pages", force: :cascade do |t|
     t.string "slug", null: false
     t.text "content", null: false
@@ -44,17 +44,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_23_182145) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
-  end
-
-  create_table "talks", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "url", null: false
-    t.string "event_name", null: false
-    t.date "presented_on", null: false
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["presented_on"], name: "index_talks_on_presented_on", order: :desc
   end
 
   create_table "users", force: :cascade do |t|
