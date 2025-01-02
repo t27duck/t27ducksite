@@ -364,7 +364,7 @@ code {
 }
 
 strike {
-  text-decoration: line-throught;
+  text-decoration-line: line-through;
 }
 
 @media (max-width: 640px) {
