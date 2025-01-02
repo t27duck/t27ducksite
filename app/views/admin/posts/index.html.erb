@@ -14,7 +14,7 @@
   <tbody>
     <% @unpublished_posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <td><%= post.title.html_safe %></td>
         <td><%= post.kind.titleize %></td>
         <td><%= post.tags.map(&:name).join(", ") %></td>
         <td><%= post.created_at %></td>
@@ -41,7 +41,7 @@
   <tbody>
     <% @published_posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <td><%= post.title.html_safe %></td>
         <td><%= post.kind.titleize %></td>
         <td><%= post.tags.map(&:name).join(", ") %></td>
         <td><%= post.published_at %></td>

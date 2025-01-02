@@ -42,7 +42,7 @@
         <section>
           <div class="badge-and-title">
             <span class="<%= post.kind %>-badge"><%= post.kind.titleize %></span>
-            <%= link_to post.title, post, title: post.title %>
+            <%= link_to post.title.html_safe, post, title: post.title %>
           </div>
           <div class="date"><%= post.published_at.strftime("%B %d, %Y") %></div>
         </section>
