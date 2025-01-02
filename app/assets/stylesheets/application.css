@@ -363,6 +363,10 @@ code {
   background: #ffeff0;
 }
 
+strike {
+  text-decoration: line-throught;
+}
+
 @media (max-width: 640px) {
   table, tr, td {
     display: block;
