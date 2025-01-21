@@ -7,6 +7,6 @@ class HomeTest < ApplicationSystemTestCase
     visit root_path
 
     assert_text "Hello!"
-    assert_text "Recent Activity"
+    assert_text "Recent Stuff"
   end
 end
