@@ -78,7 +78,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "coderay"
+gem "commonmarker"
 gem "honeybadger"
 gem "kaminari"
-gem "redcarpet"
+gem "marksmith"

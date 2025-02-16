@@ -7,8 +7,8 @@
   <% end %>
 
   <% unless @no_content %>
-    <div class="content">
-      <%= markdown(post.content) %>
+    <div class="content marksmith">
+      <%== marksmithed post.content %>
     </div>
   <% end %>
 

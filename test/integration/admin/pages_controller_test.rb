@@ -35,10 +35,4 @@ class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
-
-  test "should display preview" do
-    post preview_admin_pages_path, params: { content: @page.content }
-
-    assert_response :success
-  end
 end

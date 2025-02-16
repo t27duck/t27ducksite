@@ -19,11 +19,6 @@ class Admin::PagesController < ApplicationController
     end
   end
 
-  def preview
-    @content = params[:content]
-    render layout: false
-  end
-
   private ######################################################################
 
   def set_page

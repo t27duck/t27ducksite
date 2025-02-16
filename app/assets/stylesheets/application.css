@@ -10,6 +10,7 @@
   --size-sm: 640px;
   --content-width: 91.666667%;
   --border-radius: 0.5rem;
+  --code-bg-color: #2b303b;
 }
 
 body {
@@ -186,7 +187,7 @@ ul {
   color: white;
   padding: 2px 4px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   font-size: 0.75rem;
 }
 
@@ -195,7 +196,7 @@ ul {
   color: white;
   padding: 2px 4px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   font-size: 0.75rem;
 }
 
@@ -215,20 +216,27 @@ ul {
   margin: 12px 0;
 }
 
-.CodeRay {
-  border-color: var(--cerulean);
-  border-width: 1px;
-  border-style: solid;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-}
-
-.CodeRay .code pre {
-  display: block;
-  font-family: monospace;
+.marksmith pre {
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: var(--border-radius);
+  padding-top: 0.8571429em;
+  padding-inline-end: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-inline-start: 1.1428571em;
   white-space: pre;
   text-wrap: wrap;
+}
+
+.marksmith code {
+  background-color: var(--code-bg-color);
+}
+
+.marksmith :not(pre) > code {
+  padding: 0.1rem 0.2rem;
+  color: var(--alice-blue);
+  font-size: 13px;
+  border-radius: var(--border-radius);
 }
 
 .date {
@@ -352,15 +360,6 @@ strong, b {
 
 em, i {
   font-style: italic;
-}
-
-code {
-  font-family: monospace;
-  font-size: inherit;
-  padding: 0.2rem;
-  margin: 0.1rem;
-  border-radius: .2rem;
-  background: #ffeff0;
 }
 
 strike {

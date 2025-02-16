@@ -18,16 +18,8 @@ Rails.application.routes.draw do
 
   get "/admin", to: "admin/posts#index"
   namespace :admin do
-    resources :pages, only: [:index, :edit, :update] do
-      collection do
-        post :preview
-      end
-    end
-    resources :posts, except: [:show] do
-      collection do
-        post :preview
-      end
-    end
+    resources :pages, only: [:index, :edit, :update]
+    resources :posts, except: [:show]
   end
 
   get "/about", to: "pages#show", id: "about", as: :about
