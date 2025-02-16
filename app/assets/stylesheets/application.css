@@ -153,12 +153,14 @@ h6 {
 
 ol {
   margin-bottom: 1rem;
+  display: block;
   list-style-type: decimal;
   list-style-position: inside;
 }
 
 ul {
   margin-bottom: 1rem;
+  display: block;
   list-style-type: disc;
   list-style-position: inside;
 }
