@@ -1,0 +1,28 @@
+<%= link_to "New Project", new_admin_project_path %>
+|
+<%= link_to "Posts", admin_posts_path %>
+
+<table>
+  <caption>Projects</caption>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Created at</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.title.html_safe %></td>
+        <td><%= project.kind.titleize %></td>
+        <td><%= project.created_at %></td>
+        <td nowrap>
+          <%= link_to "Edit", edit_admin_project_path(project), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Delete", admin_project_path(project), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

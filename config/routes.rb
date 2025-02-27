@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :pages, only: [:index, :edit, :update]
     resources :posts, except: [:show]
+    resources :projects, except: [:show]
   end
 
   get "/about", to: "pages#show", id: "about", as: :about

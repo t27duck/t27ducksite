@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Proejct 1
+  kind: rubygem
+  url: https://rubygems.org/gems/mygem
+  description: A RubyGem I made
+
+two:
+  title: Project 2
+  kind: website
+  url: https://t27duck.com
+  description: My website
