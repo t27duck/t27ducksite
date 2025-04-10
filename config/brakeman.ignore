@@ -1,0 +1,39 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "bb1f9e2dd7a6060c16c60cca94fda76cc7e99f568b4540e6b5fabea4b4d5b761",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/home/index.html.erb",
+      "line": 66,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to(Project.new.title.html_safe, Project.new.url, :title => Project.new.title)",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "HomeController",
+          "method": "index",
+          "line": 7,
+          "file": "app/controllers/home_controller.rb",
+          "rendered": {
+            "name": "home/index",
+            "file": "app/views/home/index.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "home/index"
+      },
+      "user_input": "Project.new.url",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    }
+  ],
+  "brakeman_version": "7.0.2"
+}
