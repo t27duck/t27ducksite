@@ -202,6 +202,33 @@ ul {
   font-size: 0.75rem;
 }
 
+.rubygem-badge {
+  background-color: var(--rosewood);
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  font-size: 0.75rem;
+}
+
+.website-badge {
+  background-color: var(--win2k);
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  font-size: 0.75rem;
+}
+
+.web-app-badge {
+  background-color: var(--navy-blue);
+  color: white;
+  padding: 2px 4px;
+  text-align: center;
+  border-radius: var(--border-radius);
+  font-size: 0.75rem;
+}
+
 @media (min-width: 640px) {
   .home-list {
     display: flex;

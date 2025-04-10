@@ -56,4 +56,23 @@
       <%= link_to "View all talks", talks_path %>
     </p>
   </article>
+  <article>
+    <h2>Projects</h2>
+    <% if @projects.present? %>
+      <% @projects.each do |project| %>
+        <section>
+          <div class="badge-and-title">
+            <span class="<%= project.kind.parameterize %>-badge"><%= project.kind.titleize %></span>
+            <%= link_to project.title.html_safe, project.url, title: project.title %>
+          </div>
+          <div class="date"></div>
+          <div class="date content marksmith">
+            <%== marksmithed project.description %>
+          </div>
+        </section>
+      <% end %>
+    <% else %>
+      <p>Nothing yet :/</p>
+    <% end %>
+  </article>
 </div>
