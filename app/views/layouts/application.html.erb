@@ -56,9 +56,9 @@
     </script>
     <% end %>
 
-    <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "marksmith", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload", integrity: true %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", integrity: true %>
+    <%= stylesheet_link_tag "marksmith", "data-turbo-track": "reload", integrity: true %>
     <script async src="//ga.jspm.io/npm:es-module-shims@1.10.0/dist/es-module-shims.js"></script>
     <%= javascript_importmap_tags %>
   </head>

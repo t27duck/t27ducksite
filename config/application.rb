@@ -43,5 +43,6 @@ module T27duck
     end
 
     config.action_controller.include_all_helpers = false
+    config.assets.integrity_hash_algorithm = "sha384"
   end
 end
