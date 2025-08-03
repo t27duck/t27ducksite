@@ -35,7 +35,7 @@ class Admin::ProjectsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
   end
 
   test "should get edit" do
@@ -57,7 +57,7 @@ class Admin::ProjectsControllerTest < ActionDispatch::IntegrationTest
       project: { description: "" }
     }
 
-    assert_response :unprocessable_entity
+    assert_response :unprocessable_content
   end
 
   test "should destroy project" do

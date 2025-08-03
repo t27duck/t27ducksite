@@ -1,3 +1,5 @@
+<%# locals: (post:) -%>
+
 <article class="post">
   <h2><%= link_to post.title.html_safe, post %></h2>
   <% unless post.kind == "talk" %><h5>Published: <%= post.publish ?  post.published_at.strftime("%B %d, %Y") : "n/a" %></h5><% end %>

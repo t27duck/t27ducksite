@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to admin_path
     else
       flash.now.alert = "Incorrect password."
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

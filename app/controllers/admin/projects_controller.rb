@@ -21,7 +21,7 @@ class Admin::ProjectsController < ApplicationController
     if @project.save
       redirect_to admin_projects_path, notice: "Project was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -29,7 +29,7 @@ class Admin::ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to admin_projects_path, notice: "Project was successfully updated."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
