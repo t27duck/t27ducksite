@@ -56,7 +56,7 @@ gem "thruster", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", platforms: [:mri, :windows]
 end
 
 group :development do
