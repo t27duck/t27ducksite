@@ -13,7 +13,7 @@ gem "propshaft"
 gem "sqlite3", ">= 2.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.6"
+gem "puma", "7.0.0.pre1" # "~> 6.6"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
