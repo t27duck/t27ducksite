@@ -8,25 +8,25 @@
     <%= csp_meta_tag %>
 
     <meta name="robots" content="NOODP">
-    <meta name="description" content="<%= @page_description ? @page_description : "The personal site and blog of Tony Drake" %>" />
-    <meta name="keywords" content="t27duck,blog,ruby,rails,tony,programming,linux,postgresql,servers,games" />
-    <meta http-equiv="imagetoolbar" content="no" />
-    <meta name="msapplication-config" content="none"/>
-    <meta name="copyright" content="Copyright <%= Time.now.strftime("%Y") %>" />
+    <meta name="description" content="<%= @page_description ? @page_description : "The personal site and blog of Tony Drake" %>">
+    <meta name="keywords" content="t27duck,blog,ruby,rails,tony,programming,linux,postgresql,servers,games">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="msapplication-config" content="none">
+    <meta name="copyright" content="Copyright <%= Time.now.strftime("%Y") %>">
     <meta name="turbo-prefetch" content="false">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:url" content="<%= request.original_url.force_encoding("UTF-8") %>" />
-    <meta name="twitter:title" content="<%= @page_title ? @page_title : "t27duck.com" %>" />
-    <meta name="twitter:description" content="<%= @page_description ? @page_description : "My personal blog where I talk about my interests" %>" />
-    <meta name="twitter:site" content="@t27duck" />
+    <meta name="twitter:url" content="<%= request.original_url.force_encoding("UTF-8") %>">
+    <meta name="twitter:title" content="<%= @page_title ? @page_title : "t27duck.com" %>">
+    <meta name="twitter:description" content="<%= @page_description ? @page_description : "My personal blog where I talk about my interests" %>">
+    <meta name="twitter:site" content="@t27duck">
 
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:site_name" content="t27duck" />
-    <meta property="og:title" content="<%= @page_title ? @page_title : "t27duck.com" %>" />
-    <meta property="og:type" content="<%= @page_type || "website" %>" />
-    <meta property="og:url" content="<%= request.original_url.force_encoding("UTF-8") %>" />
-    <meta property="og:description" content="<%= @page_description ? @page_description : "My personal blog where I talk about my interests" %>" />
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="t27duck">
+    <meta property="og:title" content="<%= @page_title ? @page_title : "t27duck.com" %>">
+    <meta property="og:type" content="<%= @page_type || "website" %>">
+    <meta property="og:url" content="<%= request.original_url.force_encoding("UTF-8") %>">
+    <meta property="og:description" content="<%= @page_description ? @page_description : "My personal blog where I talk about my interests" %>">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -65,7 +65,7 @@
 
   <body>
     <header>
-      <nav>
+      <nav aria-label="Navigation">
         <div>
           <%= link_to "Posts", posts_path %>
           <%= link_to "Talks", talks_path %>
