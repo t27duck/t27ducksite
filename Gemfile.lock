@@ -377,7 +377,7 @@ DEPENDENCIES
   kaminari
   marksmith
   propshaft
-  puma (= 7.0.1)
+  puma (>= 5.0)
   rails (~> 8.1.0.beta1)
   rubocop-capybara
   rubocop-minitest
