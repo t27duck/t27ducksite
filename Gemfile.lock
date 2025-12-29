@@ -391,6 +391,7 @@ DEPENDENCIES
   kamal
   kaminari
   marksmith
+  minitest (< 6)
   propshaft
   puma (>= 5.0)
   rails (~> 8.1.1)
