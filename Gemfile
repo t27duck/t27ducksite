@@ -86,7 +86,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-  gem "minitest", "< 6"
+  gem "minitest", "< 7"
 end
 
 gem "commonmarker"
