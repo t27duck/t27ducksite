@@ -41,7 +41,7 @@
       <% @posts.each do |post| %>
         <section>
           <div class="badge-and-title">
-            <span class="<%= post.kind %>-badge"><%= post.kind.titleize %></span>
+            <span class="<%= "#{post.kind}-badge" %>"><%= post.kind.titleize %></span>
             <%= link_to post.title.html_safe, post, title: post.title %>
           </div>
           <div class="date"><%= post.published_at.strftime("%B %d, %Y") %></div>
@@ -62,7 +62,7 @@
       <% @projects.each do |project| %>
         <section>
           <div class="badge-and-title">
-            <span class="<%= project.kind.parameterize %>-badge"><%= project.kind.titleize %></span>
+            <span class="<%= "#{project.kind.parameterize}-badge" %>"><%= project.kind.titleize %></span>
             <%= link_to project.title.html_safe, project.url, title: project.title %>
           </div>
           <div class="date"></div>

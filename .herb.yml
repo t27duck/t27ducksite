@@ -11,22 +11,28 @@
 # GitHub Repo: https://github.com/marcoroth/herb
 #
 
-version: 0.8.0
+version: 0.9.0
 
 files:
-#   # Additional patterns beyond the defaults (**.html, **.rhtml, **.html.erb, etc.)
-#   include:
-#     - '**/*.xml.erb'
-#     - 'custom/**/*.html'
-#
-#   # Patterns to exclude (can exclude defaults too)
+  #   # Additional patterns beyond the defaults (**.html, **.rhtml, **.html.erb, etc.)
+  #   include:
+  #     - '**/*.xml.erb'
+  #     - 'custom/**/*.html'
+  #
+  #   # Patterns to exclude (can exclude defaults too)
   exclude:
     - 'public/**/*'
     - 'tmp/**/*'
 
 linter:
   enabled: true
-
+  rules:
+    erb-no-unsafe-raw:
+      enabled: false
+    erb-no-unsafe-script-interpolation:
+      enabled: false
+    erb-no-instance-variables-in-partials:
+      enabled: false
   # # Additional patterns beyond the defaults for linting
   # include:
   #   - '**/*.xml.erb'
@@ -60,7 +66,6 @@ formatter:
   enabled: false
   indentWidth: 2
   maxLineLength: 80
-
   # # Additional patterns beyond the defaults for formatting
   # include:
   #   - '**/*.xml.erb'
@@ -75,4 +80,6 @@ formatter:
   #   pre:
   #     - tailwind-class-sorter
   #   # Post-format rewriters (modify formatted output string)
+  #   post: []
+  #   post: []
   #   post: []
