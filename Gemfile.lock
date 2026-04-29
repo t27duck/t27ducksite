@@ -180,7 +180,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
-    marksmith (0.4.8)
+    marksmith (0.5.1)
       activesupport
     matrix (0.4.2)
     mini_magick (5.1.2)
@@ -470,7 +470,7 @@ CHECKSUMS
   loofah (2.25.1) sha256=d436c73dbd0c1147b16c4a41db097942d217303e1f7728704b37e4df9f6d2e04
   mail (2.9.0) sha256=6fa6673ecd71c60c2d996260f9ee3dd387d4673b8169b502134659ece6d34941
   marcel (1.1.0) sha256=fdcfcfa33cc52e93c4308d40e4090a5d4ea279e160a7f6af988260fa970e0bee
-  marksmith (0.4.8) sha256=b91b861d80373fe7db53b4ed208fc7174320775b398f78c6d7f6f35d0cf10dc1
+  marksmith (0.5.1) sha256=0ea391b5545b3cac0bf5cbb29f68a954cd024f89ef4267e6c8fc8ff3a8c9a6fe
   matrix (0.4.2) sha256=71083ccbd67a14a43bfa78d3e4dc0f4b503b9cc18e5b4b1d686dc0f9ef7c4cc0
   mini_magick (5.1.2) sha256=2c57112a2c55d9f86b1ed7ab568b3c389a3265788ac5c1ad3e632a201b629a7e
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
