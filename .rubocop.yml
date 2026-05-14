@@ -58,6 +58,9 @@ Rails/LexicallyScopedActionFilter:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/StrongParametersExpect:
+  Enabled: false
+
 Style/ClassAndModuleChildren:
   Enabled: false
 
