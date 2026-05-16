@@ -42,7 +42,7 @@ class Admin::PostsController < ApplicationController
   private ######################################################################
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find(params.expect(:id))
   end
 
   def post_params

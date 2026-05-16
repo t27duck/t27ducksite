@@ -15,14 +15,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post             = Post.find(params[:id])
+    @post             = Post.find(params.expect(:id))
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = "article"
   end
 
   def tag
-    @tag = Tag.find_by(name: params[:tag].downcase.strip)
+    @tag = Tag.find_by(name: params.expect(:tag).downcase.strip)
     if @tag.blank?
       redirect_to root_path
       return
