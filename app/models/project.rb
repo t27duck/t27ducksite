@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Project < ApplicationRecord
   KINDS = ["rubygem", "website", "web app"].freeze
 

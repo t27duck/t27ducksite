@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   def tag_links(tags)
     tags.map do |tag|

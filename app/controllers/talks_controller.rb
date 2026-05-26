@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TalksController < ApplicationController
   def index
     @page_title = "Talks and Presentations"

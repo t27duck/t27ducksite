@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -43,7 +41,7 @@ gem "bcrypt", "~> 3.1.22"
 gem "tzinfo-data", platforms: [:windows, :jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">=1.24.1", require: false
+gem "bootsnap", ">= 1.24.1", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

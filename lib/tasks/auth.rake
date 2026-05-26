@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :auth do
   desc "Generates YAML to put in .authentication.yml"
   task generate: :environment do
