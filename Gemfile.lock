@@ -81,7 +81,6 @@ GEM
     base64 (0.3.0)
     bcrypt (3.1.22)
     bcrypt_pbkdf (1.1.2)
-    benchmark (0.4.1)
     bigdecimal (4.1.2)
     bindex (0.8.1)
     bootsnap (1.24.6)
@@ -116,10 +115,9 @@ GEM
     ed25519 (1.4.0)
     erb (6.0.4)
     erubi (1.13.1)
-    ffi (1.17.1)
-    ffi (1.17.1-aarch64-linux-gnu)
-    ffi (1.17.1-arm64-darwin)
-    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.4-aarch64-linux-gnu)
+    ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x86_64-linux-gnu)
     globalid (1.3.0)
       activesupport (>= 6.1)
     herb (0.9.2-aarch64-linux-gnu)
@@ -130,9 +128,7 @@ GEM
       ostruct
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    image_processing (1.14.0)
-      mini_magick (>= 4.9.5, < 6)
-      ruby-vips (>= 2.0.17, < 3)
+    image_processing (2.0.2)
     importmap-rails (2.2.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -183,9 +179,6 @@ GEM
     marksmith (0.5.2)
       activesupport
     matrix (0.4.2)
-    mini_magick (5.1.2)
-      benchmark
-      logger
     mini_mime (1.1.5)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -315,7 +308,7 @@ GEM
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.44.0, < 2.0)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.3)
+    ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
     rubyzip (3.3.0)
@@ -383,7 +376,7 @@ DEPENDENCIES
   commonmarker
   debug
   honeybadger
-  image_processing (~> 1.2)
+  image_processing (~> 2.0)
   importmap-rails
   kamal
   kaminari
@@ -397,6 +390,7 @@ DEPENDENCIES
   rubocop-minitest
   rubocop-performance
   rubocop-rails
+  ruby-vips (~> 2.3)
   selenium-webdriver
   sqlite3 (>= 2.1)
   stimulus-rails
@@ -423,7 +417,6 @@ CHECKSUMS
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.22) sha256=1f0072e88c2d705d94aff7f2c5cb02eb3f1ec4b8368671e19112527489f29032
   bcrypt_pbkdf (1.1.2) sha256=c2414c23ce66869b3eb9f643d6a3374d8322dfb5078125c82792304c10b94cf6
-  benchmark (0.4.1) sha256=d4ef40037bba27f03b28013e219b950b82bace296549ec15a78016552f8d2cce
   bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
   bindex (0.8.1) sha256=7b1ecc9dc539ed8bccfc8cb4d2732046227b09d6f37582ff12e50a5047ceb17e
   bootsnap (1.24.6) sha256=c60bab88c70332290f0a2636a288f675299eb4f804a02a3c085b42eca9da164a
@@ -445,17 +438,16 @@ CHECKSUMS
   ed25519 (1.4.0) sha256=16e97f5198689a154247169f3453ef4cfd3f7a47481fde0ae33206cdfdcac506
   erb (6.0.4) sha256=38e3803694be357fe2bfe312487c74beaf9fb4e5beb3e22498952fe1645b95d9
   erubi (1.13.1) sha256=a082103b0885dbc5ecf1172fede897f9ebdb745a4b97a5e8dc63953db1ee4ad9
-  ffi (1.17.1) sha256=26f6b0dbd1101e6ffc09d3ca640b2a21840cc52731ad8a7ded9fb89e5fb0fc39
-  ffi (1.17.1-aarch64-linux-gnu) sha256=c5d22cb545a3a691d46060f1343c461d1a8d38c3fd71b96b4cbbe6906bf1fd38
-  ffi (1.17.1-arm64-darwin) sha256=a8e04f79d375742c54ee7f9fff4b4022b87200a4ec0eb082128d3b6559e67b4d
-  ffi (1.17.1-x86_64-linux-gnu) sha256=8c0ade2a5d19f3672bccfe3b58e016ae5f159e3e2e741c856db87fcf07c903d0
+  ffi (1.17.4-aarch64-linux-gnu) sha256=b208f06f91ffd8f5e1193da3cae3d2ccfc27fc36fba577baf698d26d91c080df
+  ffi (1.17.4-arm64-darwin) sha256=19071aaf1419251b0a46852abf960e77330a3b334d13a4ab51d58b31a937001b
+  ffi (1.17.4-x86_64-linux-gnu) sha256=9d3db14c2eae074b382fa9c083fe95aec6e0a1451da249eab096c34002bc752d
   globalid (1.3.0) sha256=05c639ad6eb4594522a0b07983022f04aa7254626ab69445a0e493aa3786ff11
   herb (0.9.2-aarch64-linux-gnu) sha256=6c34f4cd8eb582d142720fc573e2550e516dc071384a668f20605aef727670f7
   herb (0.9.2-arm64-darwin) sha256=1dc9e8a456480961648e245cef2fba927ad5d9f445d1db797aac089c65bf96cd
   herb (0.9.2-x86_64-linux-gnu) sha256=0a48ed0140499609ed78f28019ec5fc29e0768d1ca69bfa458a9e337771d32a8
   honeybadger (6.6.2) sha256=00104d705923cc94af8dac25c636928ed82034a4adfa17024b685a637e5e54e9
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
-  image_processing (1.14.0) sha256=754cc169c9c262980889bec6bfd325ed1dafad34f85242b5a07b60af004742fb
+  image_processing (2.0.2) sha256=d0cf990f862d64efb1a14916044bf4b5bb2bccc7e235022413cde46019799cfa
   importmap-rails (2.2.3) sha256=7101be2a4dc97cf1558fb8f573a718404c5f6bcfe94f304bf1f39e444feeb16a
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.17.0) sha256=168c4ddb93d8a361a045c41d92b2952c7a118fa73f23fe14e55609eb7a863aae
@@ -473,7 +465,6 @@ CHECKSUMS
   marcel (1.1.0) sha256=fdcfcfa33cc52e93c4308d40e4090a5d4ea279e160a7f6af988260fa970e0bee
   marksmith (0.5.2) sha256=6f0deaba934835e090086dfe1ce4a96b1cb446319e8fabedbd0045ae77a18716
   matrix (0.4.2) sha256=71083ccbd67a14a43bfa78d3e4dc0f4b503b9cc18e5b4b1d686dc0f9ef7c4cc0
-  mini_magick (5.1.2) sha256=2c57112a2c55d9f86b1ed7ab568b3c389a3265788ac5c1ad3e632a201b629a7e
   mini_mime (1.1.5) sha256=8681b7e2e4215f2a159f9400b5816d85e9d8c6c6b491e96a12797e798f8bccef
   minitest (6.0.6) sha256=153ea36d1d987a62942382b61075745042a2b3123b1cd48f4c3675af9cc7d6f1
   msgpack (1.8.1) sha256=3fef787cd3965fd119c08a22724a56a93ca25008c3421fc15039f603a8b7c86c
@@ -521,7 +512,7 @@ CHECKSUMS
   rubocop-performance (1.26.1) sha256=cd19b936ff196df85829d264b522fd4f98b6c89ad271fa52744a8c11b8f71834
   rubocop-rails (2.35.3) sha256=6edd45410866912b9b2e90ae3aeafd31d576df2bb2a9c9408f1667a50c32c7de
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
-  ruby-vips (2.2.3) sha256=41d12b1a805cd6ead4a7965201a8f7c5fe459bb58d3a7d967c9eb0719a6edc92
+  ruby-vips (2.3.0) sha256=e685ec02c13969912debbd98019e50492e12989282da5f37d05f5471442f5374
   rubyzip (3.3.0) sha256=a372fc67892a4f8c0bc8ec906b720353d8e48807a64b2e63adf99b1e3583a034
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.44.0) sha256=6f1df072529af369589c46f0e01132952aabb250cfd683c274d74dc1eb5d8477
@@ -551,4 +542,4 @@ CHECKSUMS
   zeitwerk (2.7.5) sha256=d8da92128c09ea6ec62c949011b00ed4a20242b255293dd66bf41545398f73dd
 
 BUNDLED WITH
-  4.0.12
+  4.0.13

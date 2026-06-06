@@ -11,6 +11,8 @@ updates:
       interval: "daily"
     cooldown:
       default-days: 2
+    ignore:
+      - dependency-name: "bundler"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
