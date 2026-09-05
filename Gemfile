@@ -89,7 +89,6 @@ group :test do
 end
 
 gem "commonmarker"
-gem "honeybadger"
 gem "kaminari"
 gem "marksmith"
 gem "reactionview"
