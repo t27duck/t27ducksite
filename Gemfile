@@ -92,3 +92,5 @@ gem "commonmarker"
 gem "kaminari"
 gem "marksmith"
 gem "reactionview"
+
+gem "json", "< 3"

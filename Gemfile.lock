@@ -379,6 +379,7 @@ DEPENDENCIES
   debug
   image_processing (~> 2.1)
   importmap-rails
+  json (< 3)
   kamal
   kaminari
   marksmith
