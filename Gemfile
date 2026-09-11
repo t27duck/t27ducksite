@@ -93,4 +93,4 @@ gem "kaminari"
 gem "marksmith"
 gem "reactionview"
 
-gem "json", "< 3"
+gem "json", "< 4"
