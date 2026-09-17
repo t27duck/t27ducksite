@@ -17,6 +17,7 @@
     "CAPYBARA_SERVER_PORT": "45678",
     "SELENIUM_HOST": "selenium",
     "IRB_USE_AUTOCOMPLETE": "false",
+    "CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL": "1",
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude"
   },
