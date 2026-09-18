@@ -38,7 +38,7 @@
     <% if ENV["GA_TAG_ID"] %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV["GA_TAG_ID"] %>"></script>
-    <script>
+    <script nonce="<%= content_security_policy_nonce %>">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag("js", new Date());

@@ -3,7 +3,7 @@
 <div id="disqus_thread"></div>
 
 <% if Rails.env.production? %>
-  <script type="text/javascript">
+  <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
     /*
       LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
       https://disqus.com/admin/universalcode/#configuration-variables
