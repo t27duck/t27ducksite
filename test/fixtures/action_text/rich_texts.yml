@@ -1,0 +1,6 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+about_content:
+  record: about (Page)
+  name: content
+  body: <p>MyText</p>

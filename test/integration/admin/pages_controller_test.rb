@@ -20,7 +20,7 @@ class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update page" do
     patch admin_page_url(@page), params: {
-      page: { title: @page.title, content: @page.content }
+      page: { title: @page.title, content: @page.content.to_s }
     }
 
     assert_redirected_to admin_pages_path

@@ -16,7 +16,7 @@
   <%= f.text_field :title, class: "form-control", required: true %>
 
   <%= f.label :content, "Content", class: "form-label" %>
-  <%= f.marksmith :content, class: "form-control", rows: 15 %>
+  <%= f.rich_text_area :content %>
 
   <%= f.submit class: "button" %>
   <%= link_to "Cancel", admin_pages_path, class: "btn btn-warning" %>

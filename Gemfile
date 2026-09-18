@@ -90,6 +90,7 @@ end
 
 gem "commonmarker"
 gem "kaminari"
+gem "lexxy", "0.9.32"
 gem "marksmith"
 gem "reactionview"
 

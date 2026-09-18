@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-t27duck.com — Tony Drake's personal site and blog. Rails 8.1 on Ruby 4.0.6, SQLite, importmap + Hotwire, Propshaft assets, deployed to a single server with Kamal. No Action Mailer, Action Cable, Action Text, or Action Mailbox (they're commented out in `config/application.rb`).
+t27duck.com — Tony Drake's personal site and blog. Rails 8.1 on Ruby 4.0.6, SQLite, importmap + Hotwire, Propshaft assets, deployed to a single server with Kamal. No Action Mailer, Action Cable, or Action Mailbox (they're commented out in `config/application.rb`).
 
 ## Commands
 
@@ -37,7 +37,11 @@ Setting the password is a console operation — `User.create!(password: "...")` 
 
 **Tags are parameterized on write.** `Tag#name=` calls `.parameterize` on the value, so tag lookups always use the slug form. Admin forms take a comma-separated string through `Post#tags_input=`, which finds-or-creates each tag.
 
-**Markdown rendering overrides the gem.** `app/models/marksmith/renderer.rb` replaces `Marksmith::Renderer` from the marksmith gem with a Commonmarker-based one running `unsafe: true` and `tagfilter: false` — raw HTML in post content is intentional. Views render it with `<%== marksmithed some.content %>`; admin forms use `f.marksmith :field`. Because raw HTML is allowed, the herb rules `erb-no-unsafe-raw` and `erb-no-unsafe-script-interpolation` are disabled in `.herb.yml`.
+**Rich text is mid-migration from markdown to Action Text.** `Page#content` is `has_rich_text` and edits through Lexxy (`f.rich_text_area`); `Post#content` is still markdown. `Project#description` is plain HTML in a column.
+
+For the markdown half: `app/models/marksmith/renderer.rb` replaces `Marksmith::Renderer` from the marksmith gem with a Commonmarker-based one running `unsafe: true` and `tagfilter: false` — raw HTML in post content is intentional. Views render it with `<%== marksmithed post.content %>`; admin forms use `f.marksmith :field`. Because raw HTML is allowed, the herb rules `erb-no-unsafe-raw` and `erb-no-unsafe-script-interpolation` are disabled in `.herb.yml`.
+
+For the Action Text half: `app/views/layouts/action_text/contents/_content.html.erb` overrides the wrapper to `class="lexxy-content"` (the gem default is `trix-content`, which Lexxy's CSS doesn't match) and hangs the `syntax-highlight` Stimulus controller off it — Lexxy bundles Prism but only auto-highlights inside the editor. `config/initializers/action_text.rb` re-adds `<s>`/`<u>` to the sanitizer allowlist, which neither Rails nor Lexxy includes. Code blocks are `<pre data-language="x">` with `<br>` line breaks; Lexical reads the language from `data-language` only. The `lexxy` gem is pinned exactly because it is pre-1.0 and monkey-patches Action Text's form helpers — `test/system/admin/pages_test.rb` guards that.
 
 **ReActionView is on.** `config.intercept_erb = true` means `.html.erb` templates compile through `Herb::Engine`, not stock ERB.
 

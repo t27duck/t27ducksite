@@ -11,6 +11,18 @@
   --content-width: 91.666667%;
   --border-radius: 0.5rem;
   --code-bg-color: #2b303b;
+
+  /* Lexxy ships GitHub-light token colors, which are unreadable on our dark
+     code background. These are Base16 Ocean Dark, matching what commonmarker's
+     highlighter produced before the move to Action Text. */
+  --lexxy-color-code-token-att: #bf616a;
+  --lexxy-color-code-token-comment: #65737e;
+  --lexxy-color-code-token-function: #8fa1b3;
+  --lexxy-color-code-token-operator: #96b5b4;
+  --lexxy-color-code-token-property: #8fa1b3;
+  --lexxy-color-code-token-punctuation: #c0c5ce;
+  --lexxy-color-code-token-selector: #a3be8c;
+  --lexxy-color-code-token-variable: #d08770;
 }
 
 body {
@@ -264,6 +276,31 @@ ul {
 .marksmith :not(pre) > code {
   padding: 0.1rem 0.2rem;
   color: var(--alice-blue);
+  font-size: 13px;
+  border-radius: var(--border-radius);
+}
+
+/* Action Text content. Lexxy's own rules are all wrapped in :where(), so they
+   carry zero specificity and these win. Without them code blocks would fall
+   back to Lexxy's light background. */
+.lexxy-content pre {
+  background-color: var(--code-bg-color);
+  color: var(--alice-blue);
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: var(--border-radius);
+  padding-top: 0.8571429em;
+  padding-inline-end: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-inline-start: 1.1428571em;
+  white-space: pre;
+  text-wrap: wrap;
+}
+
+.lexxy-content :not(pre) > code {
+  background-color: var(--code-bg-color);
+  color: var(--alice-blue);
+  padding: 0.1rem 0.2rem;
   font-size: 13px;
   border-radius: var(--border-radius);
 }
