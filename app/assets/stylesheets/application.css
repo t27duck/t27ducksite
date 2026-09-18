@@ -257,29 +257,6 @@ ul {
   margin: 12px 0;
 }
 
-.marksmith pre {
-  margin-top: 1.7142857em;
-  margin-bottom: 1.7142857em;
-  border-radius: var(--border-radius);
-  padding-top: 0.8571429em;
-  padding-inline-end: 1.1428571em;
-  padding-bottom: 0.8571429em;
-  padding-inline-start: 1.1428571em;
-  white-space: pre;
-  text-wrap: wrap;
-}
-
-.marksmith code {
-  background-color: var(--code-bg-color);
-}
-
-.marksmith :not(pre) > code {
-  padding: 0.1rem 0.2rem;
-  color: var(--alice-blue);
-  font-size: 13px;
-  border-radius: var(--border-radius);
-}
-
 /* Action Text content. Lexxy's own rules are all wrapped in :where(), so they
    carry zero specificity and these win. Without them code blocks would fall
    back to Lexxy's light background. */
