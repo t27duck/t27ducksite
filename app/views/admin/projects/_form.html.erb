@@ -21,8 +21,8 @@
   <%= f.label :url, class: "form-label" %>
   <%= f.url_field :url, class: "form-control", maxlength: 255, required: true %>
 
-  <%= f.label :description, class: "form-label" %>
-  <%= f.marksmith :description, rows: 15, class: "form-control" %>
+  <%= f.label :description, "Description (HTML)", class: "form-label" %>
+  <%= f.text_area :description, rows: 5, class: "form-control", required: true %>
 
   <br>
   <div>

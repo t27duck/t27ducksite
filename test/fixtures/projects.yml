@@ -4,10 +4,10 @@ one:
   title: Proejct 1
   kind: rubygem
   url: https://rubygems.org/gems/mygem
-  description: A RubyGem I made
+  description: '<p>A RubyGem I made. <a href="https://example.com/docs">Docs</a></p>'
 
 two:
   title: Project 2
   kind: website
   url: https://t27duck.com
-  description: My website
+  description: '<p>My website</p>'

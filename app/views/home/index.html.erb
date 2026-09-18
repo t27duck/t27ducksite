@@ -66,8 +66,8 @@
             <%= link_to project.title.html_safe, project.url, title: project.title %>
           </div>
           <div class="date"></div>
-          <div class="date content marksmith">
-            <%== marksmithed project.description %>
+          <div class="date">
+            <%= sanitize project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"] %>
           </div>
         </section>
       <% end %>
