@@ -44,6 +44,6 @@ class Admin::PostsController < ApplicationController
   end
 
   def post_params
-    params.expect(post: [:kind, :title, :content, :summary, :publish, :tags_input])
+    params.expect(post: [:kind, :title, :content, :summary, :publish, :tags_input, :video_url])
   end
 end

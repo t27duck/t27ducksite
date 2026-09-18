@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post             = Post.find(params.expect(:id))
+    @post             = Post.includes(:tags).with_rich_text_content_and_embeds.find(params.expect(:id))
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = "article"
@@ -33,6 +33,8 @@ class PostsController < ApplicationController
 
   private ######################################################################
 
+  # No rich text preloading: both callers set @no_content, so posts/_post never
+  # renders the body, and index.xml.builder only emits the summary.
   def fetch_posts
     @posts = Post.where(kind: "post").includes(:tags).published.order(published_at: :desc)
   end

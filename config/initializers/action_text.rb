@@ -10,4 +10,9 @@ ActiveSupport.on_load(:action_text_content) do
   helper = Class.new { include ActionText::ContentHelper }.new
 
   ActionText::ContentHelper.allowed_tags = helper.sanitizer_allowed_tags | ["s", "u"]
+
+  # Rails' safe list has neither target nor rel, so a link opened in a new tab
+  # loses both -- including the rel="noopener" that makes target="_blank" safe.
+  ActionText::ContentHelper.allowed_attributes =
+    helper.sanitizer_allowed_attributes | ["target", "rel"]
 end

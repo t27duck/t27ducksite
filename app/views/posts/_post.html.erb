@@ -9,8 +9,12 @@
   <% end %>
 
   <% unless @no_content %>
-    <div class="content marksmith">
-      <%== marksmithed post.content %>
+    <div class="content">
+      <% if post.talk? %>
+        <%= render "posts/video", post: post %>
+      <% else %>
+        <%= post.content %>
+      <% end %>
     </div>
   <% end %>
 

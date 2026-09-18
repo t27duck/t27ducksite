@@ -25,7 +25,10 @@
   <%= f.text_field :tags_input, class: "form-control", maxlength: 255 %>
 
   <%= f.label :content, class: "form-label" %>
-  <%= f.marksmith :content, rows: 15, class: "form-control" %>
+  <%= f.rich_text_area :content %>
+
+  <%= f.label :video_url, "YouTube URL (talks only)", class: "form-label" %>
+  <%= f.url_field :video_url, class: "form-control", maxlength: 255 %>
 
   <div class="checkbox">
     <%= f.label :publish, class: "form-label" do %>

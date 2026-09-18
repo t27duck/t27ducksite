@@ -4,3 +4,15 @@ about_content:
   record: about (Page)
   name: content
   body: <p>MyText</p>
+
+# No entry for posts(:three) -- it's a talk, and talks carry a video_url
+# instead of a body.
+post_one_content:
+  record: one (Post)
+  name: content
+  body: <p>Content 1</p>
+
+post_two_content:
+  record: two (Post)
+  name: content
+  body: <p>Content 2</p>

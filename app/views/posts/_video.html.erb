@@ -1,0 +1,17 @@
+<%# locals: (post:) %>
+
+<div class="text-center">
+  <%# .video only has rules under the 640px breakpoint - on desktop the iframe %>
+  <%# sizes itself from width/height, so both have to stay on the element.     %>
+  <div class="video">
+    <iframe width="560"
+            height="315"
+            src="https://www.youtube.com/embed/<%= post.youtube_id %>?rel=0"
+            title="<%= strip_tags(post.title) %>"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </div>
+  <br><br>
+  <%= link_to "Direct Link", post.video_url, target: "_blank", rel: "noopener" %>
+</div>

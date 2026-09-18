@@ -3,12 +3,15 @@
     <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [ 800, 600 ] : [ 1024, 768 ]) %>
   <% end %>
 
-  <figcaption class="attachment__caption">
-    <% if caption = blob.try(:caption) %>
-      <%= caption %>
-    <% else %>
+  <%# The name/size fallback is only useful for files you can't see. Showing it
+      under an image means every uncaptioned screenshot gets its filename as a
+      caption, which is noise. %>
+  <% if caption = blob.try(:caption) %>
+    <figcaption class="attachment__caption"><%= caption %></figcaption>
+  <% elsif !blob.representable? %>
+    <figcaption class="attachment__caption">
       <span class="attachment__name"><%= blob.filename %></span>
       <span class="attachment__size"><%= number_to_human_size blob.byte_size %></span>
-    <% end %>
-  </figcaption>
+    </figcaption>
+  <% end %>
 </figure>

@@ -1,22 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Content lives in action_text/rich_texts.yml. Talks have none by design.
 
 one:
   title: Post 1
   summary: Summary 1
-  content: Content 1
   published_at: 2016-06-01
   kind: "post"
 
 two:
   title: Post 2
   summary: Summary 2
-  content: Content 2
   published_at: 2016-06-01
   kind: "post"
 
 three:
   title: Talk 1
   summary: Summary 3
-  content: Content 3
   published_at: 2016-06-01
   kind: "talk"
+  video_url: https://www.youtube.com/watch?v=dQw4w9WgXcQ

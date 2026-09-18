@@ -22,7 +22,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Post.count") do
       post admin_posts_url, params: {
         post: {
-          content: @post.content, kind: "post", summary: @post.summary,
+          content: "<p>Updated content</p>", kind: "post", summary: @post.summary,
           published_at: @post.published_at, title: @post.title
         }
       }
@@ -35,11 +35,35 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference("Post.count") do
       post admin_posts_url, params: {
         post: {
-          content: @post.content, kind: "post", summary: @post.summary, published_at: @post.published_at, title: ""
+          content: "<p>Updated content</p>", kind: "post", summary: @post.summary,
+          published_at: @post.published_at, title: ""
         }
       }
     end
     assert_response :unprocessable_content
+  end
+
+  test "should not create a talk without a video url" do
+    assert_no_difference("Post.count") do
+      post admin_posts_url, params: {
+        post: { kind: "talk", title: "A talk", content: "" }
+      }
+    end
+
+    assert_response :unprocessable_content
+  end
+
+  test "should create a talk with a video url but no content" do
+    assert_difference("Post.count") do
+      post admin_posts_url, params: {
+        post: {
+          kind: "talk", title: "A talk", content: "",
+          video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+      }
+    end
+
+    assert_redirected_to admin_posts_path
   end
 
   test "should get edit" do
@@ -50,7 +74,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update post" do
     patch admin_post_url(@post), params: {
-      post: { content: @post.content, published_at: @post.published_at, title: @post.title }
+      post: { content: "<p>Updated content</p>", published_at: @post.published_at, title: @post.title }
     }
 
     assert_redirected_to admin_posts_path
@@ -58,7 +82,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not update post if not valid" do
     patch admin_post_url(@post), params: {
-      post: { content: @post.content, published_at: @post.published_at, title: "" }
+      post: { content: "<p>Updated content</p>", published_at: @post.published_at, title: "" }
     }
 
     assert_response :unprocessable_content
