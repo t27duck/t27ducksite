@@ -63,6 +63,9 @@
         <section>
           <div class="badge-and-title">
             <span class="<%= "#{project.kind.parameterize}-badge" %>"><%= project.kind.titleize %></span>
+            <% if project.agentic? %>
+              <span class="agentic-badge">AI-Assisted</span>
+            <% end %>
             <%= link_to project.title.html_safe, project.url, title: project.title %>
           </div>
           <div class="date"></div>

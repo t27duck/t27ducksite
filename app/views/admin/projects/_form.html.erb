@@ -24,6 +24,13 @@
   <%= f.label :description, "Description (HTML)", class: "form-label" %>
   <%= f.text_area :description, rows: 5, class: "form-control", required: true %>
 
+  <div class="checkbox">
+    <%= f.label :agentic, class: "form-label" do %>
+      <%= f.check_box :agentic %>
+      Flag as Agentic
+    <% end %>
+  </div>
+
   <br>
   <div>
     <%= f.submit class: "button" %>
