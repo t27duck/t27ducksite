@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-t27duck.com — Tony Drake's personal site and blog. Rails 8.1 on Ruby 4.0.6, SQLite, importmap + Hotwire, Propshaft assets, deployed to a single server with Kamal. No Action Mailer, Action Cable, or Action Mailbox (they're commented out in `config/application.rb`).
+t27duck.com — Tony Drake's personal site and blog. Rails 8.1 on Ruby 4.0, SQLite, importmap + Hotwire, Propshaft assets, deployed to a single server with Kamal. No Action Mailer, Action Cable, or Action Mailbox (they're commented out in `config/application.rb`).
 
 ## Commands
 
