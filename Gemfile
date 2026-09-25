@@ -91,5 +91,3 @@ end
 gem "kaminari"
 gem "lexxy", "0.9.33"
 gem "reactionview"
-
-gem "json", "< 3"
