@@ -62,7 +62,7 @@
       <ul class="entries">
         <% @projects.each do |project| %>
           <li>
-            <p class="entry-title"><%= link_to project.title.html_safe, project.url %></p>
+            <p class="entry-title"><%= link_to project.title.html_safe, project.url, title: project.title %></p>
             <p class="meta">
               <span class="kind"><%= project.kind.titleize %></span><% if project.agentic? %>, AI-assisted<% end %>
             </p>
