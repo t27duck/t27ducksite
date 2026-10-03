@@ -1,1 +1,3 @@
-<%= @page.content %>
+<%= render layout: "shared/window", locals: { title: @page.title, heading: :h1, element: :article } do %>
+  <div class="prose"><%= @page.content %></div>
+<% end %>

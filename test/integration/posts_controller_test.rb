@@ -15,6 +15,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get post_url(@post)
 
     assert_response :success
+    assert_select "a.close[href=?]", posts_path
+    assert_select ".site-nav a[aria-current]", count: 1, text: "Posts"
+  end
+
+  test "a talk's own page closes back to talks and marks Talks current" do
+    get post_url(posts(:three))
+
+    assert_response :success
+    assert_select "a.close[href=?]", talks_path
+    assert_select ".site-nav a[aria-current]", count: 1, text: "Talks"
   end
 
   test "should show tag" do
@@ -22,5 +32,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get tag_posts_path(tag.name)
 
     assert_response :success
+    assert_select "h1", "Posts tagged #{tag.name}"
   end
 end

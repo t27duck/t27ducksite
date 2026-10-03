@@ -2,7 +2,7 @@
 
 <%= form_with model: [:admin, project] do |f| %>
   <% if project.errors.any? %>
-    <aside>
+    <aside class="alert" role="alert">
       <p><strong><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</strong></p>
       <ul>
       <% project.errors.full_messages.each do |message| %>
@@ -31,8 +31,7 @@
     <% end %>
   </div>
 
-  <br>
-  <div>
+  <div class="form-actions">
     <%= f.submit class: "button" %>
     <%= link_to "Cancel", admin_projects_path %>
   </div>

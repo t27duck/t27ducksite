@@ -1,14 +1,19 @@
-<h1>All Talks</h1>
+<%= render layout: "shared/window", locals: { title: "All talks", heading: :h1 } do %>
+  <% if @talks.present? %>
+    <ul class="entries entries-lg">
+      <% @talks.each do |talk| %>
+        <li>
+          <h2 class="entry-title"><%= link_to talk.title.html_safe, talk %></h2>
+          <% if talk.summary.present? %>
+            <p class="entry-summary"><%= talk.summary %></p>
+          <% end %>
+          <%= render "posts/video", post: talk %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No talks posted yet.</p>
+  <% end %>
 
-<% if @talks.present? %>
-  <%= render partial: "posts/post", collection: @talks, spacer_template: "shared/spacer" %>
-<% else %>
-  <p>No talks posted</p>
+  <%= render "shared/pager", records: @talks, noun: "talks" %>
 <% end %>
-
-<%= render partial: "shared/spacer" %>
-
-<div class="prev-next">
-  <div><%= link_to_previous_page @talks, "Previous Page" %></div>
-  <div><%= link_to_next_page @talks, "Next Page" %></div>
-</div>

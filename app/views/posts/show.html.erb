@@ -1,25 +1,48 @@
-<%= render partial: "post", object: @post %>
+<% back_path, back_label = @post.talk? ? [talks_path, "Back to all talks"] : [posts_path, "Back to all posts"] %>
 
-<div id="disqus_thread"></div>
+<div class="stack">
+  <%= render layout: "shared/window", locals: { title: @post.title.html_safe, heading: :h1, element: :article, close: back_path, close_label: back_label } do %>
+    <% unless @post.talk? %>
+      <p class="meta post-meta"><%= @post.publish ? "Published #{@post.published_at.strftime("%B %-d, %Y")}" : "Not published" %></p>
+    <% end %>
 
-<% if Rails.env.production? %>
-  <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
-    /*
-      LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
-      https://disqus.com/admin/universalcode/#configuration-variables
-    */
-    var disqus_config = function () {
-      this.page.url = "<%= post_url(id: @post.id) %>";  // Canonical URL variable
-      this.page.identifier = "<%= Rails.env %>-post-<%= @post.id %>"; // Page's unique identifier variable
-    };
-    (function() {  // DON"T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement("script");
+    <% if @post.summary.present? %>
+      <p class="lede"><%= @post.summary %></p>
+    <% end %>
 
-      s.src = "//t27duck.disqus.com/embed.js";
+    <% if @post.talk? %>
+      <%= render "posts/video", post: @post %>
+    <% else %>
+      <div class="prose"><%= @post.content %></div>
+    <% end %>
 
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-<% end %>
+    <% if @post.tags.present? %>
+      <p class="tags">Tagged <%= tag_links(@post.tags) %></p>
+    <% end %>
+  <% end %>
+
+  <% if Rails.env.production? %>
+    <%= render layout: "shared/window", locals: { title: "Comments" } do %>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript" nonce="<%= content_security_policy_nonce %>">
+        /*
+          LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT:
+          https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        var disqus_config = function () {
+          this.page.url = "<%= post_url(id: @post.id) %>";  // Canonical URL variable
+          this.page.identifier = "<%= Rails.env %>-post-<%= @post.id %>"; // Page's unique identifier variable
+        };
+        (function() {  // DON"T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement("script");
+
+          s.src = "//t27duck.disqus.com/embed.js";
+
+          s.setAttribute("data-timestamp", +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <% end %>
+  <% end %>
+</div>

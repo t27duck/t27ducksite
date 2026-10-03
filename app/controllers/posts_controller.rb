@@ -4,10 +4,7 @@ class PostsController < ApplicationController
   def index
     @page_title = "Blog Entries"
     respond_to do |format|
-      format.html do
-        @no_content = true
-        @posts = @posts.page(params[:page]).per(10)
-      end
+      format.html { @posts = @posts.page(params[:page]).per(10) }
       format.xml { render layout: false }
     end
   end
@@ -27,14 +24,13 @@ class PostsController < ApplicationController
     end
     @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(10)
     @page_title = "Blog Entries for tag: '#{@tag.name}'"
-    @no_content = true
     render :index
   end
 
   private ######################################################################
 
-  # No rich text preloading: both callers set @no_content, so posts/_post never
-  # renders the body, and index.xml.builder only emits the summary.
+  # No rich text preloading: posts/_entry and index.xml.builder only use the
+  # title and summary.
   def fetch_posts
     @posts = Post.where(kind: "post").includes(:tags).published.order(published_at: :desc)
   end

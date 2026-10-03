@@ -4,11 +4,11 @@ class Admin::PostsTest < ApplicationSystemTestCase
   setup do
     visit new_session_path
     fill_in "password", with: TEST_ENV_PASSWORD
-    click_on "Login"
+    click_button "Sign in"
 
     # Wait for the login to land before navigating, otherwise the next visit can
     # race the redirect and get bounced by authenticate_user!.
-    assert_text "Signout"
+    assert_text "Sign out"
   end
 
   # Lexxy is pre-1.0 and monkey-patches Action Text's form helpers, so a version

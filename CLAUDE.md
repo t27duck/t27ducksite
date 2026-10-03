@@ -33,7 +33,7 @@ bin/importmap audit            # JS dependency audit
 
 Setting the password is a console operation — `User.create!(password: "...")` on a fresh DB, or `User.first.update!(password: "...")`. There's no rake task or seed for it.
 
-**Posts and talks are the same model.** `Post#kind` is `"post"` or `"talk"`. `PostsController` filters `kind: "post"`, `TalksController` filters `kind: "talk"`. A talk carries a `video_url` and no `content` (validations are conditional on `talk?`); `posts/_post.html.erb` branches to `posts/_video.html.erb`, which builds the YouTube embed from `Post#youtube_id`. `Post::YOUTUBE_URL` is anchored and https-only so a `video_url` can't inject a `javascript:` href. Publishing is a nullable `published_at` timestamp exposed to forms through the virtual `publish` / `publish=` accessors; `Post.published` / `Post.unpublished` scope on it. `Post#to_param` is `"#{id}-#{title}".parameterize`.
+**Posts and talks are the same model.** `Post#kind` is `"post"` or `"talk"`. `PostsController` filters `kind: "post"`, `TalksController` filters `kind: "talk"`. A talk carries a `video_url` and no `content` (validations are conditional on `talk?`); `posts/show.html.erb` and `talks/index.html.erb` render `posts/_video.html.erb`, which builds the YouTube embed from `Post#youtube_id`. `Post::YOUTUBE_URL` is anchored and https-only so a `video_url` can't inject a `javascript:` href. Publishing is a nullable `published_at` timestamp exposed to forms through the virtual `publish` / `publish=` accessors; `Post.published` / `Post.unpublished` scope on it. `Post#to_param` is `"#{id}-#{title}".parameterize`.
 
 **Tags are parameterized on write.** `Tag#name=` calls `.parameterize` on the value, so tag lookups always use the slug form. Admin forms take a comma-separated string through `Post#tags_input=`, which finds-or-creates each tag.
 
@@ -47,7 +47,9 @@ Setting the password is a console operation — `User.create!(password: "...")` 
 
 **Helpers are not globally included.** `config.action_controller.include_all_helpers = false` and generators are configured with `g.helper = false`, so `app/helpers` holds only `ApplicationHelper` (available everywhere via ApplicationController); per-controller helpers would need explicit inclusion.
 
-**Page-level metadata via ivars.** `app/views/layouts/application.html.erb` reads `@page_title`, `@page_description`, `@page_type`, and `@no_content` — controllers set these; there's no metadata DSL.
+**Page-level metadata via ivars.** `app/views/layouts/application.html.erb` reads `@page_title`, `@page_description`, and `@page_type` — controllers set these; there's no metadata DSL.
+
+**Window chrome.** The look is a Windows 2000 desktop: the body is the win2k blue and every content block is wrapped in `shared/_window` (render it as a layout: `render layout: "shared/window", locals: { title: ... } do`), which draws the navy-to-cerulean title bar. Pass `heading: :h1` for the page title and `close:` for the × link back to a list. `ApplicationHelper#current_section` decides which header nav link gets `aria-current`. Fonts are self-hosted Atkinson Hyperlegible Next/Mono in `app/assets/stylesheets/fonts` (CSP `font_src` is `:self`).
 
 **Feed.** `/posts.xml` renders `app/views/posts/index.xml.builder` with `layout: false`.
 

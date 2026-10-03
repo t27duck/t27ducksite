@@ -11,7 +11,7 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     get talks_url
 
     assert_select "div.video iframe[src=?]", "https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
-    assert_select "a[href=?]", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", text: "Direct Link"
+    assert_select "a[href=?]", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", text: "Watch on YouTube"
   end
 
   # Talks carry no rich text. If the talk? branch in posts/_post is ever dropped,

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   KINDS = ["post", "talk"].freeze
   # Anchored at both ends, and pinned to https, so a video_url can never carry a
-  # javascript: scheme into the "Direct Link" href in posts/_video.
+  # javascript: scheme into the "Watch on YouTube" href in posts/_video.
   YOUTUBE_URL = %r{\Ahttps://(?:www\.)?youtube\.com/(?:watch\?v=|embed/)([A-Za-z0-9_-]{11})(?:[&?#]\S*)?\z}
 
   has_rich_text :content

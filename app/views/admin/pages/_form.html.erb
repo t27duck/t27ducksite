@@ -2,7 +2,7 @@
 
 <%= form_for [:admin, page] do |f| %>
   <% if page.errors.any? %>
-    <aside>
+    <aside class="alert" role="alert">
       <p><strong><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</strong></p>
       <ul>
       <% page.errors.full_messages.each do |message| %>
@@ -18,6 +18,8 @@
   <%= f.label :content, "Content", class: "form-label" %>
   <%= f.rich_text_area :content %>
 
-  <%= f.submit class: "button" %>
-  <%= link_to "Cancel", admin_pages_path, class: "btn btn-warning" %>
+  <div class="form-actions">
+    <%= f.submit class: "button" %>
+    <%= link_to "Cancel", admin_pages_path %>
+  </div>
 <% end %>

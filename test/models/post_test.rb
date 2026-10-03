@@ -70,7 +70,7 @@ class PostTest < ActiveSupport::TestCase
     [
       "https://vimeo.com/12345",
       # Unanchored matching would let these through and put the value straight
-      # into the Direct Link href.
+      # into the "Watch on YouTube" href.
       "javascript:alert(1)#https://www.youtube.com/watch?v=dQw4w9WgXcQ",
       "https://evil.example.com/?x=https://www.youtube.com/watch?v=dQw4w9WgXcQ"
     ].each do |url|

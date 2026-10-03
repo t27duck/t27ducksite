@@ -1,0 +1,8 @@
+<%# locals: (records:, noun:) %>
+
+<% if records.total_pages > 1 %>
+  <nav class="pager" aria-label="Pages">
+    <%= link_to_previous_page records, "Newer #{noun}", class: "button" %>
+    <%= link_to_next_page records, "Older #{noun}", class: "button older" %>
+  </nav>
+<% end %>

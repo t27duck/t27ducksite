@@ -1,6 +1,14 @@
-<%= form_tag session_path, method: :post do |f| %>
-  <%= label_tag :password, "Password", class: "form-label" %>
-  <%= password_field_tag :password, nil, class: "form-control" %>
+<div class="narrow">
+  <%= render layout: "shared/window", locals: { title: "Sign in", heading: :h1 } do %>
+    <% if flash.alert %>
+      <p class="alert" role="alert"><%= flash.alert %></p>
+    <% end %>
 
-  <%= submit_tag "Login", class: "button" %>
-<% end %>
+    <%= form_tag session_path, method: :post do %>
+      <%= label_tag :password, "Password", class: "form-label" %>
+      <%= password_field_tag :password, nil, class: "form-control", autofocus: true, autocomplete: "current-password" %>
+
+      <%= submit_tag "Sign in", class: "button" %>
+    <% end %>
+  <% end %>
+</div>

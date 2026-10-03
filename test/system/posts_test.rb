@@ -8,7 +8,7 @@ class PostsTest < ApplicationSystemTestCase
   test "should get index" do
     visit posts_url
 
-    assert_text "All Posts"
+    assert_text "All posts"
   end
 
   test "should show post" do

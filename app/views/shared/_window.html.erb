@@ -1,0 +1,14 @@
+<%# locals: (title:, heading: :h2, element: :section, close: nil, close_label: nil, html_class: nil) %>
+<%# Render as a layout: render layout: "shared/window", locals: { title: "..." } do ... end %>
+
+<%= content_tag element, class: ["window", html_class] do %>
+  <div class="titlebar">
+    <%= content_tag heading, title %>
+    <% if close %>
+      <%= link_to "×", close, class: "close", title: close_label, aria: { label: close_label } %>
+    <% end %>
+  </div>
+  <div class="window-body">
+    <%= yield %>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xml:lang="en-US" xmlns:og="http://ogp.me/ns#" class="h-100">
+<html lang="en" xml:lang="en-US" xmlns:og="http://ogp.me/ns#">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,36 +64,32 @@
   </head>
 
   <body>
-    <header>
-      <nav aria-label="Navigation">
-        <div>
-          <%= link_to "Posts", posts_path %>
-          <%= link_to "Talks", talks_path %>
-          <%= link_to "Resume", "/resume.pdf" %>
-        </div>
-        <%= link_to "t27duck", root_path %>
+    <header class="site-header">
+      <%= link_to "t27duck", root_path, class: "site-name" %>
+      <nav class="site-nav" aria-label="Main">
+        <%= link_to "Posts", posts_path, aria: { current: ("page" if current_section == :posts) } %>
+        <%= link_to "Talks", talks_path, aria: { current: ("page" if current_section == :talks) } %>
+        <%= link_to "Resume", "/resume.pdf" %>
       </nav>
     </header>
+
     <main>
       <%= yield %>
     </main>
 
-    <footer>
-        <% if user_signed_in? %>
-          <%= link_to "Signout", session_path, data: { turbo_method: :delete } %>
-        <% else %>
-          <%= link_to "Signin", new_session_path, rel: "nofollow" %>
-        <% end %>
-        |
-        <%= link_to "Github", "https://github.com/t27duck", target: "_blank", rel: "noopener" %>
-        |
+    <footer class="site-footer">
+      <nav aria-label="Elsewhere">
+        <%= link_to "GitHub", "https://github.com/t27duck", target: "_blank", rel: "noopener" %>
         <%= link_to "LinkedIn", "https://linkedin.com/in/t27duck", target: "_blank", rel: "noopener" %>
-        |
         <%= link_to "Bluesky", "https://bsky.app/profile/t27duck.com", target: "_blank", rel: "noopener" %>
-        |
         <%= link_to "X", "https://x.com/t27duck", target: "_blank", rel: "noopener" %>
-        |
-      &copy; <%= Time.now.strftime("%Y") %> t27duck
+        <% if user_signed_in? %>
+          <%= link_to "Sign out", session_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "Sign in", new_session_path, rel: "nofollow" %>
+        <% end %>
+      </nav>
+      <span>&copy; <%= Time.now.strftime("%Y") %> Tony Drake</span>
     </footer>
   </body>
 </html>

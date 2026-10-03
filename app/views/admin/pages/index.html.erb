@@ -1,23 +1,24 @@
-<table>
-  <caption>Pages</caption>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Updated at</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pages.each do |page| %>
+<%= render layout: "shared/window", locals: { title: "Pages", heading: :h1, html_class: "admin" } do %>
+  <table>
+    <thead>
       <tr>
-        <td><%= page.title.html_safe %></td>
-        <td><%= page.slug %></td>
-        <td><%= page.updated_at %></td>
-        <td nowrap>
-          <%= link_to "Edit", edit_admin_page_path(page), class: "btn btn-primary btn-xs" %>
-        </td>
+        <th>Title</th>
+        <th>Slug</th>
+        <th>Updated at</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| %>
+        <tr>
+          <td><%= page.title.html_safe %></td>
+          <td><%= page.slug %></td>
+          <td><%= page.updated_at %></td>
+          <td nowrap>
+            <%= link_to "Edit", edit_admin_page_path(page) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

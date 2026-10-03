@@ -1,57 +1,60 @@
-<%= link_to "Projects", admin_projects_path %>
-|
-<%= link_to "New Post", new_admin_post_path %>
+<%= render layout: "shared/window", locals: { title: "Posts", heading: :h1, html_class: "admin" } do %>
+  <p class="toolbar">
+    <%= link_to "Projects", admin_projects_path, class: "button" %>
+    <%= link_to "New Post", new_admin_post_path, class: "button" %>
+  </p>
 
-<table>
-  <caption>Unpublished Posts</caption>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Type</th>
-      <th>Tags</th>
-      <th>Created at</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @unpublished_posts.each do |post| %>
+  <table>
+    <caption>Unpublished Posts</caption>
+    <thead>
       <tr>
-        <td><%= post.title.html_safe %></td>
-        <td><%= post.kind.titleize %></td>
-        <td><%= post.tags.map(&:name).join(", ") %></td>
-        <td><%= post.created_at %></td>
-        <td nowrap>
-          <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
-        </td>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Tags</th>
+        <th>Created at</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @unpublished_posts.each do |post| %>
+        <tr>
+          <td><%= post.title.html_safe %></td>
+          <td><%= post.kind.titleize %></td>
+          <td><%= post.tags.map(&:name).join(", ") %></td>
+          <td><%= post.created_at %></td>
+          <td nowrap>
+            <%= link_to "Edit", edit_admin_post_path(post) %>
+            <%= link_to "Delete", admin_post_path(post), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<table>
-  <caption>Published Posts</caption>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Type</th>
-      <th>Tags</th>
-      <th>Published at</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @published_posts.each do |post| %>
+  <table>
+    <caption>Published Posts</caption>
+    <thead>
       <tr>
-        <td><%= post.title.html_safe %></td>
-        <td><%= post.kind.titleize %></td>
-        <td><%= post.tags.map(&:name).join(", ") %></td>
-        <td><%= post.published_at %></td>
-        <td nowrap>
-          <%= link_to "Edit", edit_admin_post_path(post), class: "btn btn-primary btn-xs" %>
-          <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger btn-xs", data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
-        </td>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Tags</th>
+        <th>Published at</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @published_posts.each do |post| %>
+        <tr>
+          <td><%= post.title.html_safe %></td>
+          <td><%= post.kind.titleize %></td>
+          <td><%= post.tags.map(&:name).join(", ") %></td>
+          <td><%= post.published_at %></td>
+          <td nowrap>
+            <%= link_to "Edit", edit_admin_post_path(post) %>
+            <%= link_to "Delete", admin_post_path(post), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

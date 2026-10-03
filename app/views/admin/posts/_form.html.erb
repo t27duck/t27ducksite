@@ -2,7 +2,7 @@
 
 <%= form_for [:admin, post] do |f| %>
   <% if post.errors.any? %>
-    <aside>
+    <aside class="alert" role="alert">
       <p><strong><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</strong></p>
       <ul>
       <% post.errors.full_messages.each do |message| %>
@@ -37,6 +37,8 @@
     <% end %>
   </div>
 
-  <%= f.submit class: "button" %>
-  <%= link_to "Cancel", admin_posts_path %>
+  <div class="form-actions">
+    <%= f.submit class: "button" %>
+    <%= link_to "Cancel", admin_posts_path %>
+  </div>
 <% end %>
