@@ -1,7 +1,7 @@
 <% back_path, back_label = @post.talk? ? [talks_path, "Back to all talks"] : [posts_path, "Back to all posts"] %>
 
 <div class="stack">
-  <%= render layout: "shared/window", locals: { title: @post.title.html_safe, heading: :h1, element: :article, close: back_path, close_label: back_label } do %>
+  <%= render layout: "shared/window", locals: { title: @post.title.html_safe, heading: :h1, element: :article, close: nil, close_label: back_label } do %>
     <% unless @post.talk? %>
       <p class="meta post-meta"><%= @post.publish ? "Published #{@post.published_at.strftime("%B %-d, %Y")}" : "Not published" %></p>
     <% end %>
