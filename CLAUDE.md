@@ -49,7 +49,7 @@ Setting the password is a console operation — `User.create!(password: "...")` 
 
 **Page-level metadata via ivars.** `app/views/layouts/application.html.erb` reads `@page_title`, `@page_description`, and `@page_type` — controllers set these; there's no metadata DSL.
 
-**Window chrome.** The look is a Windows 2000 desktop: the body is the win2k blue and every content block is wrapped in `shared/_window` (render it as a layout: `render layout: "shared/window", locals: { title: ... } do`), which draws the navy-to-cerulean title bar. Pass `heading: :h1` for the page title and `close:` for the × link back to a list. `ApplicationHelper#current_section` decides which header nav link gets `aria-current`. Fonts are self-hosted Atkinson Hyperlegible Next/Mono in `app/assets/stylesheets/fonts` (CSP `font_src` is `:self`).
+**Window chrome.** The look is a Windows 2000 desktop: the body is the win2k blue and every content block is wrapped in `shared/_window` (render it as a layout: `render layout: "shared/window", locals: { title: ... } do`), which draws the navy-to-cerulean title bar. Pass `heading: :h1` for the page title and `close:` for the × link back to a list. `ApplicationHelper#current_section` decides which header nav link gets `aria-current`. Fonts are self-hosted IBM Plex Sans/Mono (UI and code) and Literata (post/page body) in `app/assets/stylesheets/fonts` (CSP `font_src` is `:self`).
 
 **Feed.** `/posts.xml` renders `app/views/posts/index.xml.builder` with `layout: false`.
 
