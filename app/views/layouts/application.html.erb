@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3B6EA5">
     <title><%= @page_title ? "#{@page_title} | " : nil %>t27duck</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -56,6 +57,8 @@
     </script>
     <% end %>
 
+    <%= preload_link_tag "fonts/ibm-plex-sans-latin-wght-normal.woff2" %>
+    <%= preload_link_tag "fonts/literata-latin-wght-normal.woff2" %>
     <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload", integrity: true %>
     <%= stylesheet_link_tag "lexxy", "data-turbo-track": "reload", integrity: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload", integrity: true %>
