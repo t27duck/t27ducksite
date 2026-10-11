@@ -8,4 +8,8 @@ class Tag < ApplicationRecord
     value = value.parameterize if value.is_a?(String)
     super
   end
+
+  def to_param
+    name
+  end
 end

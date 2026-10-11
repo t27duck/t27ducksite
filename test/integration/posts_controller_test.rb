@@ -18,6 +18,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".site-nav a[aria-current]", count: 1, text: "Posts"
   end
 
+  test "show links each tag to its tag page" do
+    get post_url(@post)
+
+    assert_select "p.tags a[href=?]", tag_path(tags(:one)), text: "one"
+  end
+
   test "show 404s for an unpublished post when signed out" do
     get post_url(posts(:unpublished_post))
 
@@ -30,13 +36,5 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select ".post-meta", "Not published"
-  end
-
-  test "should show tag" do
-    tag = Tag.take
-    get tag_posts_path(tag.name)
-
-    assert_response :success
-    assert_select "h1", "Posts tagged #{tag.name}"
   end
 end

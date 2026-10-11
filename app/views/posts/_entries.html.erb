@@ -1,0 +1,11 @@
+<%# locals: (posts:) %>
+
+<% if posts.present? %>
+  <ul class="entries entries-lg">
+    <%= render partial: "posts/entry", collection: posts %>
+  </ul>
+<% else %>
+  <p>Nothing written yet.</p>
+<% end %>
+
+<%= render "shared/pager", records: posts, noun: "posts" %>

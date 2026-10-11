@@ -6,7 +6,7 @@ class TalksTest < ApplicationSystemTestCase
 
     assert_text "All talks"
 
-    Post.where(kind: "talk").find_each do |talk|
+    Post.talk.published.find_each do |talk|
       assert_text talk.title
     end
   end

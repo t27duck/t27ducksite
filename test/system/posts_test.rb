@@ -23,7 +23,7 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_predicate tag.posts.count, :positive?
 
-    visit tag_posts_path(tag.name)
+    visit tag_path(tag)
 
     tag.posts.each do |post|
       assert_text post.title

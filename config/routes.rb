@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   resources :posts, only: [:index, :show]
-  get "/posts/tag/:tag", to: "posts#tag", as: :tag_posts
+  resources :tags, only: [:show], path: "posts/tag"
   resources :talks, only: [:index]
   resources :projects, only: [:index, :show]
 

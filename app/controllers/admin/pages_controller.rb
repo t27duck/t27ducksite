@@ -1,5 +1,4 @@
-class Admin::PagesController < ApplicationController
-  before_action :authenticate_user!
+class Admin::PagesController < Admin::BaseController
   before_action :set_page, only: [:edit, :update]
 
   def index

@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  before_action :fetch_posts, only: [:index, :tag]
-
   def index
     @page_title = "Blog Entries"
+    @posts = Post.post.published.includes(:tags).order(published_at: :desc)
+
     respond_to do |format|
       format.html { @posts = @posts.page(params[:page]).per(10) }
       format.xml { render layout: false }
@@ -15,24 +15,5 @@ class PostsController < ApplicationController
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = "article"
-  end
-
-  def tag
-    @tag = Tag.find_by(name: params.expect(:tag).downcase.strip)
-    if @tag.blank?
-      redirect_to root_path
-      return
-    end
-    @posts      = @posts.joins(:tags).where(tags: { name: @tag.name }).page(params[:page]).per(10)
-    @page_title = "Blog Entries for tag: '#{@tag.name}'"
-    render :index
-  end
-
-  private ######################################################################
-
-  # No rich text preloading: posts/_entry and index.xml.builder only use the
-  # title and summary.
-  def fetch_posts
-    @posts = Post.where(kind: "post").includes(:tags).published.order(published_at: :desc)
   end
 end

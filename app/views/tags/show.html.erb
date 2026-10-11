@@ -1,0 +1,3 @@
+<%= render layout: "shared/window", locals: { title: "Posts tagged #{@tag.name}", heading: :h1 } do %>
+  <%= render "posts/entries", posts: @posts %>
+<% end %>

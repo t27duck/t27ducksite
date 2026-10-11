@@ -1,8 +1,6 @@
 module ApplicationHelper
   def tag_links(tags)
-    tags.map do |tag|
-      link_to tag.name, tag_posts_path(tag.name)
-    end.join(", ").html_safe # rubocop:disable Rails/OutputSafety
+    safe_join(tags.map { |tag| link_to tag.name, tag }, ", ")
   end
 
   # A project's description is admin-entered HTML; only inline formatting and links survive.
@@ -10,13 +8,11 @@ module ApplicationHelper
     sanitize project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"]
   end
 
-  # Which header nav item is current. A talk's own page is served by
-  # PostsController, so it counts as Talks.
   def current_section
-    return :talks if controller_path == "talks" || (controller_path == "posts" && @post&.talk?)
-
-    return :posts if controller_path == "posts"
-
-    :projects if controller_path == "projects"
+    case controller_path
+    when "posts", "tags" then @post&.talk? ? :talks : :posts
+    when "talks" then :talks
+    when "projects" then :projects
+    end
   end
 end

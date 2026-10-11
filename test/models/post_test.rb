@@ -37,6 +37,13 @@ class PostTest < ActiveSupport::TestCase
     assert_not_predicate @post, :talk?
   end
 
+  test "kind must be post or talk" do
+    @post.kind = "podcast"
+
+    assert_not_predicate @post, :valid?
+    assert_includes @post.errors.attribute_names, :kind
+  end
+
   test "#youtube_id extracts the id from the video url" do
     assert_equal "dQw4w9WgXcQ", posts(:three).youtube_id
     assert_nil @post.youtube_id

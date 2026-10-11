@@ -1,5 +1,4 @@
-class Admin::ProjectsController < ApplicationController
-  before_action :authenticate_user!
+class Admin::ProjectsController < Admin::BaseController
   before_action :set_project, only: [:edit, :update, :destroy]
 
   def index
