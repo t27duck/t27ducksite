@@ -31,6 +31,6 @@ class Admin::PagesControllerTest < ActionDispatch::IntegrationTest
       page: { content: "" }
     }
 
-    assert_response :success
+    assert_response :unprocessable_content
   end
 end

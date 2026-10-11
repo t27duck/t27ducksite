@@ -14,6 +14,12 @@ class TalksControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", text: "Watch on YouTube"
   end
 
+  test "index hides unpublished talks" do
+    get talks_url
+
+    assert_select "h2.entry-title", text: posts(:unpublished_talk).title, count: 0
+  end
+
   # Talks carry no rich text. If the talk? branch in posts/_post is ever dropped,
   # this catches it before ten talks turn into ten extra queries.
   test "index does not load rich text" do

@@ -10,7 +10,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post             = Post.includes(:tags).with_rich_text_content_and_embeds.find(params.expect(:id))
+    posts             = user_signed_in? ? Post.all : Post.published
+    @post             = posts.includes(:tags).with_rich_text_content_and_embeds.find(params.expect(:id))
     @page_title       = @post.title
     @page_description = @post.summary
     @page_type        = "article"

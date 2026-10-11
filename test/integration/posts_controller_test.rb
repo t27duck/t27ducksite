@@ -18,6 +18,20 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".site-nav a[aria-current]", count: 1, text: "Posts"
   end
 
+  test "show 404s for an unpublished post when signed out" do
+    get post_url(posts(:unpublished_post))
+
+    assert_response :not_found
+  end
+
+  test "show previews an unpublished post when signed in" do
+    login_user
+    get post_url(posts(:unpublished_post))
+
+    assert_response :success
+    assert_select ".post-meta", "Not published"
+  end
+
   test "should show tag" do
     tag = Tag.take
     get tag_posts_path(tag.name)

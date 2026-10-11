@@ -22,3 +22,8 @@ project_one_content:
   record: one (Project)
   name: content
   body: <p>Project details</p>
+
+unpublished_post_content:
+  record: unpublished_post (Post)
+  name: content
+  body: <p>Draft content</p>

@@ -19,3 +19,14 @@ three:
   published_at: 2016-06-01
   kind: "talk"
   video_url: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+unpublished_post:
+  title: Draft Post
+  summary: Draft summary
+  kind: "post"
+
+unpublished_talk:
+  title: Draft Talk
+  summary: Draft talk summary
+  kind: "talk"
+  video_url: https://www.youtube.com/watch?v=aaaaaaaaaaa

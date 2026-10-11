@@ -19,6 +19,14 @@ class Admin::SessionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_content
   end
 
+  test "create is rate limited after repeated attempts" do
+    10.times { post session_url, params: { password: "xxx" } }
+    post session_url, params: { password: TEST_ENV_PASSWORD }
+
+    assert_redirected_to new_session_url
+    assert_equal "Too many sign in attempts. Try again later.", flash[:alert]
+  end
+
   test "destroy logs user out" do
     login_user
     delete session_url

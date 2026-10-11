@@ -13,7 +13,7 @@ class Admin::PagesController < ApplicationController
     if @page.update(page_params)
       redirect_to admin_pages_path, notice: "Page was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
 
