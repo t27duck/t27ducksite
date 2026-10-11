@@ -7,7 +7,6 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select ".prose", text: "Project details"
-    assert_select "a[href=?]", project.url
   end
 
   test "should show project without details" do

@@ -3,11 +3,11 @@
 one:
   title: Proejct 1
   kind: rubygem
-  url: https://rubygems.org/gems/mygem
+  repo_url: https://github.com/t27duck/mygem
   description: '<p>A RubyGem I made. <a href="https://example.com/docs">Docs</a></p>'
 
 two:
   title: Project 2
   kind: website
-  url: https://t27duck.com
+  repo_url: https://github.com/t27duck/t27ducksite
   description: '<p>My website</p>'

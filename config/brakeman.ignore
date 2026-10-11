@@ -3,13 +3,13 @@
     {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
-      "fingerprint": "b9f677472ecff44d8ea9af264fa0dffb68fc42e6d810c7e650e89b00f41b9ab8",
+      "fingerprint": "ef2e2716c064112435669acc4fb483d602a4ccc854db4506dbd5d8dd1e5b6516",
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in `link_to` href",
       "file": "app/views/projects/show.html.erb",
-      "line": 10,
+      "line": 11,
       "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(\"Visit #{Project.with_rich_text_content_and_embeds.find(params.expect(:id)).title}\", Project.with_rich_text_content_and_embeds.find(params.expect(:id)).url, :target => \"_blank\", :rel => \"noopener\")",
+      "code": "link_to(Project.with_rich_text_content_and_embeds.find(params.expect(:id)).repo_url, :class => \"button\", :target => \"_blank\", :rel => \"noopener\")",
       "render_path": [
         {
           "type": "controller",
@@ -27,12 +27,12 @@
         "type": "template",
         "template": "projects/show"
       },
-      "user_input": "Project.with_rich_text_content_and_embeds.find(params.expect(:id)).url",
+      "user_input": "Project.with_rich_text_content_and_embeds.find(params.expect(:id)).repo_url",
       "confidence": "Weak",
       "cwe_id": [
         79
       ],
-      "note": "Admin-entered, and Project::WEB_URL restricts url to http(s)."
+      "note": "Admin-entered, and Project::WEB_URL restricts repo_url to http(s)."
     }
   ],
   "brakeman_version": "7.0.2"

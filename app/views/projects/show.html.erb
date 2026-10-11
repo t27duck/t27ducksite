@@ -7,7 +7,16 @@
     <%= sanitize @project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"] %>
   </div>
 
-  <p class="more"><%= link_to "Visit #{@project.title}", @project.url, target: "_blank", rel: "noopener" %></p>
+  <% if @project.repo_url.present? %>
+    <p>
+      <%= link_to @project.repo_url, class: "button", target: "_blank", rel: "noopener" do %>
+        <%= render "shared/github_logo" %>
+        Visit repository
+      <% end %>
+    </p>
+  <% end %>
+
+  <br>
 
   <% if @project.content.present? %>
     <div class="prose"><%= @project.content %></div>

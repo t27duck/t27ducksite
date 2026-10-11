@@ -16,7 +16,7 @@ class Admin::ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Project.count") do
       post admin_projects_url, params: {
         project: {
-          description: @project.description, kind: "rubygem", url: @project.url,
+          description: @project.description, kind: "rubygem", repo_url: @project.repo_url,
           title: @project.title, content: "<p>Screenshots go here</p>"
         }
       }
