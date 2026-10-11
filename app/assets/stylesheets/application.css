@@ -557,14 +557,21 @@ main {
   }
 }
 
+/* Photo on the left; the blurb with the social buttons beneath it. On desktop
+   the buttons move into a column on the right instead. */
 .intro .window-body {
   display: grid;
   grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "photo text"
+    "photo social";
   align-items: start;
-  gap: 1.5rem;
+  gap: 1.25rem 1.5rem;
 }
 
 .intro img {
+  grid-area: photo;
   width: 9rem;
   height: 9rem;
   object-fit: cover;
@@ -573,21 +580,40 @@ main {
 }
 
 .intro p {
+  grid-area: text;
   max-width: 52ch;
-  margin-bottom: 1.25rem;
   font-size: 1.25rem;
   line-height: 1.5;
 }
 
 .social {
+  grid-area: social;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
+@media (min-width: 52rem) {
+  .intro .window-body {
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto;
+    grid-template-areas: "photo text social";
+  }
+
+  /* Stretch the buttons to the widest one so the column has a clean edge. */
+  .social {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 30rem) {
   .intro .window-body {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "photo"
+      "text"
+      "social";
   }
 
   .intro img {
