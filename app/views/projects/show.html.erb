@@ -1,10 +1,10 @@
-<%= render layout: "shared/window", locals: { title: @project.title.html_safe, heading: :h1, element: :article, close: root_path, close_label: "Back to home" } do %>
+<%= render layout: "shared/window", locals: { title: @project.title.html_safe, heading: :h1, element: :article, close: projects_path, close_label: "Back to projects" } do %>
   <p class="meta post-meta">
     <span class="kind"><%= @project.kind.titleize %></span><% if @project.agentic? %>, AI-assisted<% end %>
   </p>
 
   <div class="lede">
-    <%= sanitize @project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"] %>
+    <%= project_description(@project) %>
   </div>
 
   <% if @project.repo_url.present? %>

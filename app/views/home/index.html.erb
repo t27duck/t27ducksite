@@ -63,7 +63,7 @@
               <span class="kind"><%= project.kind.titleize %></span><% if project.agentic? %>, AI-assisted<% end %>
             </p>
             <div class="entry-summary">
-              <%= sanitize project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"] %>
+              <%= project_description(project) %>
             </div>
           </li>
         <% end %>
@@ -71,5 +71,8 @@
     <% else %>
       <p>No projects yet.</p>
     <% end %>
+    <p class="more">
+      <%= link_to "All projects", projects_path %>
+    </p>
   <% end %>
 </div>

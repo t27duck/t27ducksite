@@ -1,4 +1,9 @@
 class ProjectsController < ApplicationController
+  def index
+    @page_title = "Projects"
+    @projects = Project.all
+  end
+
   def show
     @project          = Project.with_rich_text_content_and_embeds.find(params.expect(:id))
     @page_title       = @project.title
