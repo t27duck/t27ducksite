@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  allow_unauthenticated_access
+
   def index
     @page_title = "Projects"
     @projects = Project.order(:created_at)

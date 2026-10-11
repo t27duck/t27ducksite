@@ -87,7 +87,7 @@
         <%= link_to "LinkedIn", "https://linkedin.com/in/t27duck", target: "_blank", rel: "noopener" %>
         <%= link_to "Bluesky", "https://bsky.app/profile/t27duck.com", target: "_blank", rel: "noopener" %>
         <%= link_to "X", "https://x.com/t27duck", target: "_blank", rel: "noopener" %>
-        <% if user_signed_in? %>
+        <% if authenticated? %>
           <%= link_to "Sign out", session_path, data: { turbo_method: :delete } %>
         <% else %>
           <%= link_to "Sign in", new_session_path, rel: "nofollow" %>

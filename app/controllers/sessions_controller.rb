@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  allow_unauthenticated_access only: [:new, :create]
   rate_limit to: 10, within: 3.minutes, only: :create,
              with: -> { redirect_to new_session_path, alert: "Too many sign in attempts. Try again later." }
 
@@ -6,11 +7,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.take
-
-    if user&.authenticate(params[:password])
-      sign_in(user)
-      redirect_to admin_path
+    if (user = User.authenticate_by(username: "admin", password: params[:password]))
+      start_new_session_for user
+      redirect_to after_authentication_url
     else
       flash.now.alert = "Incorrect password."
       render :new, status: :unprocessable_content
@@ -18,8 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.delete(:signin)
-    reset_session
+    terminate_session
     redirect_to root_path, status: :see_other
   end
 end
