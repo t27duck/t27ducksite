@@ -1,0 +1,25 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- App icon (apple-touch-icon, android-chrome-*). Inset so iOS's rounded corners don't clip the delta. -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A1F44"/>
+      <stop offset="100%" stop-color="#0C2A5C"/>
+    </linearGradient>
+    <linearGradient id="deltaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4FC3E8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F4F6"/>
+      <stop offset="100%" stop-color="#B0B7BD"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="800" fill="url(#bgGrad)"/>
+  <rect width="800" height="800" fill="none" stroke="#3A5A80" stroke-width="2" opacity="0.4"/>
+
+  <g transform="translate(400 400) scale(0.86) translate(-400 -400)">
+    <polygon points="400,70 745,730 55,730" fill="url(#deltaGrad)" stroke="url(#silverGrad)" stroke-width="10" stroke-linejoin="round"/>
+    <polygon points="400,257 585,662 215,662" fill="#0A1F44" stroke="url(#silverGrad)" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+</svg>

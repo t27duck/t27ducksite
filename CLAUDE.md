@@ -23,6 +23,8 @@ npx --yes @herb-tools/linter   # ERB lint (config in .herb.yml)
 bin/brakeman --no-pager        # static security scan
 bin/bundler-audit              # gem CVE audit
 bin/importmap audit            # JS dependency audit
+
+bin/rails icons:generate       # re-render favicon.ico + app icon PNGs in public/ from favicon.svg, icon.svg, icon-maskable.svg
 ```
 
 `bin/ci` runs setup, RuboCop, all three security scans, both test suites, and `db:seed:replant` in the test env. GitHub Actions (`.github/workflows/ci.yml`) runs the same checks as separate jobs.
