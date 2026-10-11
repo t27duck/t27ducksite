@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @page_title = "Blog Entries"
-    @posts = Post.post.published.includes(:tags).order(published_at: :desc)
+    @posts = Post.post.published.order(published_at: :desc)
 
     respond_to do |format|
       format.html { @posts = @posts.page(params[:page]).per(10) }

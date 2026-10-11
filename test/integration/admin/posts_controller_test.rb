@@ -12,6 +12,15 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "index lists newest drafts first and most recently published first" do
+    get admin_posts_url
+
+    unpublished, published = css_select("table").map { |table| table.css("tbody tr td:first-child").map(&:text) }
+
+    assert_equal posts(:older_unpublished_post).title, unpublished.last
+    assert_equal posts(:oldest_published_post).title, published.last
+  end
+
   test "should get new" do
     get new_admin_post_url
 

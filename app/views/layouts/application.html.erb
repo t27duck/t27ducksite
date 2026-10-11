@@ -13,7 +13,7 @@
     <meta name="keywords" content="t27duck,blog,ruby,rails,tony,programming,linux,postgresql,servers,games">
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="msapplication-config" content="none">
-    <meta name="copyright" content="Copyright <%= Time.now.strftime("%Y") %>">
+    <meta name="copyright" content="Copyright <%= Time.current.year %>">
     <meta name="turbo-prefetch" content="false">
 
     <meta name="twitter:card" content="summary">
@@ -93,7 +93,7 @@
           <%= link_to "Sign in", new_session_path, rel: "nofollow" %>
         <% end %>
       </nav>
-      <span>&copy; <%= Time.now.strftime("%Y") %> Tony Drake</span>
+      <span>&copy; <%= Time.current.year %> Tony Drake</span>
     </footer>
   </body>
 </html>

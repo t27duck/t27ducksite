@@ -36,7 +36,7 @@
       <ul class="entries">
         <% @posts.each do |post| %>
           <li>
-            <p class="entry-title"><%= link_to post.title.html_safe, post %></p>
+            <p class="entry-title"><%= link_to formatted_title(post.title), post %></p>
             <p class="meta">
               <% if post.talk? %><span class="kind">Talk</span>,<% end %>
               <%= post.published_at.strftime("%B %-d, %Y") %>
@@ -58,7 +58,7 @@
       <ul class="entries">
         <% @projects.each do |project| %>
           <li>
-            <p class="entry-title"><%= link_to project.title.html_safe, project, title: project.title %></p>
+            <p class="entry-title"><%= link_to formatted_title(project.title), project, title: project.title %></p>
             <p class="meta">
               <span class="kind"><%= project.kind.titleize %></span><% if project.agentic? %>, AI-assisted<% end %>
             </p>

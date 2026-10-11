@@ -1,7 +1,7 @@
 <%# locals: (entry:) %>
 
 <li>
-  <h2 class="entry-title"><%= link_to entry.title.html_safe, entry %></h2>
+  <h2 class="entry-title"><%= link_to formatted_title(entry.title), entry %></h2>
   <p class="meta"><%= entry.published_at.strftime("%B %-d, %Y") %></p>
   <% if entry.summary.present? %>
     <p class="entry-summary"><%= entry.summary %></p>

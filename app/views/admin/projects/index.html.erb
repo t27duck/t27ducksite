@@ -16,7 +16,7 @@
     <tbody>
       <% @projects.each do |project| %>
         <tr>
-          <td><%= project.title.html_safe %></td>
+          <td><%= formatted_title(project.title) %></td>
           <td><%= project.kind.titleize %></td>
           <td><%= project.created_at %></td>
           <td nowrap>

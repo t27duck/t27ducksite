@@ -9,6 +9,12 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_select ".site-nav a[aria-current]", count: 1, text: "Projects"
   end
 
+  test "index lists projects oldest first" do
+    get projects_url
+
+    assert_equal projects(:oldest).title, css_select("h2.entry-title").first.text
+  end
+
   test "index lists projects with their descriptions" do
     get projects_url
 

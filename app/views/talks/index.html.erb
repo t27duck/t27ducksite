@@ -3,7 +3,7 @@
     <ul class="entries entries-lg">
       <% @talks.each do |talk| %>
         <li>
-          <h2 class="entry-title"><%= link_to talk.title.html_safe, talk %></h2>
+          <h2 class="entry-title"><%= link_to formatted_title(talk.title), talk %></h2>
           <% if talk.summary.present? %>
             <p class="entry-summary"><%= talk.summary %></p>
           <% end %>

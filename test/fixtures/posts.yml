@@ -30,3 +30,14 @@ unpublished_talk:
   summary: Draft talk summary
   kind: "talk"
   video_url: https://www.youtube.com/watch?v=aaaaaaaaaaa
+
+older_unpublished_post:
+  title: Older Draft Post
+  kind: "post"
+  created_at: 2020-01-01
+
+oldest_published_post:
+  title: Oldest Post
+  summary: Oldest summary
+  published_at: 2010-01-01
+  kind: "post"
