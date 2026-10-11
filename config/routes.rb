@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
   get "/posts/tag/:tag", to: "posts#tag", as: :tag_posts
   resources :talks, only: [:index]
+  resources :projects, only: [:show]
 
   get "/admin", to: "admin/posts#index"
   namespace :admin do

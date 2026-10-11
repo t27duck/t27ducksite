@@ -3,36 +3,36 @@
     {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
-      "fingerprint": "bb1f9e2dd7a6060c16c60cca94fda76cc7e99f568b4540e6b5fabea4b4d5b761",
+      "fingerprint": "b9f677472ecff44d8ea9af264fa0dffb68fc42e6d810c7e650e89b00f41b9ab8",
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in `link_to` href",
-      "file": "app/views/home/index.html.erb",
-      "line": 66,
+      "file": "app/views/projects/show.html.erb",
+      "line": 10,
       "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(Project.new.title.html_safe, Project.new.url, :title => Project.new.title)",
+      "code": "link_to(\"Visit #{Project.with_rich_text_content_and_embeds.find(params.expect(:id)).title}\", Project.with_rich_text_content_and_embeds.find(params.expect(:id)).url, :target => \"_blank\", :rel => \"noopener\")",
       "render_path": [
         {
           "type": "controller",
-          "class": "HomeController",
-          "method": "index",
-          "line": 7,
-          "file": "app/controllers/home_controller.rb",
+          "class": "ProjectsController",
+          "method": "show",
+          "line": 6,
+          "file": "app/controllers/projects_controller.rb",
           "rendered": {
-            "name": "home/index",
-            "file": "app/views/home/index.html.erb"
+            "name": "projects/show",
+            "file": "app/views/projects/show.html.erb"
           }
         }
       ],
       "location": {
         "type": "template",
-        "template": "home/index"
+        "template": "projects/show"
       },
-      "user_input": "Project.new.url",
+      "user_input": "Project.with_rich_text_content_and_embeds.find(params.expect(:id)).url",
       "confidence": "Weak",
       "cwe_id": [
         79
       ],
-      "note": ""
+      "note": "Admin-entered, and Project::WEB_URL restricts url to http(s)."
     }
   ],
   "brakeman_version": "7.0.2"

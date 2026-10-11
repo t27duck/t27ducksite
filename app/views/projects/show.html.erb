@@ -1,0 +1,15 @@
+<%= render layout: "shared/window", locals: { title: @project.title.html_safe, heading: :h1, element: :article, close: root_path, close_label: "Back to home" } do %>
+  <p class="meta post-meta">
+    <span class="kind"><%= @project.kind.titleize %></span><% if @project.agentic? %>, AI-assisted<% end %>
+  </p>
+
+  <div class="lede">
+    <%= sanitize @project.description, tags: ["a", "br", "code", "em", "p", "strong"], attributes: ["href", "rel", "target", "title"] %>
+  </div>
+
+  <p class="more"><%= link_to "Visit #{@project.title}", @project.url, target: "_blank", rel: "noopener" %></p>
+
+  <% if @project.content.present? %>
+    <div class="prose"><%= @project.content %></div>
+  <% end %>
+<% end %>

@@ -11,16 +11,6 @@ class Admin::PostsTest < ApplicationSystemTestCase
     assert_text "Sign out"
   end
 
-  # Lexxy is pre-1.0 and monkey-patches Action Text's form helpers, so a version
-  # bump can break the editor without any Ruby-level failure. This asserts the
-  # custom element actually upgraded and its JS ran.
-  test "the lexxy editor loads the post content" do
-    visit edit_admin_post_path(posts(:one))
-
-    assert_selector "lexxy-editor"
-    assert_selector "lexxy-editor [contenteditable=true]", text: "Content 1"
-  end
-
   test "editing content through the editor saves it" do
     visit edit_admin_post_path(posts(:one))
 

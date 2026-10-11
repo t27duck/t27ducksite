@@ -16,3 +16,9 @@ post_two_content:
   record: two (Post)
   name: content
   body: <p>Content 2</p>
+
+# No entry for projects(:two) -- details are optional.
+project_one_content:
+  record: one (Project)
+  name: content
+  body: <p>Project details</p>

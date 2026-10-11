@@ -43,6 +43,6 @@ class Admin::ProjectsController < ApplicationController
   end
 
   def project_params
-    params.expect(project: [:title, :kind, :description, :url, :agentic])
+    params.expect(project: [:title, :kind, :description, :content, :url, :agentic])
   end
 end

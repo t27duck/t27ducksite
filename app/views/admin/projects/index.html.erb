@@ -20,6 +20,7 @@
           <td><%= project.kind.titleize %></td>
           <td><%= project.created_at %></td>
           <td nowrap>
+            <%= link_to "View", project_path(project) %>
             <%= link_to "Edit", edit_admin_project_path(project) %>
             <%= link_to "Delete", admin_project_path(project), data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
           </td>

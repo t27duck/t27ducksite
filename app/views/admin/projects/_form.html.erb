@@ -21,8 +21,11 @@
   <%= f.label :url, class: "form-label" %>
   <%= f.url_field :url, class: "form-control", maxlength: 255, required: true %>
 
-  <%= f.label :description, "Description (HTML)", class: "form-label" %>
+  <%= f.label :description, "Summary (HTML, shown on the home page)", class: "form-label" %>
   <%= f.text_area :description, rows: 5, class: "form-control", required: true %>
+
+  <%= f.label :content, "Details (shown on the project's page)", class: "form-label" %>
+  <%= f.rich_text_area :content %>
 
   <div class="checkbox">
     <%= f.label :agentic, class: "form-label" do %>

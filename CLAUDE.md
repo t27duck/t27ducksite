@@ -37,7 +37,7 @@ Setting the password is a console operation — `User.create!(password: "...")` 
 
 **Tags are parameterized on write.** `Tag#name=` calls `.parameterize` on the value, so tag lookups always use the slug form. Admin forms take a comma-separated string through `Post#tags_input=`, which finds-or-creates each tag.
 
-**Rich text is Action Text + Lexxy.** `Page#content` and `Post#content` are `has_rich_text`, edited with `f.rich_text_area`. `Project#description` is plain HTML in a column. There is no markdown anywhere anymore — both `marksmith` and `commonmarker` are gone.
+**Rich text is Action Text + Lexxy.** `Page#content`, `Post#content`, and `Project#content` are `has_rich_text`, edited with `f.rich_text_area`. `Project#description` is still plain HTML in a column — it's the short summary on the home page; the optional rich-text `content` is the long write-up (screenshots etc.) on `/projects/:id`. Home page project titles always link to `/projects/:id`, which links out to `url`. There is no markdown anywhere anymore — both `marksmith` and `commonmarker` are gone.
 
 **Old migrations are historical records, not a replayable path — don't "fix" them.** `db/schema.rb` is the source of truth for creating a database; `db:prepare` loads it for a new one and only runs pending migrations on an existing one. Several migrations can no longer run: the three markdown-conversion ones (`convert_project_descriptions_to_html`, `move_page_content_to_action_text`, `move_post_content_to_action_text`) call `Commonmarker`, which is no longer bundled, and `20241223182145_migrate_talks_to_posts.rb` calls `Talk.all` whose model was deleted by the very next migration. All of them have already run in production.
 

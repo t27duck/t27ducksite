@@ -17,12 +17,13 @@ class Admin::ProjectsControllerTest < ActionDispatch::IntegrationTest
       post admin_projects_url, params: {
         project: {
           description: @project.description, kind: "rubygem", url: @project.url,
-          title: @project.title
+          title: @project.title, content: "<p>Screenshots go here</p>"
         }
       }
     end
 
     assert_redirected_to admin_projects_path
+    assert_equal "Screenshots go here", Project.last.content.to_plain_text
   end
 
   test "should not create project if not valid" do
