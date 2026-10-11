@@ -5,7 +5,9 @@
   <div class="titlebar">
     <%= content_tag heading, title %>
     <% if close %>
-      <%= link_to "×", close, class: "close", title: close_label, aria: { label: close_label } %>
+      <%= link_to close, class: "close", title: close_label, aria: { label: close_label } do %>
+        <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M1 1l6 6M7 1 1 7" stroke="currentColor" stroke-width="1.75" /></svg>
+      <% end %>
     <% end %>
   </div>
   <div class="window-body">

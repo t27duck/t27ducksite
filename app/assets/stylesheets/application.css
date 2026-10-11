@@ -251,8 +251,7 @@ main {
   text-decoration: none;
 }
 
-.button:active,
-.titlebar .close:active {
+.button:active {
   border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
   box-shadow: inset 1px 1px 0 var(--bevel-mid);
 }
@@ -272,7 +271,11 @@ main {
   height: 1.125rem;
 }
 
-/* The one working window control: close goes back to the list. */
+/* The one working window control: close goes back to the list. On the dark
+   title bar the raised bevel's white edge stands out, so flipping it like
+   .button does makes the whole control look like it slides down and right.
+   Instead the outer frame stays dark on every side and only the inner 1px
+   bevel flips, so the face keeps its size and position when pressed. */
 .titlebar .close {
   flex: none;
   align-self: flex-start;
@@ -280,9 +283,17 @@ main {
   place-items: center;
   width: 1.75rem;
   height: 1.625rem;
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 1;
+  border-color: var(--bevel-dark);
+  box-shadow: inset 1px 1px 0 var(--bevel-light), inset -1px -1px 0 var(--bevel-mid);
+}
+
+.titlebar .close:active {
+  box-shadow: inset 1px 1px 0 var(--bevel-mid), inset -1px -1px 0 var(--bevel-light);
+}
+
+.titlebar .close svg {
+  width: 0.5rem;
+  height: 0.5rem;
 }
 
 .titlebar .close:focus-visible {
@@ -528,11 +539,21 @@ main {
 @media (min-width: 52rem) {
   .home {
     grid-template-columns: 3fr 2fr;
-    align-items: start;
   }
 
   .home > .intro {
     grid-column: 1 / -1;
+  }
+
+  /* The grid stretches side-by-side windows to the same height; let the body
+     fill the stretched window so the extra space isn't bare window frame. */
+  .home > .window {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home > .window > .window-body {
+    flex: 1;
   }
 }
 
