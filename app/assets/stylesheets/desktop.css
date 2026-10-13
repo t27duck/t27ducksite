@@ -69,6 +69,88 @@
   height: 1.125rem;
 }
 
+/* ---- Start menu ---------------------------------------------------------- */
+
+/* A native popover: the Start button toggles it, and clicking away or Esc
+   closes it. Anchor positioning sits it on top of the button. */
+.start {
+  anchor-name: --start;
+}
+
+.start-menu,
+.submenu {
+  min-width: 12rem;
+  padding: 3px;
+  background-color: var(--alice-blue);
+  color: var(--ink);
+  font-size: 1rem;
+  border: 1px solid;
+  border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  box-shadow: inset -1px -1px 0 var(--bevel-mid);
+}
+
+/* The Start menu has the navy banner down its left edge. */
+.start-menu {
+  position-anchor: --start;
+  position-area: top span-right;
+  margin: 0 0 3px;
+  padding-left: 2rem;
+  background: linear-gradient(0deg, var(--navy-blue), var(--cerulean)) left / 1.75rem 100% no-repeat, var(--alice-blue);
+}
+
+.start-menu ul + ul {
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 1px solid var(--bevel-mid);
+}
+
+.start-menu :is(a, button) {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+
+.start-menu :is(a, button):is(:hover, :focus-visible),
+.submenu-opener:has(+ :popover-open) {
+  background-color: var(--navy-blue);
+  color: #fff;
+  outline: none;
+}
+
+/* A nested popover: opening it keeps the Start menu open, and it flies out to
+   the right of its item, bottoms lined up. anchor-scope keeps each submenu
+   anchored to the opener in its own <li>. */
+.start-menu li {
+  anchor-scope: --submenu-opener;
+}
+
+.submenu-opener {
+  anchor-name: --submenu-opener;
+}
+
+.submenu-opener::after {
+  content: "▸";
+  float: right;
+}
+
+.submenu {
+  position-anchor: --submenu-opener;
+  position-area: right span-top;
+  margin: 0;
+  max-width: 24rem;
+}
+
+/* Long post titles in Documents get cut off, as Win2k did. */
+.submenu a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /* The tray is a shallow sunken well. */
 .clock {
   padding: 0.125rem 0.75rem;
