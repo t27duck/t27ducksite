@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   get "/about", to: "pages#show", id: "about", as: :about
+  get "/desktop", to: "desktop#show", as: :desktop
 
   root "home#index"
 end

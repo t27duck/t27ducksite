@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3B6EA5">
+    <meta name="robots" content="noindex">
+    <title>Desktop | t27duck</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <%= preload_link_tag "fonts/ibm-plex-sans-latin-wght-normal.woff2" %>
+    <%= stylesheet_link_tag "font", "reset", "application", "desktop", "data-turbo-track": "reload", integrity: true %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="desktop">
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer class="taskbar">
+      <button type="button" class="button start">
+        <%= image_tag "/favicon.svg", alt: "" %>
+        Start
+      </button>
+      <time class="clock" data-controller="clock"></time>
+    </footer>
+  </body>
+</html>
