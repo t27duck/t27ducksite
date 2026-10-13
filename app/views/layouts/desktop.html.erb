@@ -17,7 +17,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="desktop">
+  <body class="desktop" data-controller="desktop">
     <main>
       <%= yield %>
     </main>
@@ -27,14 +27,14 @@
         <%= image_tag "/favicon.svg", alt: "" %>
         Start
       </button>
-      <nav id="start-menu" class="start-menu" popover aria-label="Start" data-controller="menu" data-action="mouseover->menu#hover">
+      <nav id="start-menu" class="start-menu" popover aria-label="Start" data-desktop-target="startMenu" data-controller="menu" data-action="mouseover->menu#hover">
         <ul>
           <li>
             <button type="button" class="submenu-opener" popovertarget="programs-menu" popovertargetaction="show">Programs</button>
             <ul id="programs-menu" class="submenu" popover>
-              <li><%= link_to "Posts", posts_path %></li>
-              <li><%= link_to "Talks", talks_path %></li>
-              <li><%= link_to "Projects", projects_path %></li>
+              <li><button type="button" data-action="desktop#open" data-desktop-window-param="posts-window">Posts</button></li>
+              <li><button type="button" data-action="desktop#open" data-desktop-window-param="talks-window">Talks</button></li>
+              <li><button type="button" data-action="desktop#open" data-desktop-window-param="projects-window">Projects</button></li>
               <li><%= link_to "About", about_path %></li>
               <li><%= link_to "Resume", "/resume.pdf" %></li>
             </ul>

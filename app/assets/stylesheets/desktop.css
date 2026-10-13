@@ -46,6 +46,73 @@
   background-color: var(--navy-blue);
 }
 
+/* ---- Explorer window ----------------------------------------------------- */
+
+/* Open folders float over the desktop icons, staggered so they don't stack
+   exactly. desktop_controller.js moves them and sets which is on top. A full
+   folder stops growing at max-height and its icons scroll instead. */
+.desktop main {
+  position: relative;
+}
+
+.explorer {
+  position: absolute;
+  top: 1rem;
+  left: 8rem;
+  width: min(40rem, 100% - 9rem);
+  max-height: min(30rem, 70%);
+  display: flex;
+  flex-direction: column;
+}
+
+.explorer:not([open]) {
+  display: none;
+}
+
+.explorer:nth-of-type(2) {
+  top: 3rem;
+  left: 10rem;
+}
+
+.explorer:nth-of-type(3) {
+  top: 5rem;
+  left: 12rem;
+}
+
+.explorer .titlebar {
+  cursor: default;
+  touch-action: none;
+  user-select: none;
+}
+
+.explorer .window-body {
+  overflow-y: auto;
+  padding: 0.75rem;
+}
+
+/* Large Icons view: the desktop's icons, in rows, with dark labels. */
+.explorer-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 1rem 0.5rem;
+}
+
+.explorer .desktop-icon,
+.explorer .desktop-icon:hover {
+  color: var(--ink);
+}
+
+.explorer .desktop-icon span {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.explorer .desktop-icon:focus span {
+  color: #fff;
+}
+
 /* ---- Taskbar ------------------------------------------------------------- */
 
 .taskbar {

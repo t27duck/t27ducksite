@@ -1,0 +1,27 @@
+<%# locals: (title:, files:) %>
+<%# A folder icon and the Explorer window it opens, in Large Icons view. %>
+
+<% window_id = "#{title.parameterize}-window" %>
+
+<button type="button" class="desktop-icon" data-action="desktop#requireDoubleClick desktop#open" data-desktop-window-param="<%= window_id %>">
+  <%= image_tag "folder.svg", alt: "" %>
+  <span><%= title %></span>
+</button>
+
+<dialog id="<%= window_id %>" class="window explorer" aria-label="<%= title %>" data-action="pointerdown->desktop#raise">
+  <div class="titlebar" data-action="pointerdown->desktop#grab pointermove->desktop#drag pointerup->desktop#drop">
+    <h2><%= title %></h2>
+    <form method="dialog">
+      <button class="close" title="Close" aria-label="Close">
+        <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M1 1l6 6M7 1 1 7" stroke="currentColor" stroke-width="1.75" /></svg>
+      </button>
+    </form>
+  </div>
+  <div class="window-body">
+    <div class="explorer-icons">
+      <% files.each do |file| %>
+        <%= render "desktop/icon", label: formatted_title(file.title), href: file, image: "document.svg" %>
+      <% end %>
+    </div>
+  </div>
+</dialog>
