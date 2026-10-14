@@ -3,9 +3,6 @@ class DesktopController < ApplicationController
   layout "desktop"
 
   def show
-    @posts = Post.post.published.order(published_at: :desc)
-    @talks = Post.talk.published.order(published_at: :desc)
-    @projects = Project.order(:created_at)
-    @recent_posts = @posts.limit(5)
+    @recent_posts = Post.post.published.order(published_at: :desc).limit(5)
   end
 end

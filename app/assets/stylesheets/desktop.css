@@ -46,47 +46,53 @@
   background-color: var(--navy-blue);
 }
 
-/* ---- Explorer window ----------------------------------------------------- */
+/* ---- Windows ------------------------------------------------------------- */
 
-/* Open folders float over the desktop icons, staggered so they don't stack
-   exactly. desktop_controller.js moves them and sets which is on top. A full
-   folder stops growing at max-height and its icons scroll instead. */
+/* Windows float over the desktop icons. desktop_controller.js cascades each
+   one as it first opens, drags it, and sets which is on top. The body scrolls
+   when the contents outgrow the window. */
 .desktop main {
   position: relative;
 }
 
-.explorer {
+.desktop-window {
   position: absolute;
   top: 1rem;
   left: 8rem;
-  width: min(40rem, 100% - 9rem);
-  max-height: min(30rem, 70%);
+  max-width: calc(100% - 9rem);
+  max-height: calc(100% - 2rem);
   display: flex;
   flex-direction: column;
 }
 
-.explorer:not([open]) {
+.desktop-window:not([open]) {
   display: none;
 }
 
-.explorer:nth-of-type(2) {
-  top: 3rem;
-  left: 10rem;
-}
-
-.explorer:nth-of-type(3) {
-  top: 5rem;
-  left: 12rem;
-}
-
-.explorer .titlebar {
+.desktop-window .titlebar {
   cursor: default;
   touch-action: none;
   user-select: none;
 }
 
-.explorer .window-body {
+.desktop-window .window-body {
+  flex: 1;
   overflow-y: auto;
+}
+
+.desktop-window turbo-frame {
+  display: block;
+}
+
+/* ---- Explorer window ----------------------------------------------------- */
+
+/* Every folder opens at the same size, however many files it holds. */
+.explorer {
+  width: 40rem;
+  height: 30rem;
+}
+
+.explorer .window-body {
   padding: 0.75rem;
 }
 

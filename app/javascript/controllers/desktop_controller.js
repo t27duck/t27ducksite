@@ -1,8 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Desktop windows are non-modal <dialog>s, so several can be open at once and
-// their close buttons need no JavaScript. This opens them, drags them by the
-// title bar, and brings whichever one you touch to the front.
+// their close buttons need no JavaScript. Their contents are lazy turbo-frames
+// (or iframes) that load the first time the window shows. This opens them,
+// drags them by the title bar, and brings whichever one you touch to the front.
 export default class extends Controller {
   static targets = ["startMenu"]
 
@@ -20,9 +21,21 @@ export default class extends Controller {
 
   open({ params: { window } }) {
     const dialog = document.getElementById(window)
-    dialog.show()
+    if (!dialog.open) {
+      dialog.show()
+      dialog.querySelector(".window-body").scrollTop = 0 // can't scroll while closed, so reset() can't do this
+      this.#cascade(dialog)
+    }
     this.#raise(dialog)
     this.startMenuTarget.togglePopover(false)
+  }
+
+  // Closing a window resets it: it reopens in its cascade spot, and its
+  // contents reload now, so they're fresh by the time it opens again.
+  reset({ currentTarget: dialog }) {
+    dialog.style.top = ""
+    dialog.style.left = ""
+    dialog.querySelector("turbo-frame[src]")?.reload()
   }
 
   raise({ currentTarget }) {
@@ -47,6 +60,16 @@ export default class extends Controller {
 
   drop() {
     this.#drag = null
+  }
+
+  // A window that hasn't been dragged opens down and to the right of the
+  // others already open, as Windows cascades them.
+  #cascade(dialog) {
+    if (dialog.style.top) return
+
+    const others = this.element.querySelectorAll(".desktop-window[open]").length - 1
+    dialog.style.top = `${dialog.offsetTop + others * 32}px`
+    dialog.style.left = `${dialog.offsetLeft + others * 32}px`
   }
 
   #raise(dialog) {

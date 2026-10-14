@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "#{@folder}-folder" do %>
+  <div class="explorer-icons">
+    <% @files.each do |file| %>
+      <%= render "desktop/icon", label: formatted_title(file.title), href: file, image: "document.svg" %>
+    <% end %>
+  </div>
+<% end %>

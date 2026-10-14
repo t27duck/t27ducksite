@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   get "/about", to: "pages#show", id: "about", as: :about
   get "/desktop", to: "desktop#show", as: :desktop
+  namespace :desktop do
+    resources :folders, only: [:show], constraints: { id: /posts|talks|projects/ }
+  end
 
   root "home#index"
 end
