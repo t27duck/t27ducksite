@@ -1,24 +1,17 @@
-# README
+# t27duck.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Source for [t27duck.com](https://t27duck.com), Tony Drake's personal site and blog. It runs on Rails 8.1, Ruby 4.0, and SQLite, and deploys with Kamal.
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+```bash
+bin/setup --skip-server   # install gems and prepare the database
+bin/dev                   # start the server
+bin/ci                    # run linters, security scans, and tests
+```
 
-* System dependencies
+To set the admin password, run `User.create!(username: "admin", password: "...")` in `bin/rails console`.
 
-* Configuration
+## Deploy
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Put `SERVER_HOST`, `PROXY_*`, `SSH_USERNAME`, and `SECRET_KEY_BASE` in `.env`, then run `bin/kamal deploy`.
