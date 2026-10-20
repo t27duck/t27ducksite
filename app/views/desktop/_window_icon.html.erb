@@ -1,0 +1,5 @@
+<%# locals: (window:) %>
+<%= tag.button type: "button", class: "desktop-icon", data: { action: "desktop#requireDoubleClick desktop#open", desktop_window_param: window.to_params } do %>
+  <%= image_tag window.icon, alt: "" %>
+  <span><%= window.title %></span>
+<% end %>

@@ -1,11 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Desktop windows are non-modal <dialog>s, so several can be open at once and
-// their close buttons need no JavaScript. Their contents are lazy turbo-frames
-// (or iframes) that load the first time the window shows. This opens them,
-// drags them by the title bar, and brings whichever one you touch to the front.
+// their close buttons need no JavaScript. Each opener passes the window's
+// config as an action param (see Desktop::Window), and this builds the window
+// from the template when it opens, with a turbo-frame or an iframe that loads
+// its contents.
+// It also drags windows by the title bar, and brings whichever one you touch
+// to the front.
 export default class extends Controller {
-  static targets = ["startMenu"]
+  static targets = ["startMenu", "template", "windows"]
 
   #zIndex = 0
   #drag = null
@@ -20,22 +23,20 @@ export default class extends Controller {
   }
 
   open({ params: { window } }) {
-    const dialog = document.getElementById(window)
-    if (!dialog.open) {
+    let dialog = document.getElementById(window.id)
+    if (!dialog) {
+      dialog = this.#build(window)
       dialog.show()
-      dialog.querySelector(".window-body").scrollTop = 0 // can't scroll while closed, so reset() can't do this
       this.#cascade(dialog)
     }
     this.#raise(dialog)
     this.startMenuTarget.togglePopover(false)
   }
 
-  // Closing a window resets it: it reopens in its cascade spot, and its
-  // contents reload now, so they're fresh by the time it opens again.
-  reset({ currentTarget: dialog }) {
-    dialog.style.top = ""
-    dialog.style.left = ""
-    dialog.querySelector("turbo-frame[src]")?.reload()
+  // A closed window is thrown away, so it reopens as new: back in its cascade
+  // spot, scrolled to the top, with its contents loaded fresh.
+  discard({ currentTarget: dialog }) {
+    dialog.remove()
   }
 
   raise({ currentTarget }) {
@@ -62,14 +63,44 @@ export default class extends Controller {
     this.#drag = null
   }
 
-  // A window that hasn't been dragged opens down and to the right of the
-  // others already open, as Windows cascades them.
+  // A new window opens down and to the right of the others already open, as
+  // Windows cascades them.
   #cascade(dialog) {
-    if (dialog.style.top) return
-
     const others = this.element.querySelectorAll(".desktop-window[open]").length - 1
     dialog.style.top = `${dialog.offsetTop + others * 32}px`
     dialog.style.left = `${dialog.offsetLeft + others * 32}px`
+  }
+
+  #build({ id, title, src, frame, width, height, kind }) {
+    const dialog = this.templateTarget.content.firstElementChild.cloneNode(true)
+    dialog.id = id
+    dialog.setAttribute("aria-label", title)
+    if (kind) dialog.classList.add(kind)
+    if (width) dialog.style.width = width
+    if (height) dialog.style.height = height
+    dialog.querySelector(".titlebar h2").textContent = title
+    dialog.querySelector(".window-body").append(frame ? this.#turboFrame(frame, src) : this.#iframe(src, title))
+
+    this.windowsTarget.append(dialog)
+    return dialog
+  }
+
+  // Files open as full pages, hence target _top.
+  #turboFrame(id, src) {
+    const frame = document.createElement("turbo-frame")
+    frame.id = id
+    frame.setAttribute("target", "_top")
+    frame.setAttribute("src", src)
+    frame.textContent = "Loading…"
+    return frame
+  }
+
+  // A whole page, which keeps its links to itself.
+  #iframe(src, title) {
+    const iframe = document.createElement("iframe")
+    iframe.src = src
+    iframe.title = title
+    return iframe
   }
 
   #raise(dialog) {

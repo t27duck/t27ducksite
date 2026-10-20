@@ -18,9 +18,10 @@
   </head>
 
   <body class="desktop" data-controller="desktop">
-    <main>
+    <main data-desktop-target="windows">
       <%= yield %>
     </main>
+    <template data-desktop-target="template"><%= render "desktop/window" %></template>
 
     <footer class="taskbar">
       <button type="button" class="button start" popovertarget="start-menu">
@@ -32,9 +33,9 @@
           <li>
             <button type="button" class="submenu-opener" popovertarget="programs-menu" popovertargetaction="show">Programs</button>
             <ul id="programs-menu" class="submenu" popover>
-              <li><button type="button" data-action="desktop#open" data-desktop-window-param="posts-window">Posts</button></li>
-              <li><button type="button" data-action="desktop#open" data-desktop-window-param="talks-window">Talks</button></li>
-              <li><button type="button" data-action="desktop#open" data-desktop-window-param="projects-window">Projects</button></li>
+              <% @windows.each do |window| %>
+                <li><%= tag.button window.title, type: "button", data: { action: "desktop#open", desktop_window_param: window.to_params } %></li>
+              <% end %>
               <li><%= link_to "About", about_path %></li>
               <li><%= link_to "Resume", "/resume.pdf" %></li>
             </ul>

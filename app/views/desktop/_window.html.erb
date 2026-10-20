@@ -1,19 +1,11 @@
-<%# locals: (id:, title:, html_class:) %>
-<%# A desktop window. Render as a layout and pass its contents, usually a lazy
-    turbo-frame or an iframe, so nothing loads until the window first opens.
-    html_class sets the kind of window, and with it the default size. Closing
-    the window resets its position and reloads its turbo-frame. %>
-
-<dialog id="<%= id %>" class="window desktop-window <%= html_class %>" aria-label="<%= title %>" data-action="pointerdown->desktop#raise close->desktop#reset">
+<dialog class="window desktop-window" data-action="pointerdown->desktop#raise close->desktop#discard">
   <div class="titlebar" data-action="pointerdown->desktop#grab pointermove->desktop#drag pointerup->desktop#drop">
-    <h2><%= title %></h2>
+    <h2>Untitled</h2>
     <form method="dialog">
       <button class="close" title="Close" aria-label="Close">
         <svg viewBox="0 0 8 8" aria-hidden="true"><path d="M1 1l6 6M7 1 1 7" stroke="currentColor" stroke-width="1.75" /></svg>
       </button>
     </form>
   </div>
-  <div class="window-body">
-    <%= yield %>
-  </div>
+  <div class="window-body"></div>
 </dialog>

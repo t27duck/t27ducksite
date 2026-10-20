@@ -20,6 +20,14 @@ class Desktop::FoldersControllerTest < ActionDispatch::IntegrationTest
     assert_select "turbo-frame#projects-folder .desktop-icon", count: Project.count
   end
 
+  test "each configured window's src renders its frame" do
+    Desktop::Window.configured.select(&:frame).each do |window|
+      get window.src
+
+      assert_select "turbo-frame##{window.frame}", { count: 1 }, "#{window.name} window"
+    end
+  end
+
   test "unknown folders are not found" do
     get "/desktop/folders/admin"
 

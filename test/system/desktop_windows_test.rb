@@ -89,10 +89,32 @@ class DesktopWindowsTest < ApplicationSystemTestCase
     within("#posts-window") { click_on "Close" }
     find_button("Posts").double_click
 
-    assert_equal 0, body.evaluate_script("this.scrollTop")
+    assert_equal 0, find("#posts-window .window-body").evaluate_script("this.scrollTop")
+  end
+
+  test "a window without a frame loads its page in an iframe" do
+    visit desktop_path
+    add_opener("About", id: "about-window", title: "About", src: about_path, width: "30rem", height: "20rem")
+
+    click_on "About"
+
+    within("#about-window") do
+      within_frame(find("iframe[title=About]")) { assert_selector "h1", text: "MyString" }
+    end
   end
 
   private ######################################################################
+
+  # A button that opens a window from params alone, without config/desktop.yml.
+  def add_opener(label, **params)
+    execute_script(<<~JS, label, params.to_json)
+      const button = document.createElement("button")
+      button.textContent = arguments[0]
+      button.dataset.action = "desktop#open"
+      button.dataset.desktopWindowParam = arguments[1]
+      document.querySelector("main").append(button)
+    JS
+  end
 
   # Enough posts to overflow an Explorer window.
   def create_filler_posts

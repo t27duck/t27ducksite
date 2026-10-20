@@ -1,0 +1,37 @@
+# Windows on the desktop, in the order their icons appear on it and in the Start
+# menu's Programs. Each key names one; desktop_controller.js builds the window
+# from these the first time it opens:
+#
+#   title  - title bar text, and the icon's label
+#   icon   - image for the icon, from app/assets/images
+#   src    - URL the window loads its contents from
+#   frame  - id of the turbo-frame in that response. Leave it out to load src
+#            as a whole page in an iframe instead; CSP only allows this site's
+#            own pages there
+#   width, height - any CSS length; the window still won't outgrow the desktop
+#   kind   - optional CSS class for the window, e.g. explorer for a folder view
+shared:
+  posts:
+    title: Posts
+    icon: folder.svg
+    src: /desktop/folders/posts
+    frame: posts-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer
+  talks:
+    title: Talks
+    icon: folder.svg
+    src: /desktop/folders/talks
+    frame: talks-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer
+  projects:
+    title: Projects
+    icon: folder.svg
+    src: /desktop/folders/projects
+    frame: projects-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer

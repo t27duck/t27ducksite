@@ -48,9 +48,9 @@
 
 /* ---- Windows ------------------------------------------------------------- */
 
-/* Windows float over the desktop icons. desktop_controller.js cascades each
-   one as it first opens, drags it, and sets which is on top. The body scrolls
-   when the contents outgrow the window. */
+/* Windows float over the desktop icons. desktop_controller.js sizes each one
+   from config/desktop.yml, cascades it as it opens, drags it, and sets which
+   is on top. The body scrolls when the contents outgrow the window. */
 .desktop main {
   position: relative;
 }
@@ -84,13 +84,20 @@
   display: block;
 }
 
-/* ---- Explorer window ----------------------------------------------------- */
-
-/* Every folder opens at the same size, however many files it holds. */
-.explorer {
-  width: 40rem;
-  height: 30rem;
+/* An iframe fills the body edge to edge and scrolls itself. */
+.desktop-window .window-body:has(> iframe) {
+  display: flex;
+  padding: 0;
+  overflow: hidden;
 }
+
+.desktop-window iframe {
+  flex: 1;
+  width: 100%;
+  border: 0;
+}
+
+/* ---- Explorer window ----------------------------------------------------- */
 
 .explorer .window-body {
   padding: 0.75rem;

@@ -15,9 +15,19 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
     assert_select "#documents-menu li:last-child a", text: "Oldest Post"
   end
 
-  test "folder windows load their files lazily" do
+  test "icons and Programs open the configured windows" do
     get desktop_url
 
-    assert_select "#posts-window turbo-frame[loading=lazy][src=?]", desktop_folder_path("posts")
+    params = Desktop::Window.configured.map { |window| window.to_params.to_json }
+
+    assert_equal params, css_select("main button.desktop-icon").pluck("data-desktop-window-param")
+    assert_equal params, css_select("#programs-menu button").pluck("data-desktop-window-param")
+  end
+
+  test "windows are built on demand, not rendered up front" do
+    get desktop_url
+
+    assert_select "main dialog", count: 0
+    assert_select "template[data-desktop-target=template]", count: 1
   end
 end
