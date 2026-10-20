@@ -21,7 +21,7 @@ class DesktopWindowsTest < ApplicationSystemTestCase
     find_button("Posts").double_click
     find_button("Talks").double_click
 
-    assert_link "Talk 1"
+    assert_button "Talk 1"
 
     posts = find_by_id("posts-window").rect
     talks = find_by_id("talks-window").rect
@@ -54,11 +54,11 @@ class DesktopWindowsTest < ApplicationSystemTestCase
 
   test "double-clicking a file opens its page" do
     visit desktop_path
-    find_button("Talks").double_click
+    find_button("Posts").double_click
 
-    find_link("Talk 1").double_click
+    find_link("Oldest Post").double_click
 
-    assert_current_path post_path(posts(:three))
+    assert_current_path post_path(posts(:oldest_published_post))
   end
 
   test "closing a window resets its position and contents" do
@@ -73,7 +73,7 @@ class DesktopWindowsTest < ApplicationSystemTestCase
     within(window) { click_on "Close" }
     find_button("Talks").double_click
 
-    assert_link "Brand new talk"
+    assert_button "Brand new talk"
     assert_equal [start.x, start.y], [window.rect.x, window.rect.y]
   end
 

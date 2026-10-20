@@ -4,6 +4,7 @@ class Desktop::FoldersController < ApplicationController
   def show
     @folder = params[:id]
     @files = files_in(@folder)
+    @media_player = Desktop::Window.find("media_player") if @folder == "talks"
   end
 
   private ######################################################################

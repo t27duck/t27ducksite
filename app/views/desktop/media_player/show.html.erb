@@ -1,0 +1,18 @@
+<%= turbo_frame_tag "media-player" do %>
+  <div class="screen">
+    <% if @talk %>
+      <%= render "posts/youtube_embed", post: @talk %>
+    <% else %>
+      <p>No media</p>
+    <% end %>
+  </div>
+  <% if @talk %>
+    <div class="status">
+      <strong><%= formatted_title(@talk.title) %></strong>
+      <p>
+        <span><%= @talk.published_at.strftime("%B %-d, %Y") %></span>
+        <%= link_to "Watch on YouTube", @talk.video_url, target: "_blank", rel: "noopener" %>
+      </p>
+    </div>
+  <% end %>
+<% end %>

@@ -23,14 +23,16 @@ export default class extends Controller {
   }
 
   open({ params: { window } }) {
-    let dialog = document.getElementById(window.id)
-    if (!dialog) {
-      dialog = this.#build(window)
-      dialog.show()
-      this.#cascade(dialog)
+    this.#open(window)
+  }
+
+  // Opens the window on window.src, loading it in place of whatever the window
+  // already shows if it's open, as a talk replaces the one playing.
+  load({ params: { window } }) {
+    const contents = this.#open(window).querySelector(".window-body").firstElementChild
+    if (new URL(window.src, document.baseURI).href !== new URL(contents.getAttribute("src"), document.baseURI).href) {
+      contents.setAttribute("src", window.src)
     }
-    this.#raise(dialog)
-    this.startMenuTarget.togglePopover(false)
   }
 
   // A closed window is thrown away, so it reopens as new: back in its cascade
@@ -61,6 +63,18 @@ export default class extends Controller {
 
   drop() {
     this.#drag = null
+  }
+
+  #open(window) {
+    let dialog = document.getElementById(window.id)
+    if (!dialog) {
+      dialog = this.#build(window)
+      dialog.show()
+      this.#cascade(dialog)
+    }
+    this.#raise(dialog)
+    this.startMenuTarget.togglePopover(false)
+    return dialog
   }
 
   // A new window opens down and to the right of the others already open, as

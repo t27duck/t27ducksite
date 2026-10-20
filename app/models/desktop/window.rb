@@ -3,6 +3,10 @@ Desktop::Window = Data.define(:name, :title, :menu, :shortcut, :icon, :src, :fra
     Rails.application.config_for(:desktop).map { |name, attributes| new(name: name.to_s, **attributes) }
   end
 
+  def self.find(name)
+    configured.find { it.name == name } || raise(KeyError, "no #{name} window in config/desktop.yml")
+  end
+
   def initialize(shortcut: false, icon: nil, frame: nil, kind: nil, **)
     super
   end

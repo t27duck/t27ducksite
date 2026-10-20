@@ -43,6 +43,14 @@ shared:
     width: 40rem
     height: 30rem
     kind: explorer
+  media_player:
+    title: Media Player
+    menu: accessories
+    src: /desktop/media_player
+    frame: media-player
+    width: 40rem
+    height: 28rem
+    kind: media-player
   solitaire:
     title: Solitaire
     menu: accessories

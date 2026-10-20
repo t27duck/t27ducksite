@@ -2,7 +2,12 @@ require "test_helper"
 
 class Desktop::WindowTest < ActiveSupport::TestCase
   test "configured reads the windows from config in order" do
-    assert_equal ["posts", "talks", "projects", "solitaire"], Desktop::Window.configured.map(&:name)
+    assert_equal ["posts", "talks", "projects", "media_player", "solitaire"], Desktop::Window.configured.map(&:name)
+  end
+
+  test "find looks a window up by name" do
+    assert_equal "Media Player", Desktop::Window.find("media_player").title
+    assert_raises(KeyError) { Desktop::Window.find("minesweeper") }
   end
 
   test "to_params is what desktop_controller.js builds the window from" do

@@ -1,7 +1,13 @@
+<%# Talks play in the Media Player; everything else opens as a full page. %>
+
 <%= turbo_frame_tag "#{@folder}-folder" do %>
   <div class="explorer-icons">
     <% @files.each do |file| %>
-      <%= render "desktop/icon", label: formatted_title(file.title), href: file, image: "document.svg" %>
+      <% if @folder == "talks" %>
+        <%= render "desktop/window_icon", window: @media_player.with(src: desktop_media_player_path(talk: file)), label: formatted_title(file.title), image: "video.svg", action: "load" %>
+      <% else %>
+        <%= render "desktop/icon", label: formatted_title(file.title), href: file, image: "document.svg" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
