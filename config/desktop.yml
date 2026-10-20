@@ -1,9 +1,11 @@
-# Windows on the desktop, in the order their icons appear on it and in the Start
-# menu's Programs. Each key names one; desktop_controller.js builds the window
-# from these the first time it opens:
+# Windows on the desktop, in the order their icons appear on it and in their
+# Start menu submenu. Each key names one; desktop_controller.js builds the
+# window from these the first time it opens:
 #
-#   title  - title bar text, and the icon's label
-#   icon   - image for the icon, from app/assets/images
+#   title  - title bar text, and the label on its icon and menu item
+#   menu   - which submenu of Programs lists it: website or accessories
+#   shortcut - true to put an icon for it on the desktop
+#   icon   - image for that icon, from app/assets/images
 #   src    - URL the window loads its contents from
 #   frame  - id of the turbo-frame in that response. Leave it out to load src
 #            as a whole page in an iframe instead; CSP only allows this site's
@@ -13,6 +15,8 @@
 shared:
   posts:
     title: Posts
+    menu: website
+    shortcut: true
     icon: folder.svg
     src: /desktop/folders/posts
     frame: posts-folder
@@ -21,6 +25,8 @@ shared:
     kind: explorer
   talks:
     title: Talks
+    menu: website
+    shortcut: true
     icon: folder.svg
     src: /desktop/folders/talks
     frame: talks-folder
@@ -29,9 +35,19 @@ shared:
     kind: explorer
   projects:
     title: Projects
+    menu: website
+    shortcut: true
     icon: folder.svg
     src: /desktop/folders/projects
     frame: projects-folder
     width: 40rem
     height: 30rem
     kind: explorer
+  solitaire:
+    title: Solitaire
+    menu: accessories
+    src: /desktop/solitaire
+    frame: solitaire
+    width: 36rem
+    height: 42rem
+    kind: game

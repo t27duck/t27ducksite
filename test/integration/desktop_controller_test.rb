@@ -15,13 +15,23 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
     assert_select "#documents-menu li:last-child a", text: "Oldest Post"
   end
 
-  test "icons and Programs open the configured windows" do
+  test "desktop icons open the windows configured with shortcuts" do
     get desktop_url
 
-    params = Desktop::Window.configured.map { |window| window.to_params.to_json }
+    params = Desktop::Window.configured.select(&:shortcut).map { |window| window.to_params.to_json }
 
+    assert_equal(["Posts", "Talks", "Projects"], css_select("main button.desktop-icon").map { it.text.strip })
     assert_equal params, css_select("main button.desktop-icon").pluck("data-desktop-window-param")
-    assert_equal params, css_select("#programs-menu button").pluck("data-desktop-window-param")
+  end
+
+  test "Programs lists each window in its configured submenu" do
+    get desktop_url
+
+    assert_select "#accessories-menu button", text: "Solitaire", count: 1
+    website = css_select("#website-menu li").map { it.text.strip }
+
+    assert_equal ["Posts", "Talks", "Projects", "About", "Resume"], website
+    assert_select "#programs-menu [data-desktop-window-param]", count: Desktop::Window.configured.size
   end
 
   test "windows are built on demand, not rendered up front" do

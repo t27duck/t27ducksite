@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get "/desktop", to: "desktop#show", as: :desktop
   namespace :desktop do
     resources :folders, only: [:show], constraints: { id: /posts|talks|projects/ }
+    get "solitaire", to: "solitaire#show"
   end
 
   root "home#index"

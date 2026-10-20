@@ -1,0 +1,4 @@
+<%# locals: (window:) %>
+<%# A Start menu item that opens one of the windows in config/desktop.yml. %>
+
+<li><%= tag.button window.title, type: "button", data: { action: "desktop#open", desktop_window_param: window.to_params } %></li>

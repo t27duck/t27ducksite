@@ -1,0 +1,23 @@
+<%= turbo_frame_tag "solitaire" do %>
+  <div class="solitaire" data-controller="solitaire" data-action="pointerdown->solitaire#grab pointermove@window->solitaire#drag pointerup@window->solitaire#drop dblclick->solitaire#autoMove">
+    <header>
+      <button type="button" class="button" data-action="solitaire#newGame">New Game</button>
+      <span data-solitaire-target="message"></span>
+    </header>
+
+    <div class="row top">
+      <div class="pile" data-solitaire-target="pile" data-pile="stock" data-action="click->solitaire#draw"></div>
+      <div class="pile" data-solitaire-target="pile" data-pile="waste"></div>
+      <div></div>
+      <% 4.times do |i| %>
+        <div class="pile" data-solitaire-target="pile" data-pile="foundation-<%= i %>"></div>
+      <% end %>
+    </div>
+
+    <div class="row tableau">
+      <% 7.times do |i| %>
+        <div class="pile" data-solitaire-target="pile" data-pile="tableau-<%= i %>"></div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

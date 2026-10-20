@@ -13,7 +13,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <%= preload_link_tag "fonts/ibm-plex-sans-latin-wght-normal.woff2" %>
-    <%= stylesheet_link_tag "font", "reset", "application", "desktop", "data-turbo-track": "reload", integrity: true %>
+    <%= stylesheet_link_tag "font", "reset", "application", "desktop", "solitaire", "data-turbo-track": "reload", integrity: true %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -33,11 +33,20 @@
           <li>
             <button type="button" class="submenu-opener" popovertarget="programs-menu" popovertargetaction="show">Programs</button>
             <ul id="programs-menu" class="submenu" popover>
-              <% @windows.each do |window| %>
-                <li><%= tag.button window.title, type: "button", data: { action: "desktop#open", desktop_window_param: window.to_params } %></li>
-              <% end %>
-              <li><%= link_to "About", about_path %></li>
-              <li><%= link_to "Resume", "/resume.pdf" %></li>
+              <li>
+                <button type="button" class="submenu-opener" popovertarget="accessories-menu" popovertargetaction="show">Accessories</button>
+                <ul id="accessories-menu" class="submenu" popover>
+                  <%= render partial: "desktop/window_menu_item", collection: @windows.select { it.menu == "accessories" }, as: :window %>
+                </ul>
+              </li>
+              <li>
+                <button type="button" class="submenu-opener" popovertarget="website-menu" popovertargetaction="show">Website</button>
+                <ul id="website-menu" class="submenu" popover>
+                  <%= render partial: "desktop/window_menu_item", collection: @windows.select { it.menu == "website" }, as: :window %>
+                  <li><%= link_to "About", about_path %></li>
+                  <li><%= link_to "Resume", "/resume.pdf" %></li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li>

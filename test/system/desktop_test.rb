@@ -21,11 +21,26 @@ class DesktopTest < ApplicationSystemTestCase
 
     find_button("Programs").hover
 
-    assert_link "Resume"
+    assert_button "Website"
 
     find_button("Socials").hover
 
     assert_link "GitHub"
+    assert_no_button "Website"
+  end
+
+  test "hovering a submenu item opens its own submenu and closes its sibling" do
+    visit desktop_path
+    click_on "Start"
+    find_button("Programs").hover
+
+    find_button("Website").hover
+
+    assert_link "Resume"
+
+    find_button("Accessories").hover
+
+    assert_button "Solitaire"
     assert_no_link "Resume"
   end
 
@@ -63,9 +78,23 @@ class DesktopTest < ApplicationSystemTestCase
     click_on "Start"
 
     click_on "Programs"
-    within("#programs-menu") { click_on "Projects" }
+    click_on "Website"
+    within("#website-menu") { click_on "Projects" }
 
     assert_selector "#projects-window[open]"
     assert_no_button "Programs"
+  end
+
+  test "Accessories opens Solitaire without a desktop icon" do
+    visit desktop_path
+
+    assert_no_selector "main .desktop-icon", text: "Solitaire"
+
+    click_on "Start"
+    click_on "Programs"
+    click_on "Accessories"
+    click_on "Solitaire"
+
+    assert_selector "#solitaire-window[open]"
   end
 end

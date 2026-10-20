@@ -1,17 +1,21 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Win2k submenus open on hover. Clicking still opens them, for touch and keyboard.
+// Win2k submenus open on hover, at any depth. Clicking still opens them, for
+// touch and keyboard.
 export default class extends Controller {
   hover({ target }) {
     const item = target.closest("a, button")
-    if (item?.closest("[popover]") !== this.element) return
+    if (!item) return
 
-    // Submenus are sibling popovers, so opening one closes any other.
+    // Submenus of one menu are sibling popovers, so opening one closes any
+    // other. Hovering a plain item closes whichever is open beside it; the
+    // first open popover inside its menu is that one, and closing it closes
+    // any opened from it in turn.
     const submenu = item.popoverTargetElement
     if (submenu) {
       submenu.togglePopover(true)
     } else {
-      this.element.querySelector(":popover-open")?.hidePopover()
+      item.closest("[popover]").querySelector(":popover-open")?.hidePopover()
     }
   }
 }

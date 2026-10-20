@@ -1,0 +1,87 @@
+/* Solitaire, played in a desktop window. See solitaire_controller.js. */
+
+/* The felt fills the window, however tall the board is. */
+.game .window-body {
+  padding: 0;
+  background: #2e7d4f;
+}
+
+.solitaire {
+  padding: 8px;
+  user-select: none;
+}
+
+.solitaire header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.solitaire .row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: clamp(3px, 1.5vw, 10px);
+  align-items: start;
+  margin-bottom: clamp(6px, 2vw, 16px);
+}
+
+/* Each pile is a size container so card text scales with card width. */
+.solitaire .pile {
+  position: relative;
+  aspect-ratio: 5 / 7;
+  border-radius: 6%;
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.25);
+  container-type: inline-size;
+}
+
+.solitaire .pile[data-pile="stock"] { cursor: pointer; }
+
+.solitaire .card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  padding: 4cqw 8cqw;
+  border-radius: 6%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+  color: #222;
+  font-size: 26cqw;
+  font-weight: 600;
+  line-height: 1;
+  touch-action: none;
+  cursor: grab;
+}
+
+.solitaire .card.red { color: #c62828; }
+
+.solitaire .card .big {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding-top: 20%;
+  font-size: 60cqw;
+}
+
+.solitaire .card.down {
+  background: repeating-linear-gradient(45deg, #1e4f9c 0 4px, #2a62bd 4px 8px);
+  border: 4cqw solid #fff;
+  cursor: default;
+}
+
+.solitaire .top .card {
+  position: absolute;
+  inset: 0;
+}
+
+/* Fan tableau cards; vertical % margins are relative to the pile's width. */
+.solitaire .tableau .card + .card { margin-top: -105%; }
+.solitaire .tableau .card.down + .card { margin-top: -125%; }
+
+.solitaire .card.dragging {
+  z-index: 100;
+  cursor: grabbing;
+  box-shadow: 0 6px 12px rgb(0 0 0 / 0.4);
+}
