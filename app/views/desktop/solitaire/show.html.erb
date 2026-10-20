@@ -1,23 +1,45 @@
 <%= turbo_frame_tag "solitaire" do %>
-  <div class="solitaire" data-controller="solitaire" data-action="pointerdown->solitaire#grab pointermove@window->solitaire#drag pointerup@window->solitaire#drop dblclick->solitaire#autoMove">
-    <header>
-      <button type="button" class="button" data-action="solitaire#newGame">New Game</button>
-      <span data-solitaire-target="message"></span>
-    </header>
+  <div data-controller="solitaire">
+    <nav class="menubar" aria-label="Solitaire">
+      <div>
+        <button type="button" class="menubar-item" popovertarget="solitaire-file-menu">File</button>
+        <div id="solitaire-file-menu" class="menu" popover>
+          <button type="button" popovertarget="solitaire-file-menu" popovertargetaction="hide" data-action="solitaire#newGame">New Game</button>
+          <form method="dialog">
+            <button>Quit</button>
+          </form>
+        </div>
+      </div>
+    </nav>
 
-    <div class="row top">
-      <div class="pile" data-solitaire-target="pile" data-pile="stock" data-action="click->solitaire#draw"></div>
-      <div class="pile" data-solitaire-target="pile" data-pile="waste"></div>
-      <div></div>
-      <% 4.times do |i| %>
-        <div class="pile" data-solitaire-target="pile" data-pile="foundation-<%= i %>"></div>
-      <% end %>
+    <div class="solitaire" data-action="pointerdown->solitaire#grab pointermove@window->solitaire#drag pointerup@window->solitaire#drop dblclick->solitaire#autoMove">
+      <div class="row top">
+        <div class="pile" data-solitaire-target="pile" data-pile="stock" data-action="click->solitaire#draw"></div>
+        <div class="pile" data-solitaire-target="pile" data-pile="waste"></div>
+        <div></div>
+        <% 4.times do |i| %>
+          <div class="pile" data-solitaire-target="pile" data-pile="foundation-<%= i %>"></div>
+        <% end %>
+      </div>
+
+      <div class="row tableau">
+        <% 7.times do |i| %>
+          <div class="pile" data-solitaire-target="pile" data-pile="tableau-<%= i %>"></div>
+        <% end %>
+      </div>
     </div>
 
-    <div class="row tableau">
-      <% 7.times do |i| %>
-        <div class="pile" data-solitaire-target="pile" data-pile="tableau-<%= i %>"></div>
-      <% end %>
-    </div>
+    <dialog class="window modal won-dialog" aria-label="Solitaire" data-solitaire-target="won">
+      <div class="titlebar">
+        <h2>Solitaire</h2>
+        <%= render "desktop/close_button" %>
+      </div>
+      <div class="window-body">
+        <p>You win! 🎉</p>
+        <div class="form-actions">
+          <button type="button" class="button" data-action="solitaire#newGame">New Game</button>
+        </div>
+      </div>
+    </dialog>
   </div>
 <% end %>

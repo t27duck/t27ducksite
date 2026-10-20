@@ -7,7 +7,7 @@
     it does, usually loading it into the program's own turbo-frame. Click
     selects a file; double-click, Enter, or the Open button opens it. %>
 
-<dialog id="<%= id %>" class="window open-dialog" aria-label="<%= title %>" data-controller="open-dialog" data-action="close->open-dialog#reset">
+<dialog id="<%= id %>" class="window modal open-dialog" aria-label="<%= title %>" data-controller="open-dialog" data-action="close->open-dialog#reset">
   <div class="titlebar">
     <h2><%= title %></h2>
     <%= render "desktop/close_button" %>

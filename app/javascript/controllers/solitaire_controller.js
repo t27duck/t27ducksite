@@ -1,20 +1,23 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Klondike, draw one. Cards are dragged between piles; a double-click sends a
-// card up to the foundations. Every render redraws the piles from this.piles.
+// card up to the foundations. Every render redraws the piles from this.piles,
+// and pops up the won dialog once all four foundations are full.
 
 const SUITS = ["♠", "♥", "♦", "♣"]
 const RANKS = ["", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 const FOUNDATIONS = ["foundation-0", "foundation-1", "foundation-2", "foundation-3"]
 
 export default class extends Controller {
-  static targets = ["pile", "message"]
+  static targets = ["pile", "won"]
 
   connect() {
     this.newGame()
   }
 
   newGame() {
+    this.wonTarget.close()
+
     const deck = SUITS.flatMap(suit => RANKS.slice(1).map((_, i) => ({ suit, rank: i + 1, up: false })))
     for (let i = deck.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
@@ -162,7 +165,7 @@ export default class extends Controller {
     })
 
     const won = FOUNDATIONS.every(name => this.piles[name].length === 13)
-    this.messageTarget.textContent = won ? "You win! 🎉" : ""
+    if (won && !this.wonTarget.open) this.wonTarget.showModal()
   }
 
   cardHTML(card, pile, index) {

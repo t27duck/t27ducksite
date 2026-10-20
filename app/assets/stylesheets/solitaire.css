@@ -11,14 +11,6 @@
   user-select: none;
 }
 
-.solitaire header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-  color: #fff;
-}
-
 .solitaire .row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -84,4 +76,15 @@
   z-index: 100;
   cursor: grabbing;
   box-shadow: 0 6px 12px rgb(0 0 0 / 0.4);
+}
+
+.won-dialog .window-body {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.won-dialog .form-actions {
+  justify-content: center;
 }
