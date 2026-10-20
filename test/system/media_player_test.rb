@@ -49,6 +49,16 @@ class MediaPlayerTest < ApplicationSystemTestCase
     assert_selector "#media_player-window .status", text: "Talk 1"
   end
 
+  test "File > Exit closes the player" do
+    visit desktop_path
+    open_media_player_from_start_menu
+
+    within("#media_player-window") { click_on "File" }
+    click_on "Exit"
+
+    assert_no_selector "#media_player-window"
+  end
+
   private ######################################################################
 
   def open_media_player_from_start_menu

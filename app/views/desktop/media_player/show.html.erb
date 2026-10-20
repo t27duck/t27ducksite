@@ -1,4 +1,15 @@
 <%= turbo_frame_tag "media-player" do %>
+  <nav class="menubar" aria-label="Media Player">
+    <div>
+      <button type="button" class="menubar-item" popovertarget="media-player-file-menu">File</button>
+      <div id="media-player-file-menu" class="menu" popover>
+        <button type="button" command="show-modal" commandfor="media-player-open">Open…</button>
+        <form method="dialog">
+          <button>Exit</button>
+        </form>
+      </div>
+    </div>
+  </nav>
   <div class="screen">
     <% if @talk %>
       <%= render "posts/youtube_embed", post: @talk %>
@@ -15,4 +26,6 @@
       </p>
     </div>
   <% end %>
+
+  <%= render "desktop/open_dialog", id: "media-player-open", src: desktop_media_player_files_path, look_in: "Talks" %>
 <% end %>

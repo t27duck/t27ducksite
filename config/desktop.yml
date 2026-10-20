@@ -49,7 +49,7 @@ shared:
     src: /desktop/media_player
     frame: media-player
     width: 40rem
-    height: 28rem
+    height: 30rem
     kind: media-player
   solitaire:
     title: Solitaire

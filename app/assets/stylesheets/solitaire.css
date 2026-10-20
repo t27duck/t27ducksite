@@ -1,7 +1,7 @@
 /* Solitaire, played in a desktop window. See solitaire_controller.js. */
 
 /* The felt fills the window, however tall the board is. */
-.game .window-body {
+.game > .window-body {
   padding: 0;
   background: #2e7d4f;
 }

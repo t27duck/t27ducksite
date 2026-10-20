@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   namespace :desktop do
     resources :folders, only: [:show], constraints: { id: /posts|talks|projects/ }
     get "media_player", to: "media_player#show"
+    get "media_player/files", to: "media_player#files"
     get "solitaire", to: "solitaire#show"
   end
 

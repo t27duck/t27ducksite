@@ -56,6 +56,8 @@
 }
 
 .desktop-window {
+  anchor-name: --window;
+  anchor-scope: --window;
   position: absolute;
   top: 1rem;
   left: 8rem;
@@ -65,7 +67,8 @@
   flex-direction: column;
 }
 
-.desktop-window:not([open]) {
+/* .window would otherwise show a closed dialog. */
+dialog.window:not([open]) {
   display: none;
 }
 
@@ -75,7 +78,7 @@
   user-select: none;
 }
 
-.desktop-window .window-body {
+.desktop-window > .window-body {
   flex: 1;
   overflow-y: auto;
 }
@@ -85,7 +88,7 @@
 }
 
 /* An iframe fills the body edge to edge and scrolls itself. */
-.desktop-window .window-body:has(> iframe) {
+.desktop-window > .window-body:has(> iframe) {
   display: flex;
   padding: 0;
   overflow: hidden;
@@ -99,7 +102,7 @@
 
 /* ---- Explorer window ----------------------------------------------------- */
 
-.explorer .window-body {
+.explorer > .window-body {
   padding: 0.75rem;
 }
 
@@ -110,19 +113,19 @@
   gap: 1rem 0.5rem;
 }
 
-.explorer .desktop-icon,
-.explorer .desktop-icon:hover {
+.explorer-icons .desktop-icon,
+.explorer-icons .desktop-icon:hover {
   color: var(--ink);
 }
 
-.explorer .desktop-icon span {
+.explorer-icons .desktop-icon span {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
-.explorer .desktop-icon:focus span {
+.explorer-icons .desktop-icon:focus span {
   color: #fff;
 }
 
@@ -130,16 +133,20 @@
 
 /* A black screen filling the window, with the video letterboxed in it and a
    status strip beneath: the talk's full title, then its date and link. */
-.media-player .window-body {
+.media-player > .window-body {
   display: flex;
   padding: 0;
   overflow: hidden;
 }
 
-.media-player turbo-frame {
+.media-player > .window-body > turbo-frame {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+.media-player .menubar {
+  background-color: var(--alice-blue);
 }
 
 .media-player .screen {
@@ -200,7 +207,8 @@
 }
 
 .start-menu,
-.submenu {
+.submenu,
+.menu {
   min-width: 12rem;
   padding: 3px;
   background-color: var(--alice-blue);
@@ -226,7 +234,8 @@
   border-top: 1px solid var(--bevel-mid);
 }
 
-.start-menu :is(a, button) {
+.start-menu :is(a, button),
+.menu :is(a, button) {
   display: block;
   width: 100%;
   padding: 0.25rem 0.75rem;
@@ -237,6 +246,7 @@
 }
 
 .start-menu :is(a, button):is(:hover, :focus-visible),
+.menu :is(a, button):is(:hover, :focus-visible),
 .submenu-opener:has(+ :popover-open) {
   background-color: var(--navy-blue);
   color: #fff;
@@ -279,4 +289,95 @@
   font-variant-numeric: tabular-nums;
   border: 1px solid;
   border-color: var(--bevel-mid) var(--bevel-light) var(--bevel-light) var(--bevel-mid);
+}
+
+/* ---- Menu bar ------------------------------------------------------------ */
+
+/* A program's File, Edit, ... menus. Each is a popover that drops down under
+   its item; anchor-scope pairs every item with its own menu. */
+.menubar {
+  display: flex;
+  padding: 1px 2px;
+  font-size: 0.875rem;
+}
+
+.menubar > div {
+  anchor-scope: --menubar-item;
+}
+
+.menubar-item {
+  anchor-name: --menubar-item;
+  padding: 0.125rem 0.5rem;
+  color: inherit;
+  font: inherit;
+}
+
+.menubar-item:is(:hover, :focus-visible),
+.menubar-item:has(+ :popover-open) {
+  background-color: var(--navy-blue);
+  color: #fff;
+  outline: none;
+}
+
+.menu {
+  position-anchor: --menubar-item;
+  position-area: bottom span-right;
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* ---- Open dialog --------------------------------------------------------- */
+
+/* Modal, centred over the window that opened it, and Win2k didn't dim the
+   desktop behind it. */
+.open-dialog {
+  position-anchor: --window;
+  position-area: center;
+  margin: 0;
+  width: min(30rem, 100vw - 2rem);
+}
+
+.open-dialog::backdrop {
+  background: none;
+}
+
+.open-dialog .window-body {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.open-dialog .file-list {
+  height: 12rem;
+  padding: 0.5rem;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 2px solid;
+  border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+}
+
+.open-dialog .desktop-icon.selected span {
+  background-color: var(--navy-blue);
+  color: #fff;
+}
+
+.open-dialog .file-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.open-dialog .file-name .form-control {
+  margin: 0;
+}
+
+.open-dialog .form-actions {
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.open-dialog .button:disabled {
+  color: var(--bevel-mid);
+  cursor: default;
 }
