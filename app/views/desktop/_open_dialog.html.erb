@@ -1,0 +1,33 @@
+<%# locals: (id:, src:, look_in:, title: "Open") %>
+<%# A modal Open dialog, as in Win2k, for a program to pick a file with. Show it
+    from a button with command="show-modal" commandfor=id.
+
+    src lists the files: it renders turbo-frame "#{id}-files" holding a
+    desktop/open_dialog_file for each. A file's href and frame say what opening
+    it does, usually loading it into the program's own turbo-frame. Click
+    selects a file; double-click, Enter, or the Open button opens it. %>
+
+<dialog id="<%= id %>" class="window modal open-dialog" aria-label="<%= title %>" data-controller="open-dialog" data-action="close->open-dialog#reset">
+  <div class="titlebar">
+    <h2><%= title %></h2>
+    <%= render "desktop/close_button" %>
+  </div>
+  <div class="window-body">
+    <p>Look in: <strong><%= look_in %></strong></p>
+    <div class="file-list">
+      <%= turbo_frame_tag "#{id}-files", src:, loading: :lazy do %>
+        Loading…
+      <% end %>
+    </div>
+    <label class="file-name">
+      File name:
+      <input type="text" class="form-control" readonly autocomplete="off" data-open-dialog-target="fileName">
+    </label>
+    <div class="form-actions">
+      <button type="button" class="button" disabled data-open-dialog-target="openButton" data-action="open-dialog#open">Open</button>
+      <form method="dialog">
+        <button class="button">Cancel</button>
+      </form>
+    </div>
+  </div>
+</dialog>

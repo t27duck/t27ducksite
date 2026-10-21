@@ -1,0 +1,6 @@
+<%# locals: (post:) %>
+
+<iframe src="https://www.youtube.com/embed/<%= post.youtube_id %>?rel=0"
+        title="<%= strip_tags(post.title) %>"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>

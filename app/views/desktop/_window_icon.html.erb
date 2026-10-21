@@ -1,0 +1,8 @@
+<%# locals: (window:, label: window.title, image: window.icon, action: "open") %>
+<%# An icon that opens a window. action "load" also loads window.src into it
+    when it's already open, where "open" just brings it to the front. %>
+
+<%= tag.button type: "button", class: "desktop-icon", data: { action: "desktop#requireDoubleClick desktop##{action}", desktop_window_param: window.to_params } do %>
+  <%= image_tag image, alt: "" %>
+  <span><%= label %></span>
+<% end %>

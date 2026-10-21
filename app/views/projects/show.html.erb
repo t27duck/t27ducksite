@@ -1,24 +1,3 @@
 <%= render layout: "shared/window", locals: { title: formatted_title(@project.title), heading: :h1, element: :article, close: projects_path, close_label: "Back to projects" } do %>
-  <p class="meta post-meta">
-    <span class="kind"><%= @project.kind.titleize %></span><% if @project.agentic? %>, AI-assisted<% end %>
-  </p>
-
-  <div class="lede">
-    <%= project_description(@project) %>
-  </div>
-
-  <% if @project.repo_url.present? %>
-    <p>
-      <%= link_to @project.repo_url, class: "button", target: "_blank", rel: "noopener" do %>
-        <%= render "shared/github_logo" %>
-        Visit repository
-      <% end %>
-    </p>
-  <% end %>
-
-  <br>
-
-  <% if @project.content.present? %>
-    <div class="prose"><%= @project.content %></div>
-  <% end %>
+  <%= render "projects/body", project: @project %>
 <% end %>

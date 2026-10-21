@@ -23,6 +23,14 @@ Rails.application.routes.draw do
   end
 
   get "/about", to: "pages#show", id: "about", as: :about
+  get "/desktop", to: "desktop#show", as: :desktop
+  namespace :desktop do
+    resources :folders, only: [:show], constraints: { id: /posts|talks|projects/ }
+    get "internet_explorer", to: "internet_explorer#show"
+    get "media_player", to: "media_player#show"
+    get "media_player/files", to: "media_player#files"
+    get "solitaire", to: "solitaire#show"
+  end
 
   root "home#index"
 end

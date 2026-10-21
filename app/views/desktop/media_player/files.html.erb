@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "media-player-open-files" do %>
+  <div class="explorer-icons">
+    <% @talks.each do |talk| %>
+      <%= render "desktop/open_dialog_file", label: formatted_title(talk.title), href: desktop_media_player_path(talk:), frame: "media-player", image: "video.svg" %>
+    <% end %>
+  </div>
+<% end %>

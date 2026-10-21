@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#3B6EA5">
+    <meta name="robots" content="noindex">
+    <title>Desktop | t27duck</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <%= preload_link_tag "fonts/ibm-plex-sans-latin-wght-normal.woff2" %>
+    <%= preload_link_tag "fonts/literata-latin-wght-normal.woff2" %>
+    <%= stylesheet_link_tag "font", "reset", "lexxy", "application", "desktop", "solitaire", "data-turbo-track": "reload", integrity: true %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <%= tag.body class: "desktop", data: { controller: "desktop", desktop_opening_value: @opening&.to_params } do %>
+    <main data-desktop-target="windows">
+      <%= yield %>
+    </main>
+    <template data-desktop-target="template"><%= render "desktop/window" %></template>
+
+    <footer class="taskbar">
+      <button type="button" class="button start" popovertarget="start-menu">
+        <%= image_tag "/favicon.svg", alt: "" %>
+        Start
+      </button>
+      <nav id="start-menu" class="start-menu" popover aria-label="Start" data-desktop-target="startMenu" data-controller="menu" data-action="mouseover->menu#hover">
+        <ul>
+          <li>
+            <button type="button" class="submenu-opener" popovertarget="programs-menu" popovertargetaction="show">Programs</button>
+            <ul id="programs-menu" class="submenu" popover>
+              <li>
+                <button type="button" class="submenu-opener" popovertarget="accessories-menu" popovertargetaction="show">Accessories</button>
+                <ul id="accessories-menu" class="submenu" popover>
+                  <%= render partial: "desktop/window_menu_item", collection: @windows.select { it.menu == "accessories" }, as: :window %>
+                </ul>
+              </li>
+              <li>
+                <button type="button" class="submenu-opener" popovertarget="website-menu" popovertargetaction="show">Website</button>
+                <ul id="website-menu" class="submenu" popover>
+                  <%= render partial: "desktop/window_menu_item", collection: @windows.select { it.menu == "website" }, as: :window %>
+                  <li><%= link_to "Resume", "/resume.pdf" %></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button type="button" class="submenu-opener" popovertarget="documents-menu" popovertargetaction="show">Documents</button>
+            <ul id="documents-menu" class="submenu" popover>
+              <% @recent_posts.each do |post| %>
+                <%= render "desktop/window_menu_item", window: opener_for(post), label: formatted_title(post.title), action: "load" %>
+              <% end %>
+            </ul>
+          </li>
+          <li>
+            <button type="button" class="submenu-opener" popovertarget="socials-menu" popovertargetaction="show">Socials</button>
+            <ul id="socials-menu" class="submenu" popover>
+              <li><%= link_to "GitHub", "https://github.com/t27duck", target: "_blank", rel: "noopener" %></li>
+              <li><%= link_to "LinkedIn", "https://linkedin.com/in/t27duck", target: "_blank", rel: "noopener" %></li>
+              <li><%= link_to "Bluesky", "https://bsky.app/profile/t27duck.com", target: "_blank", rel: "noopener" %></li>
+              <li><%= link_to "X", "https://x.com/t27duck", target: "_blank", rel: "noopener" %></li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <% if authenticated? %>
+              <%= link_to "Sign out", session_path, data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to "Sign in", new_session_path, rel: "nofollow" %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+      <time class="clock" data-controller="clock"></time>
+    </footer>
+  <% end %>
+</html>

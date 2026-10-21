@@ -1,0 +1,69 @@
+# Windows on the desktop, in the order their icons appear on it and in their
+# Start menu submenu. Each key names one; desktop_controller.js builds the
+# window from these the first time it opens:
+#
+#   title  - title bar text, and the label on its icon and menu item
+#   menu   - which submenu of Programs lists it: website or accessories
+#   shortcut - true to put an icon for it on the desktop
+#   icon   - image for that icon, from app/assets/images
+#   src    - URL the window loads its contents from
+#   frame  - id of the turbo-frame in that response. Leave it out to load src
+#            as a whole page in an iframe instead; CSP only allows this site's
+#            own pages there
+#   width, height - any CSS length; the window still won't outgrow the desktop
+#   kind   - optional CSS class for the window, e.g. explorer for a folder view
+shared:
+  posts:
+    title: Posts
+    menu: website
+    shortcut: true
+    icon: folder.svg
+    src: /desktop/folders/posts
+    frame: posts-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer
+  talks:
+    title: Talks
+    menu: website
+    shortcut: true
+    icon: folder.svg
+    src: /desktop/folders/talks
+    frame: talks-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer
+  projects:
+    title: Projects
+    menu: website
+    shortcut: true
+    icon: folder.svg
+    src: /desktop/folders/projects
+    frame: projects-folder
+    width: 40rem
+    height: 30rem
+    kind: explorer
+  solitaire:
+    title: Solitaire
+    menu: accessories
+    src: /desktop/solitaire
+    frame: solitaire
+    width: 36rem
+    height: 42rem
+    kind: game
+  media_player:
+    title: Media Player
+    menu: accessories
+    src: /desktop/media_player
+    frame: media-player
+    width: 40rem
+    height: 30rem
+    kind: media-player
+  internet_explorer:
+    title: Internet Explorer
+    menu: accessories
+    src: /desktop/internet_explorer
+    frame: internet-explorer
+    width: 50rem
+    height: 36rem
+    kind: browser

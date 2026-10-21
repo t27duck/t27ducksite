@@ -1,0 +1,10 @@
+<%# Files open in a program window: talks in the Media Player, posts and
+    projects in Internet Explorer. %>
+
+<%= turbo_frame_tag "#{@folder}-folder" do %>
+  <div class="explorer-icons">
+    <% @files.each do |file| %>
+      <%= render "desktop/window_icon", window: opener_for(file), label: formatted_title(file.title), image: @folder == "talks" ? "video.svg" : "document.svg", action: "load" %>
+    <% end %>
+  </div>
+<% end %>

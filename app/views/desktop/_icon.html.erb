@@ -1,0 +1,6 @@
+<%# locals: (label:, href:, image:) %>
+
+<%= link_to href, class: "desktop-icon", data: { action: "desktop#requireDoubleClick" } do %>
+  <%= image_tag image, alt: "" %>
+  <span><%= label %></span>
+<% end %>

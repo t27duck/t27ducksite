@@ -1,0 +1,7 @@
+<dialog class="window desktop-window" data-action="pointerdown->desktop#raise close->desktop#discard">
+  <div class="titlebar" data-action="pointerdown->desktop#grab pointermove->desktop#drag pointerup->desktop#drop">
+    <h2>Untitled</h2>
+    <%= render "desktop/close_button" %>
+  </div>
+  <div class="window-body"></div>
+</dialog>

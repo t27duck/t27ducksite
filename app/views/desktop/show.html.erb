@@ -1,0 +1,2 @@
+<%= render "desktop/icon", label: "t27duck.com", href: root_path, image: "/favicon.svg" %>
+<%= render partial: "desktop/window_icon", collection: @windows.select(&:shortcut), as: :window %>
