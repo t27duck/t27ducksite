@@ -23,6 +23,27 @@ class Desktop::FoldersControllerTest < ActionDispatch::IntegrationTest
     assert_equal ["media_player-window", desktop_media_player_path(talk: posts(:three))], params.values_at("id", "src")
   end
 
+  test "posts browse in Internet Explorer" do
+    get desktop_folder_url("posts")
+
+    button = css_select("button.desktop-icon").find { it.text.strip == "Oldest Post" }
+    params = JSON.parse(button["data-desktop-window-param"])
+
+    assert_equal "desktop#requireDoubleClick desktop#load", button["data-action"]
+    assert_equal ["internet_explorer-window", desktop_internet_explorer_path(post: posts(:oldest_published_post))],
+                 params.values_at("id", "src")
+  end
+
+  test "projects browse in Internet Explorer" do
+    get desktop_folder_url("projects")
+
+    button = css_select("button.desktop-icon").find { it.text.strip == "Oldest Project" }
+    params = JSON.parse(button["data-desktop-window-param"])
+
+    assert_equal ["internet_explorer-window", desktop_internet_explorer_path(project: projects(:oldest))],
+                 params.values_at("id", "src")
+  end
+
   test "projects folder lists every project" do
     get desktop_folder_url("projects")
 

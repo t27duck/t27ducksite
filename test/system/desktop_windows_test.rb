@@ -12,7 +12,7 @@ class DesktopWindowsTest < ApplicationSystemTestCase
     within("#talks-window") { click_on "Close" }
 
     assert_selector "dialog[open]", count: 1
-    assert_link "Oldest Post"
+    assert_button "Oldest Post"
   end
 
   test "explorer windows open at the same size whatever they hold" do
@@ -46,19 +46,20 @@ class DesktopWindowsTest < ApplicationSystemTestCase
 
     find_button("Posts").double_click
 
-    assert_link "Filler post 0"
+    assert_button "Filler post 0"
     body = find("#posts-window .window-body")
 
     assert_operator body.evaluate_script("this.scrollHeight"), :>, body.evaluate_script("this.clientHeight")
   end
 
-  test "double-clicking a file opens its page" do
+  test "double-clicking a file opens it in a program without leaving the desktop" do
     visit desktop_path
     find_button("Posts").double_click
 
-    find_link("Oldest Post").double_click
+    find_button("Oldest Post").double_click
 
-    assert_current_path post_path(posts(:oldest_published_post))
+    assert_selector "#internet_explorer-window h1", text: "Oldest Post"
+    assert_current_path desktop_path
   end
 
   test "closing a window resets its position and contents" do
@@ -82,7 +83,7 @@ class DesktopWindowsTest < ApplicationSystemTestCase
     visit desktop_path
     find_button("Posts").double_click
 
-    assert_link "Filler post 0"
+    assert_button "Filler post 0"
     body = find("#posts-window .window-body")
     body.execute_script("this.scrollTop = 200")
 

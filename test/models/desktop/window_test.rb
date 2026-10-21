@@ -2,7 +2,7 @@ require "test_helper"
 
 class Desktop::WindowTest < ActiveSupport::TestCase
   test "configured reads the windows from config in order" do
-    assert_equal ["posts", "talks", "projects", "media_player", "solitaire"], Desktop::Window.configured.map(&:name)
+    assert_equal ["posts", "talks", "projects", "internet_explorer", "media_player", "solitaire"], Desktop::Window.configured.map(&:name)
   end
 
   test "find looks a window up by name" do

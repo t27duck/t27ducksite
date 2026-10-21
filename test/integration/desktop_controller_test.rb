@@ -11,8 +11,19 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
   test "Documents lists only published posts, newest first" do
     get desktop_url
 
-    assert_select "#documents-menu a", count: 3
-    assert_select "#documents-menu li:last-child a", text: "Oldest Post"
+    assert_select "#documents-menu button", count: 3
+    assert_select "#documents-menu li:last-child button", text: "Oldest Post"
+  end
+
+  test "Documents open in Internet Explorer" do
+    get desktop_url
+
+    button = css_select("#documents-menu li:last-child button").sole
+    params = JSON.parse(button["data-desktop-window-param"])
+
+    assert_equal "desktop#load", button["data-action"]
+    assert_equal ["internet_explorer-window", desktop_internet_explorer_path(post: posts(:oldest_published_post))],
+                 params.values_at("id", "src")
   end
 
   test "desktop icons open the windows configured with shortcuts" do
@@ -27,9 +38,10 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
   test "Programs lists each window in its configured submenu" do
     get desktop_url
 
-    assert_select "#accessories-menu button", text: "Solitaire", count: 1
+    accessories = css_select("#accessories-menu li").map { it.text.strip }
     website = css_select("#website-menu li").map { it.text.strip }
 
+    assert_equal ["Internet Explorer", "Media Player", "Solitaire"], accessories
     assert_equal ["Posts", "Talks", "Projects", "About", "Resume"], website
     assert_select "#programs-menu [data-desktop-window-param]", count: Desktop::Window.configured.size
   end

@@ -129,6 +129,65 @@ dialog.window:not([open]) {
   color: #fff;
 }
 
+/* ---- Internet Explorer --------------------------------------------------- */
+
+/* The menu bar, then the address bar, then the page scrolling beneath them as
+   it would on the site, with the status bar along the bottom. */
+/* Resizable from the grip in its bottom-right corner, starting at its size in
+   config/desktop.yml; .desktop-window's max size still keeps it on screen. */
+.browser {
+  resize: both;
+  overflow: hidden;
+  min-width: 20rem;
+  min-height: 15rem;
+}
+
+.browser > .window-body {
+  display: flex;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* min-width keeps a wide code block or image from stretching the frame past
+   the window; the page scrolls it instead. */
+.browser > .window-body > turbo-frame {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.browser .address-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  border-top: 1px solid var(--bevel-mid);
+}
+
+.browser .address-bar .form-control {
+  margin: 0;
+  padding: 0.125rem 0.375rem;
+}
+
+.browser .page {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2rem;
+  background-color: #fff;
+  border: 2px solid;
+  border-color: var(--bevel-dark) var(--bevel-light) var(--bevel-light) var(--bevel-dark);
+}
+
+.browser .page h1 {
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
 /* ---- Media Player -------------------------------------------------------- */
 
 /* A black screen filling the window, with the video letterboxed in it and a
@@ -159,13 +218,13 @@ dialog.window:not([open]) {
   border: 0;
 }
 
-.media-player .status {
+:is(.media-player, .browser) .status {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-top: 1px solid var(--bevel-mid);
 }
 
-.media-player .status p {
+:is(.media-player, .browser) .status p {
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;

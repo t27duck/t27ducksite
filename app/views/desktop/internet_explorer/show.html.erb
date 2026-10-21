@@ -1,0 +1,34 @@
+<%= turbo_frame_tag "internet-explorer" do %>
+  <nav class="menubar" aria-label="Internet Explorer">
+    <div>
+      <button type="button" class="menubar-item" popovertarget="internet-explorer-file-menu">File</button>
+      <div id="internet-explorer-file-menu" class="menu" popover>
+        <form method="dialog">
+          <button>Close</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <label class="address-bar">
+    Address
+    <input type="text" class="form-control" value="<%= @url || "about:blank" %>" readonly autocomplete="off">
+  </label>
+  <div class="page">
+    <% case @page %>
+    <% when Post %>
+      <h1><%= formatted_title(@page.title) %></h1>
+      <%= render "posts/body", post: @page %>
+    <% when Project %>
+      <h1><%= formatted_title(@page.title) %></h1>
+      <%= render "projects/body", project: @page %>
+    <% end %>
+  </div>
+  <div class="status">
+    <p>
+      <span>Done</span>
+      <% if @page %>
+        <%= link_to "Open full page", @url %>
+      <% end %>
+    </p>
+  </div>
+<% end %>

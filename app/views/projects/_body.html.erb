@@ -1,0 +1,25 @@
+<%# locals: (project:) %>
+<%# A project's page under its title: here, and in the desktop's Internet Explorer. %>
+
+<p class="meta post-meta">
+  <span class="kind"><%= project.kind.titleize %></span><% if project.agentic? %>, AI-assisted<% end %>
+</p>
+
+<div class="lede">
+  <%= project_description(project) %>
+</div>
+
+<% if project.repo_url.present? %>
+  <p>
+    <%= link_to project.repo_url, class: "button", target: "_blank", rel: "noopener" do %>
+      <%= render "shared/github_logo" %>
+      Visit repository
+    <% end %>
+  </p>
+<% end %>
+
+<br>
+
+<% if project.content.present? %>
+  <div class="prose"><%= project.content %></div>
+<% end %>

@@ -2,23 +2,7 @@
 
 <div class="stack">
   <%= render layout: "shared/window", locals: { title: formatted_title(@post.title), heading: :h1, element: :article, close: nil, close_label: back_label } do %>
-    <% unless @post.talk? %>
-      <p class="meta post-meta"><%= @post.publish ? "Published #{@post.published_at.strftime("%B %-d, %Y")}" : "Not published" %></p>
-    <% end %>
-
-    <% if @post.summary.present? %>
-      <p class="lede"><%= @post.summary %></p>
-    <% end %>
-
-    <% if @post.talk? %>
-      <%= render "posts/video", post: @post %>
-    <% else %>
-      <div class="prose"><%= @post.content %></div>
-    <% end %>
-
-    <% if @post.tags.present? %>
-      <p class="tags">Tagged <%= tag_links(@post.tags) %></p>
-    <% end %>
+    <%= render "posts/body", post: @post %>
   <% end %>
 
   <% if Rails.env.production? %>

@@ -50,7 +50,7 @@ class DesktopTest < ApplicationSystemTestCase
 
     click_on "Documents"
 
-    assert_link "Oldest Post"
+    assert_button "Oldest Post"
   end
 
   test "a single click selects a desktop icon without opening it" do

@@ -43,6 +43,14 @@ shared:
     width: 40rem
     height: 30rem
     kind: explorer
+  internet_explorer:
+    title: Internet Explorer
+    menu: accessories
+    src: /desktop/internet_explorer
+    frame: internet-explorer
+    width: 50rem
+    height: 36rem
+    kind: browser
   media_player:
     title: Media Player
     menu: accessories

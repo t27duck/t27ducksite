@@ -13,7 +13,8 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
     <%= preload_link_tag "fonts/ibm-plex-sans-latin-wght-normal.woff2" %>
-    <%= stylesheet_link_tag "font", "reset", "application", "desktop", "solitaire", "data-turbo-track": "reload", integrity: true %>
+    <%= preload_link_tag "fonts/literata-latin-wght-normal.woff2" %>
+    <%= stylesheet_link_tag "font", "reset", "lexxy", "application", "desktop", "solitaire", "data-turbo-track": "reload", integrity: true %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -53,7 +54,7 @@
             <button type="button" class="submenu-opener" popovertarget="documents-menu" popovertargetaction="show">Documents</button>
             <ul id="documents-menu" class="submenu" popover>
               <% @recent_posts.each do |post| %>
-                <li><%= link_to formatted_title(post.title), post %></li>
+                <%= render "desktop/window_menu_item", window: @internet_explorer.with(src: desktop_internet_explorer_path(post:)), label: formatted_title(post.title), action: "load" %>
               <% end %>
             </ul>
           </li>
