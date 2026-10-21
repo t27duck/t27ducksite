@@ -18,7 +18,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="desktop" data-controller="desktop">
+  <%= tag.body class: "desktop", data: { controller: "desktop", desktop_opening_value: @opening&.to_params } do %>
     <main data-desktop-target="windows">
       <%= yield %>
     </main>
@@ -53,7 +53,7 @@
             <button type="button" class="submenu-opener" popovertarget="documents-menu" popovertargetaction="show">Documents</button>
             <ul id="documents-menu" class="submenu" popover>
               <% @recent_posts.each do |post| %>
-                <%= render "desktop/window_menu_item", window: @internet_explorer.with(src: desktop_internet_explorer_path(post:)), label: formatted_title(post.title), action: "load" %>
+                <%= render "desktop/window_menu_item", window: opener_for(post), label: formatted_title(post.title), action: "load" %>
               <% end %>
             </ul>
           </li>
@@ -79,5 +79,5 @@
       </nav>
       <time class="clock" data-controller="clock"></time>
     </footer>
-  </body>
+  <% end %>
 </html>

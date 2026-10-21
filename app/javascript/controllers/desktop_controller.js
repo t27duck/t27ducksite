@@ -9,9 +9,20 @@ import { Controller } from "@hotwired/stimulus"
 // to the front.
 export default class extends Controller {
   static targets = ["startMenu", "template", "windows"]
+  static values = { opening: Object }
 
   #zIndex = 0
   #drag = null
+
+  // Booted from the easter egg on a post, project, or talk, the desktop starts
+  // with it open (DesktopController#show). The query string goes so a reload
+  // is a plain desktop.
+  connect() {
+    if (this.hasOpeningValue) {
+      this.#open(this.openingValue)
+      history.replaceState(history.state, "", location.pathname)
+    }
+  }
 
   // Icons open on a double-click, as in Win2k; a single click only selects.
   // Touch and the keyboard (Enter) still open on one tap.

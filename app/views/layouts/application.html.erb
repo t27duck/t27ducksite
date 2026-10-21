@@ -66,7 +66,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="easter-egg" data-easter-egg-url-value="<%= desktop_path %>" data-action="keydown@window->easter-egg#key">
     <header class="site-header">
       <%= link_to "t27duck", root_path, class: "site-name" %>
       <nav class="site-nav" aria-label="Main">
@@ -93,7 +93,7 @@
           <%= link_to "Sign in", new_session_path, rel: "nofollow" %>
         <% end %>
       </nav>
-      <span>&copy; <%= Time.current.year %> Tony Drake</span>
+      <span data-action="click->easter-egg#tap">&copy; <%= Time.current.year %> Tony Drake</span>
     </footer>
   </body>
 </html>

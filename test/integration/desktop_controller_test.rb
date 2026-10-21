@@ -41,9 +41,38 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
     accessories = css_select("#accessories-menu li").map { it.text.strip }
     website = css_select("#website-menu li").map { it.text.strip }
 
-    assert_equal ["Internet Explorer", "Media Player", "Solitaire"], accessories
-    assert_equal ["Posts", "Talks", "Projects", "About", "Resume"], website
+    assert_equal ["Solitaire", "Media Player", "Internet Explorer"], accessories
+    assert_equal ["Posts", "Talks", "Projects", "Resume"], website
     assert_select "#programs-menu [data-desktop-window-param]", count: Desktop::Window.configured.size
+  end
+
+  test "boots into a post in Internet Explorer" do
+    get desktop_url(open: post_path(posts(:one)))
+
+    assert_equal ["internet_explorer-window", desktop_internet_explorer_path(post: posts(:one))],
+                 opening.values_at("id", "src")
+  end
+
+  test "boots into a project in Internet Explorer" do
+    get desktop_url(open: project_path(projects(:one)))
+
+    assert_equal ["internet_explorer-window", desktop_internet_explorer_path(project: projects(:one))],
+                 opening.values_at("id", "src")
+  end
+
+  test "boots into a talk in the Media Player" do
+    get desktop_url(open: post_path(posts(:three)))
+
+    assert_equal ["media_player-window", desktop_media_player_path(talk: posts(:three))], opening.values_at("id", "src")
+  end
+
+  test "boots into a plain desktop from anywhere else" do
+    [nil, "", talks_path, "/nope", post_path(posts(:unpublished_post)), "https://example.com#{post_path(posts(:one))}",
+     "//example.com#{post_path(posts(:one))}", "/projects/0-missing"].each do |path|
+      get desktop_url(open: path)
+
+      assert_nil opening, "open=#{path.inspect}"
+    end
   end
 
   test "windows are built on demand, not rendered up front" do
@@ -51,5 +80,11 @@ class DesktopControllerTest < ActionDispatch::IntegrationTest
 
     assert_select "main dialog", count: 0
     assert_select "template[data-desktop-target=template]", count: 1
+  end
+
+  private ######################################################################
+
+  def opening
+    css_select("body").sole["data-desktop-opening-value"]&.then { JSON.parse(it) }
   end
 end
