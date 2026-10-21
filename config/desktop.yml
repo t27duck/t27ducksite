@@ -43,22 +43,6 @@ shared:
     width: 40rem
     height: 30rem
     kind: explorer
-  internet_explorer:
-    title: Internet Explorer
-    menu: accessories
-    src: /desktop/internet_explorer
-    frame: internet-explorer
-    width: 50rem
-    height: 36rem
-    kind: browser
-  media_player:
-    title: Media Player
-    menu: accessories
-    src: /desktop/media_player
-    frame: media-player
-    width: 40rem
-    height: 30rem
-    kind: media-player
   solitaire:
     title: Solitaire
     menu: accessories
@@ -67,3 +51,19 @@ shared:
     width: 36rem
     height: 42rem
     kind: game
+  media_player:
+    title: Media Player
+    menu: accessories
+    src: /desktop/media_player
+    frame: media-player
+    width: 40rem
+    height: 30rem
+    kind: media-player
+  internet_explorer:
+    title: Internet Explorer
+    menu: accessories
+    src: /desktop/internet_explorer
+    frame: internet-explorer
+    width: 50rem
+    height: 36rem
+    kind: browser

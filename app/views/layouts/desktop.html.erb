@@ -44,7 +44,6 @@
                 <button type="button" class="submenu-opener" popovertarget="website-menu" popovertargetaction="show">Website</button>
                 <ul id="website-menu" class="submenu" popover>
                   <%= render partial: "desktop/window_menu_item", collection: @windows.select { it.menu == "website" }, as: :window %>
-                  <li><%= link_to "About", about_path %></li>
                   <li><%= link_to "Resume", "/resume.pdf" %></li>
                 </ul>
               </li>
