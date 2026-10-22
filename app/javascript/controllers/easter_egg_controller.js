@@ -1,14 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
-// The way into the desktop from any page: the Konami code, or five quick taps
-// on the footer's copyright. It boots into the page it fired on, which the
-// desktop opens in its program if it's a post, project, or talk.
+// The way into Solitaire from any page: the Konami code, or five quick taps on
+// the footer's copyright.
 const KONAMI = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"]
 const TAPS = 5
 const TAP_GAP = 1000
 
 export default class extends Controller {
-  static values = { url: String }
+  static outlets = ["solitaire-window"]
 
   #keys = 0
   #taps = 0
@@ -27,7 +26,7 @@ export default class extends Controller {
 
     if (this.#keys === KONAMI.length) {
       this.#keys = 0
-      this.#boot()
+      this.solitaireWindowOutlet.open()
     }
   }
 
@@ -38,17 +37,11 @@ export default class extends Controller {
 
     if (this.#taps === TAPS) {
       this.#taps = 0
-      this.#boot()
+      this.solitaireWindowOutlet.open()
     }
   }
 
   #typing(target) {
     return target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
-  }
-
-  #boot() {
-    const url = new URL(this.urlValue, document.baseURI)
-    url.searchParams.set("open", location.pathname)
-    Turbo.visit(url)
   }
 }

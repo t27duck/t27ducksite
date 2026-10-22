@@ -1,6 +1,9 @@
 <%# locals: (post:) %>
 
 <div class="video">
-  <%= render "posts/youtube_embed", post: %>
+  <iframe src="https://www.youtube.com/embed/<%= post.youtube_id %>?rel=0"
+          title="<%= strip_tags(post.title) %>"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
 </div>
 <p class="video-link"><%= link_to "Watch on YouTube", post.video_url, target: "_blank", rel: "noopener" %></p>

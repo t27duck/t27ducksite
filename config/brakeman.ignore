@@ -3,36 +3,36 @@
     {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
-      "fingerprint": "e8cc3bb78a3f3b3a6dbfefa75dbf91e1caa9184dfa976062cd0e09c965a64efc",
+      "fingerprint": "ef2e2716c064112435669acc4fb483d602a4ccc854db4506dbd5d8dd1e5b6516",
       "check_name": "LinkToHref",
       "message": "Potentially unsafe model attribute in `link_to` href",
-      "file": "app/views/desktop/media_player/show.html.erb",
-      "line": 25,
+      "file": "app/views/projects/show.html.erb",
+      "line": 11,
       "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
-      "code": "link_to(\"Watch on YouTube\", Post.talk.published.find(params.expect(:talk)).video_url, :target => \"_blank\", :rel => \"noopener\")",
+      "code": "link_to(Project.with_rich_text_content_and_embeds.find(params.expect(:id)).repo_url, :class => \"button\", :target => \"_blank\", :rel => \"noopener\")",
       "render_path": [
         {
           "type": "controller",
-          "class": "Desktop::MediaPlayerController",
+          "class": "ProjectsController",
           "method": "show",
           "line": 6,
-          "file": "app/controllers/desktop/media_player_controller.rb",
+          "file": "app/controllers/projects_controller.rb",
           "rendered": {
-            "name": "desktop/media_player/show",
-            "file": "app/views/desktop/media_player/show.html.erb"
+            "name": "projects/show",
+            "file": "app/views/projects/show.html.erb"
           }
         }
       ],
       "location": {
         "type": "template",
-        "template": "desktop/media_player/show"
+        "template": "projects/show"
       },
-      "user_input": "Post.talk.published.find(params.expect(:talk)).video_url",
+      "user_input": "Project.with_rich_text_content_and_embeds.find(params.expect(:id)).repo_url",
       "confidence": "Weak",
       "cwe_id": [
         79
       ],
-      "note": "Post::YOUTUBE_URL validates video_url as an https YouTube URL."
+      "note": "Admin-entered, and Project::WEB_URL restricts repo_url to http(s)."
     }
   ],
   "brakeman_version": "7.0.2"

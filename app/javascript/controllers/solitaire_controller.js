@@ -11,8 +11,10 @@ const FOUNDATIONS = ["foundation-0", "foundation-1", "foundation-2", "foundation
 export default class extends Controller {
   static targets = ["pile", "won"]
 
+  // Turbo navigations reconnect the controller as they carry the permanent
+  // window across, so only deal if there's no game in progress.
   connect() {
-    this.newGame()
+    if (!this.piles) this.newGame()
   }
 
   newGame() {

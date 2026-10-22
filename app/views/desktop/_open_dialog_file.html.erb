@@ -1,7 +1,0 @@
-<%# locals: (label:, href:, frame:, image: "document.svg") %>
-<%# A file in an Open dialog. Opening it loads href into turbo-frame frame. %>
-
-<%= link_to href, class: "desktop-icon", data: { turbo_frame: frame, action: "open-dialog#select desktop#requireDoubleClick open-dialog#close" } do %>
-  <%= image_tag image, alt: "" %>
-  <span><%= label %></span>
-<% end %>

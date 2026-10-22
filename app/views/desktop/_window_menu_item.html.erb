@@ -1,5 +1,0 @@
-<%# locals: (window:, label: window.title, action: "open") %>
-<%# A Start menu item that opens one of the windows in config/desktop.yml.
-    action "load" also loads window.src into it, as desktop/_window_icon. %>
-
-<li><%= tag.button label, type: "button", data: { action: "desktop##{action}", desktop_window_param: window.to_params } %></li>

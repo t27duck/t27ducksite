@@ -1,10 +1,111 @@
-/* Solitaire, played in a desktop window. See solitaire_controller.js. */
+/* Solitaire, the easter egg: a floating window over any page, opened by
+   easter_egg_controller.js. See solitaire_window_controller.js and
+   solitaire_controller.js. */
 
-/* The felt fills the window, however tall the board is. */
-.game > .window-body {
+/* ---- Window -------------------------------------------------------------- */
+
+/* Fixed over the page, so it stays put as the page scrolls beneath it. The
+   title bar drags it; the grip in its bottom-right corner resizes it, and the
+   cards scale with its width. */
+.solitaire-window {
+  anchor-name: --solitaire-window;
+  position: fixed;
+  inset: 4rem auto auto max(0px, 50vw - 18rem);
+  z-index: 100;
+  width: min(36rem, 100vw);
+  height: min(42rem, 100dvh - 4rem);
+  min-width: 16rem;
+  min-height: 12rem;
+  max-width: 100vw;
+  max-height: 100dvh;
+  margin: 0;
+  flex-direction: column;
+  overflow: hidden;
+  resize: both;
+  color: var(--ink);
+  box-shadow: inset -1px -1px 0 var(--bevel-mid), 2px 4px 12px rgb(0 0 0 / 0.35);
+}
+
+.solitaire-window[open] {
+  display: flex;
+}
+
+/* .window would otherwise show a closed dialog. */
+dialog.window:not([open]) {
+  display: none;
+}
+
+.solitaire-window > .titlebar {
+  cursor: default;
+  touch-action: none;
+  user-select: none;
+}
+
+/* The felt fills the window, however tall the board is, and scrolls when the
+   board outgrows it. */
+.solitaire-window > .window-body {
+  flex: 1;
   padding: 0;
+  overflow-y: auto;
   background: #2e7d4f;
 }
+
+
+/* ---- Menu bar ------------------------------------------------------------ */
+
+/* File menu: a popover that drops down under its item; anchor-scope pairs
+   every item with its own menu. */
+.menubar {
+  display: flex;
+  padding: 1px 2px;
+  background-color: var(--alice-blue);
+  font-size: 0.875rem;
+}
+
+.menubar > div {
+  anchor-scope: --menubar-item;
+}
+
+.menubar-item {
+  anchor-name: --menubar-item;
+  padding: 0.125rem 0.5rem;
+  color: inherit;
+  font: inherit;
+}
+
+.menubar-item:is(:hover, :focus-visible),
+.menubar-item:has(+ :popover-open),
+.menu :is(a, button):is(:hover, :focus-visible) {
+  background-color: var(--navy-blue);
+  color: #fff;
+  outline: none;
+}
+
+.menu {
+  position-anchor: --menubar-item;
+  position-area: bottom span-right;
+  min-width: 12rem;
+  margin: 0;
+  padding: 3px;
+  background-color: var(--alice-blue);
+  color: var(--ink);
+  font-size: 0.875rem;
+  border: 1px solid;
+  border-color: var(--bevel-light) var(--bevel-dark) var(--bevel-dark) var(--bevel-light);
+  box-shadow: inset -1px -1px 0 var(--bevel-mid);
+}
+
+.menu :is(a, button) {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 0.75rem;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+}
+
+/* ---- Game ---------------------------------------------------------------- */
 
 .solitaire {
   padding: 8px;
@@ -76,6 +177,19 @@
   z-index: 100;
   cursor: grabbing;
   box-shadow: 0 6px 12px rgb(0 0 0 / 0.4);
+}
+
+/* ---- Won dialog ---------------------------------------------------------- */
+
+/* Modal, centred over the game. Win2k didn't dim the screen behind it. */
+.modal {
+  position-anchor: --solitaire-window;
+  position-area: center;
+  margin: 0;
+}
+
+.modal::backdrop {
+  background: none;
 }
 
 .won-dialog .window-body {

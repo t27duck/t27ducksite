@@ -9,7 +9,9 @@ Rails.application.configure do
     policy.base_uri    :self
     policy.form_action :self
     policy.font_src    :self
-    policy.frame_ancestors :self
+
+    # Nothing here is meant to be embedded anywhere else.
+    policy.frame_ancestors :none
 
     # Lexxy's sanitizer allows <embed> in rich text, but nothing uses one.
     policy.object_src :none
@@ -54,10 +56,8 @@ Rails.application.configure do
                        "https://*.google-analytics.com",
                        "https://*.analytics.google.com"
 
-    # Self for the desktop's iframe windows, YouTube for talk embeds, Disqus
-    # for the comment widget.
-    policy.frame_src :self,
-                     "https://www.youtube.com",
+    # YouTube for talk embeds, Disqus for the comment widget.
+    policy.frame_src "https://www.youtube.com",
                      "https://disqus.com"
   end
 

@@ -62,11 +62,12 @@
     <%= stylesheet_link_tag "font", "reset", "data-turbo-track": "reload", integrity: true %>
     <%= stylesheet_link_tag "lexxy", "data-turbo-track": "reload", integrity: true %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload", integrity: true %>
+    <%= stylesheet_link_tag "solitaire", "data-turbo-track": "reload", integrity: true %>
     <script async src="https://ga.jspm.io/npm:es-module-shims@2.6.1/dist/es-module-shims.js" integrity="sha384-SADc7+oIGwfnEMLIX5I7VKmW9g1vvSIOy1VC68xaPPeYoS8XAjBHBCN7N9o1czpn" crossorigin="anonymous"></script>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="easter-egg" data-easter-egg-url-value="<%= desktop_path %>" data-action="keydown@window->easter-egg#key">
+  <body data-controller="easter-egg" data-easter-egg-solitaire-window-outlet="#solitaire-window" data-action="keydown@window->easter-egg#key">
     <header class="site-header">
       <%= link_to "t27duck", root_path, class: "site-name" %>
       <nav class="site-nav" aria-label="Main">
@@ -95,5 +96,7 @@
       </nav>
       <span data-action="click->easter-egg#tap">&copy; <%= Time.current.year %> Tony Drake</span>
     </footer>
+
+    <%= render "shared/solitaire" %>
   </body>
 </html>
