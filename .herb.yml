@@ -11,7 +11,7 @@
 # GitHub Repo: https://github.com/marcoroth/herb
 #
 
-version: 0.10.4
+version: 0.11.0
 
 files:
   #   # Additional patterns beyond the defaults (**.html, **.rhtml, **.html.erb, etc.)
@@ -27,11 +27,7 @@ files:
 linter:
   enabled: true
   rules:
-    erb-no-unsafe-raw:
-      enabled: false
     erb-no-unsafe-script-interpolation:
-      enabled: false
-    erb-no-instance-variables-in-partials:
       enabled: false
     html-require-script-nonce:
       enabled: false
