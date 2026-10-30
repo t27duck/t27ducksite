@@ -89,5 +89,5 @@ group :test do
 end
 
 gem "kaminari"
-gem "lexxy", "1.0.1"
+gem "lexxy", "1.0.2"
 gem "reactionview"
