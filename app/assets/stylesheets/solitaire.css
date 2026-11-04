@@ -54,7 +54,8 @@ dialog.window:not([open]) {
 /* ---- Menu bar ------------------------------------------------------------ */
 
 /* File menu: a popover that drops down under its item; anchor-scope pairs
-   every item with its own menu. */
+   every item with its own menu. It's fixed, like the window it's anchored in,
+   or it would scroll away with the page. */
 .menubar {
   display: flex;
   padding: 1px 2px;
@@ -82,6 +83,7 @@ dialog.window:not([open]) {
 }
 
 .menu {
+  position: fixed;
   position-anchor: --menubar-item;
   position-area: bottom span-right;
   min-width: 12rem;
@@ -120,13 +122,22 @@ dialog.window:not([open]) {
   margin-bottom: clamp(6px, 2vw, 16px);
 }
 
-/* Each pile is a size container so card text scales with card width. */
+/* Each pile is a size container so card text scales with card width. A tableau
+   pile grows with its fan, which keeps its whole length a drop target, so the
+   outline is its own card-sized box at the top. */
 .solitaire .pile {
   position: relative;
   aspect-ratio: 5 / 7;
+  container-type: inline-size;
+}
+
+.solitaire .pile::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  aspect-ratio: 5 / 7;
   border-radius: 6%;
   box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.25);
-  container-type: inline-size;
 }
 
 .solitaire .pile[data-pile="stock"] { cursor: pointer; }
